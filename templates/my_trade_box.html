@@ -131,6 +131,14 @@
             margin: 20px;
             /* 여백 추가 */
         }
+
+        article{
+            height: 100%;
+            width: 70%;
+            margin: 0 auto;
+            padding-bottom: 12px;
+            text-align: left;
+        }
     </style>
 </head>
 
@@ -159,22 +167,40 @@
         </nav>
     </header>
 
-    <h2>비대면 상자 거래 정보</h2>
-    <div class="flex-container">
-        <div class="flex-item">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1581.0051924043707!2d126.93615398967286!3d37.57837315236578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sko!2skr!4v1699351183441!5m2!1sko!2skr"
-                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <p style="color: hotpink;">※ 보관 기간 내에 찾아가거나 기간을 연장하지 않을 시, 물품이 폐기되며 이에 대한 배상은 불가합니다.</p>
+    <article>
+        <h2>거래 품목</h2>
+        <div class="flex-container">
+                <img src="../static/img/example.png" height="300px" alt="상품사진">
+            
+            <div class="item-container">
+                상품명
+                <h3>끝내주는 텀블러</h3><br>
+                거래대상
+                <h3>맛있는 감자</h3><br>
+                거래가격
+                <h3>20000원</h3><br>
+            </div>
         </div>
-        <div class="item-container">
-            <div class="item-item"> 거래소위치<br><span style="font-size: 20px;"> 서대문구 ㅇㅇ동 ㅇㅇ거래소</span></div>
-            <div class="item-item"> 사물함 번호<br><span style="font-size: 20px;"> 바 07-03</span></div>
-            <div class="item-item"> 보관기간<br><span style="font-size: 20px;"> 2023.10.09 ~ 2023.10.12</span></div>
+
+        <h2>비대면 상자 거래 정보</h2>
+        <div class="flex-container">
+            <div class="flex-item">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1581.0051924043707!2d126.93615398967286!3d37.57837315236578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sko!2skr!4v1699351183441!5m2!1sko!2skr"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <p style="color: hotpink;">※ 보관 기간 내에 찾아가거나 기간을 연장하지 않을 시, 물품이 폐기되며 이에 대한 배상은 불가합니다.</p>
+            </div>
+            <div class="item-container">
+                <div class="item-item"> 거래소위치<br><span style="font-size: 20px;"> 서대문구 ㅇㅇ동 ㅇㅇ거래소</span></div>
+                <div class="item-item"> 사물함 번호<br><span style="font-size: 20px;"> 바 07-03</span></div>
+                <div class="item-item"> 보관기간<br><span style="font-size: 20px;"> 2023.10.09 ~ 2023.10.12</span></div>
+            </div>
         </div>
-    </div>
     </article>
+    
+
+
     <footer>
         <div class="text-section">
             <p>
