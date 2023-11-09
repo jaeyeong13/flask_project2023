@@ -114,6 +114,59 @@
             display: inline-block;
         }
 
+        footer {
+            color: #2D2D2D;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #ccc; /* Add this line to create a border above the footer */
+            font-size: 16px; /* Increase the font size as desired */
+        }
+
+        .info {
+            text-align: center; /* Change the text alignment to center */
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        .left-content {
+            width: 50%;
+            text-align: justify;
+        }
+
+        .title {
+            font-weight: bold;
+        }
+
+        /* 새로운 스타일 추가 */
+        .info {
+            text-align: left; /* Align the text to the left */
+            margin-left: 100px;
+        }
+
+        /* 새로운 스타일 추가 - 제목 스타일 설정 */
+        .market-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* 새로운 스타일 추가 - 저작권 문구 스타일 설정 */
+        .copyright {
+            font-size: 14px;
+        }
+
+        article{
+            height: 100%;
+            width: 70%;
+            margin: 0 auto;
+            padding-bottom: 12px;
+            text-align: left;
+        }
+
         .text-section {
             flex: 1;
             /* 공간을 남은 공간에 맞게 분배 */
@@ -134,7 +187,12 @@
             </ul>
 
             <div class="searchbar">
+<<<<<<< HEAD
                 <input class="search-input" type="text" placeholder="찾으시는 상품명을 입력하세요" onkeydown="if (event.keyCode == 13) searchFunction()">
+=======
+                <input class="search-input" type="text" placeholder="찾으시는 상품명을 입력하세요"
+                    onkeydown="if (event.keyCode == 13) searchFunction()">
+>>>>>>> 6209111a97a3b09fa843ea872af3c689c8a86557
                 <button class="nav-button" onclick="searchFunction()">
                     <img src="../static/img/search.png" width="20" height="20">
                 </button>
@@ -168,7 +226,7 @@
             <h3 style="font-family: Arial, sans-serif; font-size: 20px;">거래 방식</h3>
             <div>
                 <div style="font-size: 20px;"">
-                    <input type=" checkbox" id="cb1" value="dirG" name="dirG">
+                    <input type="checkbox" id="cb1" value="dirG" name="dirG">
                     <label for="cb1">직거래</label>
                     <input type="checkbox" id="cb2" value="tG" name="tG">
                     <label for="cb2">택배거래</label>
@@ -273,30 +331,42 @@
 
         const formattedDateTime = `${year}-${month}-${date} ${hour}:${minutes}`;
         document.getElementById("post-date").value = formattedDateTime;
+
+        function do_reposition_footer() {
+            header_height = document.getElementsByTagName('header')[0].clientHeight + 2;
+            content_height = document.getElementsByClassName('content')[0].clientHeight;
+            footer_height = document.getElementsByTagName('footer')[0].clientHeight;
+
+            body_height = header_height + content_height + footer_height;
+
+            if (window.innerHeight > body_height) {
+                t = window.innerHeight - header_height - footer_height - 2;
+                document.getElementsByClassName('content')[0].style.height = t + 'px';
+            }
+        }
     </script>
-    <footer>
-        <div class="text-section">
-            <p>
-                <hr style="border: 0; border-top: 1px solid gray; width: 200%;">
-            <h3>감자마켓</h3>
-            </p>
-            <p>여기에는 감자마켓의 설립 모토와 제공 서비스에 대한 설명이 들어갑니다. 이화여대 컴퓨터공학과 재학생 5명이 모여 만든 감자마켓에는 다양한 기능을 할 수 있는 페이지들이
-                있습니다.
-                와서
-                구경하세요!
-            </p>
-
-            <p>2023PotatoMarket. All rights reserved</p>
-        </div>
-        <div class="text-section">
-            <p>address 이화여자대학교 아산공학관 703호 감자마켓</p>
-            <p> 우편번호 011022</p>
-            <p>contact 010-9876-5432</p>
-        </div>
-
-
-    </footer>
+    
 
 </body>
+<footer>
+    <div class="text-section">
+        <p>
+            <hr style="border: 0; border-top: 1px solid gray; width: 200%;">
+        <h3>감자마켓</h3>
+        </p>
+        <p>여기에는 감자마켓의 설립 모토와 제공 서비스에 대한 설명이 들어갑니다. 이화여대 컴퓨터공학과 재학생 5명이 모여 만든 감자마켓에는 다양한 기능을 할 수 있는 페이지들이
+            있습니다.
+            와서
+            구경하세요!
+        </p>
+
+        <p>2023PotatoMarket. All rights reserved</p>
+    </div>
+    <div class="text-section">
+        <p>address 이화여자대학교 아산공학관 703호 감자마켓</p>
+        <p> 우편번호 011022</p>
+        <p>contact 010-9876-5432</p>
+    </div>
+</footer>
 
 </html>
