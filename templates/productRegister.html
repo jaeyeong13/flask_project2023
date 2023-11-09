@@ -110,22 +110,22 @@
     </div>
 
     <div class="container">
-    <!-- 터미널 출력 확인용 -->
-    <!-- <form action="/submit" method="post"> -->
+        <!-- 터미널 출력 확인용 -->
+        <!-- <form action="/submit" method="post"> -->
 
-    <!-- result 페이지용 -->
-    <form action="/productSubmitResult" method="post">
+        <!-- result 페이지용 -->
+        <form action="/productSubmitResult" method="post">
             <div>
                 <h3>상품명</h3>
                 <label for="product-title">상품명(글제목)</label>
                 <input type="text" id="product-title" name="product-title" required placeholder="20자 이내로 입력하세요">
             </div>
-        
-             <div>
+
+            <div>
                 <label for="img">사진 첨부</label>
                 <input type="file" name="file" /><br><br>
             </div>
-        
+
             <br>
 
             <h3>거래방식 * 가능한 거래방식에 모두 체크해주세요.</h3>
@@ -210,6 +210,28 @@
         const formattedDateTime = `${year}-${month}-${date} ${hour}:${minutes}`;
         document.getElementById("post-date").value = formattedDateTime;
     </script>
+    <footer>
+        <div class="text-section">
+            <p>
+                <hr style="border: 0; border-top: 1px solid gray; width: 200%;">
+            <h3>감자마켓</h3>
+            </p>
+            <p>여기에는 감자마켓의 설립 모토와 제공 서비스에 대한 설명이 들어갑니다. 이화여대 컴퓨터공학과 재학생 5명이 모여 만든 감자마켓에는 다양한 기능을 할 수 있는 페이지들이
+                있습니다.
+                와서
+                구경하세요!
+            </p>
+
+            <p>2023PotatoMarket. All rights reserved</p>
+        </div>
+        <div class="text-section">
+            <p>address 이화여자대학교 아산공학관 703호 감자마켓</p>
+            <p> 우편번호 011022</p>
+            <p>contact 010-9876-5432</p>
+        </div>
+
+
+    </footer>
 
 </body>
 

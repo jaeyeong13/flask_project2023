@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,7 +102,7 @@
         }
 
         .info-top {
-            display: flex;    
+            display: flex;
             align-items: flex-start;
         }
 
@@ -194,7 +195,7 @@
         }
 
         .review-info-seller {
-            border: 1px solid #A47BDA; 
+            border: 1px solid #A47BDA;
             border-radius: 8px;
             padding: 10px;
             width: 80%;
@@ -208,8 +209,16 @@
             width: 80%;
             margin: 20px auto;
         }
+
+        .text-section {
+            flex: 1;
+            /* 공간을 남은 공간에 맞게 분배 */
+            margin: 20px;
+            /* 여백 추가 */
+        }
     </style>
 </head>
+
 <body>
     <header>
         <h2>GamjaMarket</h2>
@@ -227,70 +236,93 @@
     </header>
 
     <div class="title">거래품목</div>
-            <div class="div-container">
-                <div class="leftside">
-                    <div class="product-info">
-                        <div class="info-imglink">
-                            <img src="example.png" alt="Product Image">
-                            <button class="view-button" onclick="location.href='reviewDetail.html'">상품 상세보기</button>
-                        </div>
-                        <div class="info-details">
-                            <div class="info-line">
-                                <span class="info-q">상품명</span><br>
-                                <span class="info-a">끝내주는 텀블러</span>
-                            </div>
-                            <div class="info-line">
-                                <span class="info-q">거래대상</span><br>
-                                <span class="info-a">맛있는감자</span>
-                            </div>
-                            <div class="info-line">
-                                <span class="info-q">거래가격</span><br>
-                                <span class="info-a">20000원</span>
-                            </div>
-                        </div>
+    <div class="div-container">
+        <div class="leftside">
+            <div class="product-info">
+                <div class="info-imglink">
+                    <img src="example.png" alt="Product Image">
+                    <button class="view-button" onclick="location.href='reviewDetail.html'">상품 상세보기</button>
+                </div>
+                <div class="info-details">
+                    <div class="info-line">
+                        <span class="info-q">상품명</span><br>
+                        <span class="info-a">끝내주는 텀블러</span>
+                    </div>
+                    <div class="info-line">
+                        <span class="info-q">거래대상</span><br>
+                        <span class="info-a">맛있는감자</span>
+                    </div>
+                    <div class="info-line">
+                        <span class="info-q">거래가격</span><br>
+                        <span class="info-a">20000원</span>
                     </div>
                 </div>
-            </div>   
-            
-    
+            </div>
+        </div>
+    </div>
+
+
     <div class="title">판매자리뷰</div>
-        <div class="review-info-seller">
-            <div class="info-line">
-                <div class="info-top">
-                    <div class="stars">
-                        <label><input type="radio" id="star1" name="rating" value="1"></label>
-                        <label><input type="radio" id="star2" name="rating" value="2"></label>
-                        <label><input type="radio" id="star3" name="rating" value="3"></label>
-                        <label><input type="radio" id="star4" name="rating" value="4"></label>
-                        <label><input type="radio" id="star5" name="rating" value="5"></label>
-                    </div>
-                    <span class="trader">거래자닉네임</span>
-                </div>    
-                <span class="info-a">
-                    여기에 리뷰 내용을 입력하세요.
-                </span>
+    <div class="review-info-seller">
+        <div class="info-line">
+            <div class="info-top">
+                <div class="stars">
+                    <label><input type="radio" id="star1" name="rating" value="1"></label>
+                    <label><input type="radio" id="star2" name="rating" value="2"></label>
+                    <label><input type="radio" id="star3" name="rating" value="3"></label>
+                    <label><input type="radio" id="star4" name="rating" value="4"></label>
+                    <label><input type="radio" id="star5" name="rating" value="5"></label>
+                </div>
+                <span class="trader">거래자닉네임</span>
             </div>
+            <span class="info-a">
+                여기에 리뷰 내용을 입력하세요.
+            </span>
+        </div>
+    </div>
+
+    <div class="title">구매자리뷰</div>
+    <div class="review-info-buyer">
+        <div class="info-line">
+            <div class="info-top">
+                <div class="stars">
+                    <label><input type="radio" id="star1" name="rating" value="1"></label>
+                    <label><input type="radio" id="star2" name="rating" value="2"></label>
+                    <label><input type="radio" id="star3" name="rating" value="3"></label>
+                    <label><input type="radio" id="star4" name="rating" value="4"></label>
+                    <label><input type="radio" id="star5" name="rating" value="5"></label>
+                </div>
+                <span class="trader">거래자닉네임</span>
+            </div>
+            <span class="info-a">
+                여기에 리뷰 내용을 입력하세요.
+            </span>
+        </div>
+    </div>
+    <footer>
+        <div class="text-section">
+            <p>
+                <hr style="border: 0; border-top: 1px solid gray; width: 200%;">
+            <h3>감자마켓</h3>
+            </p>
+            <p>여기에는 감자마켓의 설립 모토와 제공 서비스에 대한 설명이 들어갑니다. 이화여대 컴퓨터공학과 재학생 5명이 모여 만든 감자마켓에는 다양한 기능을 할 수 있는 페이지들이
+                있습니다.
+                와서
+                구경하세요!
+            </p>
+
+            <p>2023PotatoMarket. All rights reserved</p>
+        </div>
+        <div class="text-section">
+            <p>address 이화여자대학교 아산공학관 703호 감자마켓</p>
+            <p> 우편번호 011022</p>
+            <p>contact 010-9876-5432</p>
         </div>
 
-        <div class="title">구매자리뷰</div>
-        <div class="review-info-buyer">
-            <div class="info-line">
-                <div class="info-top">
-                    <div class="stars">
-                        <label><input type="radio" id="star1" name="rating" value="1"></label>
-                        <label><input type="radio" id="star2" name="rating" value="2"></label>
-                        <label><input type="radio" id="star3" name="rating" value="3"></label>
-                        <label><input type="radio" id="star4" name="rating" value="4"></label>
-                        <label><input type="radio" id="star5" name="rating" value="5"></label>
-                    </div>
-                    <span class="trader">거래자닉네임</span>
-                </div>    
-                <span class="info-a">
-                    여기에 리뷰 내용을 입력하세요.
-                </span>
-            </div>
-        </div>
 
-    
+    </footer>
+
+
 </body>
+
 </html>

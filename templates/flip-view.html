@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,14 +22,14 @@
         }
 
         .searchbar {
-        display: flex;
-        align-items: center;
-        border: none;
-        border-radius: 26px;
-        width: 800px;
-        height: 30px;
-        padding: 10px 20px;
-        background-color: white;
+            display: flex;
+            align-items: center;
+            border: none;
+            border-radius: 26px;
+            width: 800px;
+            height: 30px;
+            padding: 10px 20px;
+            background-color: white;
         }
 
         .search-input {
@@ -38,7 +39,7 @@
 
         .nav-button {
             border: none;
-            background-color: transparent; 
+            background-color: transparent;
             cursor: pointer;
         }
 
@@ -67,18 +68,20 @@
             margin: 0 20px;
         }
 
-        .swipe-things{
+        .swipe-things {
             display: flex;
             height: 75%;
         }
-        .things{
-            display:flex;
+
+        .things {
+            display: flex;
             width: 55%;
             padding-top: 7%;
             padding-left: 8%;
 
         }
-        .things button{
+
+        .things button {
             color: rgb(42, 42, 42);
             border: none;
             border-radius: 5px;
@@ -89,22 +92,27 @@
         }
 
         .image-container {
-        width: 1000px; /* 이미지 컨테이너의 너비를 설정 */
-        height: 500px; /* 이미지 컨테이너의 높이를 설정 */
-        background-color: gray; /* 이미지 컨테이너의 배경색을 설정 */
-        display: flex;
-        justify-content: center; /* 내부 내용을 가로 중앙 정렬 */
-        align-items: center; /* 내부 내용을 세로 중앙 정렬 */
+            width: 1000px;
+            /* 이미지 컨테이너의 너비를 설정 */
+            height: 500px;
+            /* 이미지 컨테이너의 높이를 설정 */
+            background-color: gray;
+            /* 이미지 컨테이너의 배경색을 설정 */
+            display: flex;
+            justify-content: center;
+            /* 내부 내용을 가로 중앙 정렬 */
+            align-items: center;
+            /* 내부 내용을 세로 중앙 정렬 */
         }
 
 
-        .explanation-thing{
+        .explanation-thing {
             padding-top: 10%;
             padding-left: 5%;
-            width:45%;
+            width: 45%;
         }
 
-        .explanation-thing button{
+        .explanation-thing button {
             background-color: #F8D57E;
             color: #000000;
             padding: 10px 20px;
@@ -120,8 +128,15 @@
             background-color: #0056b3;
         }
 
+        .text-section {
+            flex: 1;
+            /* 공간을 남은 공간에 맞게 분배 */
+            margin: 20px;
+            /* 여백 추가 */
+        }
     </style>
 </head>
+
 <body>
     <header>
         <h2>GamjaMarket</h2>
@@ -133,7 +148,8 @@
             </ul>
 
             <div class="searchbar">
-                <input class="search-input" type="text" placeholder="찾으시는 상품명을 입력하세요" onkeydown="if (event.keyCode == 13) searchFunction()">
+                <input class="search-input" type="text" placeholder="찾으시는 상품명을 입력하세요"
+                    onkeydown="if (event.keyCode == 13) searchFunction()">
                 <button class="nav-button" onclick="searchFunction()">
                     <img src="../static/img/search.png" width="20" height="20">
                 </button>
@@ -149,10 +165,10 @@
     <div class="swipe-things">
         <div class="things">
             <button class="prev-button">prev < </button>
-            <div class="image-container">
-                <img src="텀텀블러.png" alt="상품 이미지">
-            </div>
-            <button class="arrow-button"> > next</button>
+                    <div class="image-container">
+                        <img src="텀텀블러.png" alt="상품 이미지">
+                    </div>
+                    <button class="arrow-button"> > next</button>
         </div>
 
         <div class="explanation-thing">
@@ -164,4 +180,27 @@
             *방향키를 활용해 플립뷰 기능을 이용할 수 있어요.
         </div>
     </div>
+    <footer>
+        <div class="text-section">
+            <p>
+                <hr style="border: 0; border-top: 1px solid gray; width: 200%;">
+            <h3>감자마켓</h3>
+            </p>
+            <p>여기에는 감자마켓의 설립 모토와 제공 서비스에 대한 설명이 들어갑니다. 이화여대 컴퓨터공학과 재학생 5명이 모여 만든 감자마켓에는 다양한 기능을 할 수 있는 페이지들이
+                있습니다.
+                와서
+                구경하세요!
+            </p>
+
+            <p>2023PotatoMarket. All rights reserved</p>
+        </div>
+        <div class="text-section">
+            <p>address 이화여자대학교 아산공학관 703호 감자마켓</p>
+            <p> 우편번호 011022</p>
+            <p>contact 010-9876-5432</p>
+        </div>
+
+
+    </footer>
+
 </body>

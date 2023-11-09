@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,29 +24,34 @@
 
         nav ul {
             list-style: none;
-            display: flex;              /*ul을 가로로 나열*/
+            display: flex;
+            /*ul을 가로로 나열*/
         }
 
 
         nav a {
             text-decoration: none;
-            white-space: nowrap;        /* 텍스트가 한 줄로 나타나도록 합니다. */
+            white-space: nowrap;
+            /* 텍스트가 한 줄로 나타나도록 합니다. */
             color: #000000;
         }
 
-        nav li{
-            margin: 0 100px;             /*각 요소들 사이의 간격*/
+        nav li {
+            margin: 0 100px;
+            /*각 요소들 사이의 간격*/
         }
 
         nav input {
-            padding: 10px 20px;          /* 위아래 10px, 좌우 20px의 패딩을 설정 */
+            padding: 10px 20px;
+            /* 위아래 10px, 좌우 20px의 패딩을 설정 */
             border: 1px solid #ccc;
             border-radius: 5px;
-            width: 1200px;               /* 원하는 길이로 조절 */
+            width: 1200px;
+            /* 원하는 길이로 조절 */
             height: 20px;
         }
 
-        .search-button{
+        .search-button {
             background-color: #F6E7E6;
             color: #000000;
             padding: 10px 20px;
@@ -55,7 +61,7 @@
             font-size: 15px;
         }
 
-        header{
+        header {
             padding-top: 40px;
             padding-left: 40px;
             padding-bottom: 20px;
@@ -68,13 +74,14 @@
             height: 60px;
             font-size: 20px;
             display: flex;
-            align-items: center; /* 수직 가운데 정렬을 위해 추가 */
+            align-items: center;
+            /* 수직 가운데 정렬을 위해 추가 */
         }
 
         .third-navbar a {
             font-weight: bold;
-            color:brown;
-            margin-left:5%;
+            color: brown;
+            margin-left: 5%;
         }
 
         .third-navbar a:not(:nth-child(6)):not(:nth-child(7)) {
@@ -82,47 +89,51 @@
         }
 
         .third-navbar a:nth-child(even) {
-            margin-left: 0; /* 짝수 인덱스(0부터 시작)의 요소의 왼쪽 마진 초기화 */
+            margin-left: 0;
+            /* 짝수 인덱스(0부터 시작)의 요소의 왼쪽 마진 초기화 */
         }
 
         .third-navbar a:nth-child(odd) {
-            margin-right: 10px; /* 홀수 인덱스(0부터 시작)의 요소의 우측 마진 설정 */
+            margin-right: 10px;
+            /* 홀수 인덱스(0부터 시작)의 요소의 우측 마진 설정 */
         }
 
-        .all-part{
+        .all-part {
             display: flex;
         }
 
-        .left-part{
+        .left-part {
             margin-left: 320px;
             padding-top: 50px;
-            float:left;
+            float: left;
         }
 
-        .right-part{
+        .right-part {
             margin-right: 500px;
             padding-top: 50px;
             float: right;
- 
+
         }
 
-        .about-item{
+        .about-item {
             display: flex;
             margin-bottom: 100px;
         }
-        
-        .image-container{
+
+        .image-container {
             background-color: gray;
             width: 470px;
             height: 400px;
         }
 
-        .item-info{
+        .item-info {
             margin-left: 50px;
         }
 
-        .r-1 button, .r-2 button, .r-3 button{
-            border:#000000 solid 1px;
+        .r-1 button,
+        .r-2 button,
+        .r-3 button {
+            border: #000000 solid 1px;
             border-radius: 5px;
             background-color: white;
             width: 200px;
@@ -133,11 +144,12 @@
         }
 
         label {
-            font-size: 20px; /* 원하는 글꼴 크기로 조절 */
+            font-size: 20px;
+            /* 원하는 글꼴 크기로 조절 */
             margin-right: 100px;
         }
 
-        .purchase-item{
+        .purchase-item {
             border: none;
             border-radius: 5px;
             background-color: #F8D57E;
@@ -151,8 +163,16 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        .text-section {
+            flex: 1;
+            /* 공간을 남은 공간에 맞게 분배 */
+            margin: 20px;
+            /* 여백 추가 */
+        }
     </style>
 </head>
+
 <body>
     <header>
         <h2>GamjaMarket</h2>
@@ -176,51 +196,75 @@
     </div>
 
     <div class="all-part"></div>
-        <div class="left-part">
-            <h2>거래 품목</h2>
-            <div class="about-item">
-                <div class="image-container">
-                    <img src="텀텀텀텀블러.png" alt="상품사진">
-                </div>
-                <div class="item-info">
-                    상품명
-                    <h3>끝내주는 텀블러</h3><br>
-                    거래대상
-                    <h3>맛있는 감자</h3><br>
-                    거래가격
-                    <h3>20000원</h3><br>
-                </div>
+    <div class="left-part">
+        <h2>거래 품목</h2>
+        <div class="about-item">
+            <div class="image-container">
+                <img src="텀텀텀텀블러.png" alt="상품사진">
             </div>
-
-            <div class="deliver-select"></div>
-                <h2>거래 방식</h2>
-                <input type="radio" name="deliver" value="direct" id="direct">
-                <label for="direct">직거래</label>
-
-                <input type="radio" name="deliver" value="nondirect-box" id="nondirect-box">
-                <label for="nondirect-box">비대면 상자</label>
-
-                <input type="radio" name="deliver" value="parcel" id="parcel">
-                <label for="parcel">택배</label>
+            <div class="item-info">
+                상품명
+                <h3>끝내주는 텀블러</h3><br>
+                거래대상
+                <h3>맛있는 감자</h3><br>
+                거래가격
+                <h3>20000원</h3><br>
             </div>
         </div>
 
-        <div class="right-part">
-            <h2>결제 정보</h2>
-            <br><br>
-            <div class="r-1">
-                <button id="direct-button" class="payment-button" data-group="r-1">직거래</button>
-                <button id="card-button" class="payment-button" data-group="r-1">카드</button>
-            </div><br>
-            <div class="r-2">
-                <button id="virtual-account-button" class="payment-button" data-group="r-2">가상 계좌</button>
-                <button id="phone-button" class="payment-button" data-group="r-2">휴대폰</button>
-            </div><br>
-            <div class="r-3">
-                <button id="naver-pay-button" class="payment-button" data-group="r-3">네이버페이</button>
-                <button id="kakao-pay-button" class="payment-button" data-group="r-3">카카오페이</button>
-            </div><br>
-            <button type="submit" class="purchase-item">결제 하기</button>
-        </div>
+        <div class="deliver-select"></div>
+        <h2>거래 방식</h2>
+        <input type="radio" name="deliver" value="direct" id="direct">
+        <label for="direct">직거래</label>
+
+        <input type="radio" name="deliver" value="nondirect-box" id="nondirect-box">
+        <label for="nondirect-box">비대면 상자</label>
+
+        <input type="radio" name="deliver" value="parcel" id="parcel">
+        <label for="parcel">택배</label>
     </div>
+    </div>
+
+    <div class="right-part">
+        <h2>결제 정보</h2>
+        <br><br>
+        <div class="r-1">
+            <button id="direct-button" class="payment-button" data-group="r-1">직거래</button>
+            <button id="card-button" class="payment-button" data-group="r-1">카드</button>
+        </div><br>
+        <div class="r-2">
+            <button id="virtual-account-button" class="payment-button" data-group="r-2">가상 계좌</button>
+            <button id="phone-button" class="payment-button" data-group="r-2">휴대폰</button>
+        </div><br>
+        <div class="r-3">
+            <button id="naver-pay-button" class="payment-button" data-group="r-3">네이버페이</button>
+            <button id="kakao-pay-button" class="payment-button" data-group="r-3">카카오페이</button>
+        </div><br>
+        <button type="submit" class="purchase-item">결제 하기</button>
+    </div>
+    </div>
+
+    <footer>
+        <div class="text-section">
+            <p>
+                <hr style="border: 0; border-top: 1px solid gray; width: 200%;">
+            <h3>감자마켓</h3>
+            </p>
+            <p>여기에는 감자마켓의 설립 모토와 제공 서비스에 대한 설명이 들어갑니다. 이화여대 컴퓨터공학과 재학생 5명이 모여 만든 감자마켓에는 다양한 기능을 할 수 있는 페이지들이
+                있습니다.
+                와서
+                구경하세요!
+            </p>
+
+            <p>2023PotatoMarket. All rights reserved</p>
+        </div>
+        <div class="text-section">
+            <p>address 이화여자대학교 아산공학관 703호 감자마켓</p>
+            <p> 우편번호 011022</p>
+            <p>contact 010-9876-5432</p>
+        </div>
+
+
+    </footer>
+
 </body>
