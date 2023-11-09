@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,14 +22,14 @@
         }
 
         .searchbar {
-        display: flex;
-        align-items: center;
-        border: none;
-        border-radius: 26px;
-        width: 800px;
-        height: 30px;
-        padding: 10px 20px;
-        background-color: white;
+            display: flex;
+            align-items: center;
+            border: none;
+            border-radius: 26px;
+            width: 800px;
+            height: 30px;
+            padding: 10px 20px;
+            background-color: white;
         }
 
         .search-input {
@@ -38,7 +39,7 @@
 
         .nav-button {
             border: none;
-            background-color: transparent; 
+            background-color: transparent;
             cursor: pointer;
         }
 
@@ -72,13 +73,14 @@
             height: 60px;
             font-size: 20px;
             display: flex;
-            align-items: center; /* 수직 가운데 정렬을 위해 추가 */
+            align-items: center;
+            /* 수직 가운데 정렬을 위해 추가 */
         }
 
         .third-navbar a {
             font-weight: bold;
-            color:brown;
-            margin-left:5%;
+            color: brown;
+            margin-left: 5%;
         }
 
         .third-navbar a:not(:nth-child(6)):not(:nth-child(7)) {
@@ -86,29 +88,31 @@
         }
 
         .third-navbar a:nth-child(even) {
-            margin-left: 0; /* 짝수 인덱스(0부터 시작)의 요소의 왼쪽 마진 초기화 */
+            margin-left: 0;
+            /* 짝수 인덱스(0부터 시작)의 요소의 왼쪽 마진 초기화 */
         }
 
         .third-navbar a:nth-child(odd) {
-            margin-right: 10px; /* 홀수 인덱스(0부터 시작)의 요소의 우측 마진 설정 */
+            margin-right: 10px;
+            /* 홀수 인덱스(0부터 시작)의 요소의 우측 마진 설정 */
         }
 
-        .contents{
-            margin-left:12%;
+        .contents {
+            margin-left: 12%;
             margin-top: 100px;
         }
 
-        .num-heart{
-            text-align:right;
+        .num-heart {
+            text-align: right;
             margin-right: 15%;
         }
 
-        .heart-list{
+        .heart-list {
             display: flex;
             margin-left: 12%;
         }
 
-        .heart-item{
+        .heart-item {
             margin-right: 50px;
             border: 1px solid black;
             border-radius: 10px;
@@ -116,13 +120,19 @@
             height: 600px;
         }
 
-        .heart-item-text{
+        .heart-item-text {
             padding: 20px;
         }
 
-        
+        .text-section {
+            flex: 1;
+            /* 공간을 남은 공간에 맞게 분배 */
+            margin: 20px;
+            /* 여백 추가 */
+        }
     </style>
 </head>
+
 <body>
     <header>
         <h2>GamjaMarket</h2>
@@ -134,7 +144,8 @@
             </ul>
 
             <div class="searchbar">
-                <input class="search-input" type="text" placeholder="찾으시는 상품명을 입력하세요" onkeydown="if (event.keyCode == 13) searchFunction()">
+                <input class="search-input" type="text" placeholder="찾으시는 상품명을 입력하세요"
+                    onkeydown="if (event.keyCode == 13) searchFunction()">
                 <button class="nav-button" onclick="searchFunction()">
                     <img src="../static/img/search.png" width="20" height="20">
                 </button>
@@ -197,5 +208,30 @@
             </div>
         </div>
 
+
     </div>
+
+    <footer>
+        <div class="text-section">
+            <p>
+                <hr style="border: 0; border-top: 1px solid gray; width: 200%;">
+            <h3>감자마켓</h3>
+            </p>
+            <p>여기에는 감자마켓의 설립 모토와 제공 서비스에 대한 설명이 들어갑니다. 이화여대 컴퓨터공학과 재학생 5명이 모여 만든 감자마켓에는 다양한 기능을 할 수 있는 페이지들이
+                있습니다.
+                와서
+                구경하세요!
+            </p>
+
+            <p>2023PotatoMarket. All rights reserved</p>
+        </div>
+        <div class="text-section">
+            <p>address 이화여자대학교 아산공학관 703호 감자마켓</p>
+            <p> 우편번호 011022</p>
+            <p>contact 010-9876-5432</p>
+        </div>
+
+
+    </footer>
+
 </body>

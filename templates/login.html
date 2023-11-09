@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,14 +23,14 @@
         }
 
         .searchbar {
-        display: flex;
-        align-items: center;
-        border: none;
-        border-radius: 26px;
-        width: 800px;
-        height: 30px;
-        padding: 10px 20px;
-        background-color: white;
+            display: flex;
+            align-items: center;
+            border: none;
+            border-radius: 26px;
+            width: 800px;
+            height: 30px;
+            padding: 10px 20px;
+            background-color: white;
         }
 
         .search-input {
@@ -39,7 +40,7 @@
 
         .nav-button {
             border: none;
-            background-color: transparent; 
+            background-color: transparent;
             cursor: pointer;
         }
 
@@ -68,7 +69,7 @@
             margin: 0 20px;
         }
 
-        .div-container{
+        .div-container {
             display: flex;
             height: 50%;
             padding-top: 10%;
@@ -77,27 +78,28 @@
             border-radius: 5px;
             text-align: center;
         }
-        
+
         .login-container {
             width: 50%;
-            float:left;
+            float: left;
         }
 
-        .link-login{
+        .link-login {
             width: 50%;
             float: right;
             padding-top: 50px;
         }
 
-        .link-login button{
+        .link-login button {
             font-size: large;
-            width:700px;
+            width: 700px;
             background-color: white;
-            color:#000000;
-            border: 1px solid #000;          /* 테두리 스타일과 색상 설정 */
+            color: #000000;
+            border: 1px solid #000;
+            /* 테두리 스타일과 색상 설정 */
         }
 
-        .link-login a{
+        .link-login a {
             color: red;
         }
 
@@ -115,7 +117,7 @@
             margin-bottom: 5px;
         }
 
-        input {                                         
+        input {
             width: 70%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -135,13 +137,20 @@
             background-color: #0056b3;
         }
 
-        .forgot-links{
+        .forgot-links {
             text-align: end;
             padding-right: 14%;
         }
 
+        .text-section {
+            flex: 1;
+            /* 공간을 남은 공간에 맞게 분배 */
+            margin: 20px;
+            /* 여백 추가 */
+        }
     </style>
 </head>
+
 <body>
     <header>
         <h2>GamjaMarket</h2>
@@ -153,7 +162,8 @@
             </ul>
 
             <div class="searchbar">
-                <input class="search-input" type="text" placeholder="찾으시는 상품명을 입력하세요" onkeydown="if (event.keyCode == 13) searchFunction()">
+                <input class="search-input" type="text" placeholder="찾으시는 상품명을 입력하세요"
+                    onkeydown="if (event.keyCode == 13) searchFunction()">
                 <button class="nav-button" onclick="searchFunction()">
                     <img src="../static/img/search.png" width="20" height="20">
                 </button>
@@ -169,7 +179,7 @@
     <div class="div-container">
         <div class="login-container">
             <h2>GamjaMarket</h2>
-                
+
             <br>
 
             <form action="login.php" method="post">
@@ -190,7 +200,7 @@
                 <br>
                 <button type="submit">로그인</button>
             </form>
-        </div>   
+        </div>
 
         <div class="link-login">
             <ul>
@@ -205,6 +215,29 @@
             </ul>
         </div>
     </div>
+    <footer>
+        <div class="text-section">
+            <p>
+                <hr style="border: 0; border-top: 1px solid gray; width: 200%;">
+            <h3>감자마켓</h3>
+            </p>
+            <p>여기에는 감자마켓의 설립 모토와 제공 서비스에 대한 설명이 들어갑니다. 이화여대 컴퓨터공학과 재학생 5명이 모여 만든 감자마켓에는 다양한 기능을 할 수 있는 페이지들이
+                있습니다.
+                와서
+                구경하세요!
+            </p>
+
+            <p>2023PotatoMarket. All rights reserved</p>
+        </div>
+        <div class="text-section">
+            <p>address 이화여자대학교 아산공학관 703호 감자마켓</p>
+            <p> 우편번호 011022</p>
+            <p>contact 010-9876-5432</p>
+        </div>
+
+
+    </footer>
 
 </body>
+
 </html>

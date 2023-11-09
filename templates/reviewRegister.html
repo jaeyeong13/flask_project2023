@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,14 +22,14 @@
         }
 
         .searchbar {
-        display: flex;
-        align-items: center;
-        border: none;
-        border-radius: 26px;
-        width: 800px;
-        height: 30px;
-        padding: 10px 20px;
-        background-color: white;
+            display: flex;
+            align-items: center;
+            border: none;
+            border-radius: 26px;
+            width: 800px;
+            height: 30px;
+            padding: 10px 20px;
+            background-color: white;
         }
 
         .search-input {
@@ -38,7 +39,7 @@
 
         .nav-button {
             border: none;
-            background-color: transparent; 
+            background-color: transparent;
             cursor: pointer;
         }
 
@@ -75,12 +76,14 @@
             height: 50%;
         }
 
-        .product, .question {
+        .product,
+        .question {
             font-size: 18px;
             font-weight: bold;
         }
 
-        .rating, .details {
+        .rating,
+        .details {
             margin-top: 16px;
             font-size: 16px;
             font-weight: bold;
@@ -92,7 +95,7 @@
         }
 
         .product-info img {
-            width: 300px; 
+            width: 300px;
             border-radius: 8px;
             margin-right: 20px;
         }
@@ -165,8 +168,13 @@
             font-size: 16px;
         }
 
+        .text-section {
+            flex: 1;
+            margin: 20px;
+        }
     </style>
 </head>
+
 <body>
     <header>
         <h2>GamjaMarket</h2>
@@ -178,7 +186,8 @@
             </ul>
 
             <div class="searchbar">
-                <input class="search-input" type="text" placeholder="찾으시는 상품명을 입력하세요" onkeydown="if (event.keyCode == 13) searchFunction()">
+                <input class="search-input" type="text" placeholder="찾으시는 상품명을 입력하세요"
+                    onkeydown="if (event.keyCode == 13) searchFunction()">
                 <button class="nav-button" onclick="searchFunction()">
                     <img src="../static/img/search.png" width="20" height="20">
                 </button>
@@ -193,30 +202,30 @@
 
     <div class="div-container">
         <div class="review-container">
-                <div class="info-group">
-                    <label for="product" class="product">거래품목</label>
-                    <div class="product-info">
-                        <img src="example.png" alt="Product Image">
-                        <div class="info-details">
-                            <div class="info-line">
-                                <span class="info-q">상품명</span><br>
-                                <span class="info-a">끝내주는 텀블러</span>
-                            </div>
-                            <div class="info-line">
-                                <span class="info-q">거래대상</span><br>
-                                <span class="info-a">맛있는감자</span>
-                            </div>
-                            <div class="info-line">
-                                <span class="info-q">거래가격</span><br>
-                                <span class="info-a">20000원</span>
-                            </div>
+            <div class="info-group">
+                <label for="product" class="product">거래품목</label>
+                <div class="product-info">
+                    <img src="../static/img/example.png" alt="Product Image">
+                    <div class="info-details">
+                        <div class="info-line">
+                            <span class="info-q">상품명</span><br>
+                            <span class="info-a">끝내주는 텀블러</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-q">거래대상</span><br>
+                            <span class="info-a">맛있는감자</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-q">거래가격</span><br>
+                            <span class="info-a">20000원</span>
                         </div>
                     </div>
                 </div>
-                
+            </div>
+
             <form>
                 <div class="form-group">
-                    <span class="question"><span style="color: #FFA800;" >맛있는감자</span>님과의 거래는 어떠셨나요?</span>
+                    <span class="question"><span style="color: #FFA800;">맛있는감자</span>님과의 거래는 어떠셨나요?</span>
                     <label for="rating" class="rating"><b>별점</b></label>
                     <div class="stars">
                         <label><input type="radio" id="star1" name="rating" value="1"></label>
@@ -228,7 +237,8 @@
 
                     <div class="details">
                         <label for="review" class="review">상세후기</label>
-                        <textarea id="review" name="review" rows="20" style="width: 100%; border: 1px solid #ccc; border-radius: 8px;"></textarea>
+                        <textarea id="review" name="review" rows="20"
+                            style="width: 100%; border: 1px solid #ccc; border-radius: 8px;"></textarea>
                     </div>
                 </div>
 
@@ -256,5 +266,29 @@
             stars.forEach(star => (star.checked = false));
         }
     </script>
+    <footer>
+        <div class="text-section">
+            <p>
+                <hr style="border: 0; border-top: 1px solid gray; width: 200%;">
+            <h3>감자마켓</h3>
+            </p>
+            <p>여기에는 감자마켓의 설립 모토와 제공 서비스에 대한 설명이 들어갑니다. 이화여대 컴퓨터공학과 재학생 5명이 모여 만든 감자마켓에는 다양한 기능을 할 수 있는 페이지들이
+                있습니다.
+                와서
+                구경하세요!
+            </p>
+
+            <p>2023PotatoMarket. All rights reserved</p>
+        </div>
+        <div class="text-section">
+            <p>address 이화여자대학교 아산공학관 703호 감자마켓</p>
+            <p> 우편번호 011022</p>
+            <p>contact 010-9876-5432</p>
+        </div>
+
+
+    </footer>
+
 </body>
+
 </html>
