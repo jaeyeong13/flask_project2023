@@ -7,16 +7,23 @@ app= Flask(__name__)
 app.config["SECRET_KEY"] = "helloosp"
 DB = DBhandler()
 
-
-@app.route("/home")
-def home():
-    return render_template("home.html")
-
-
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def login():
-    return render_template("login.html")
+    # 사용자가 로그인하면 세션에 사용자 이름을 저장
+    username = request.form['username']
+    # 여기에서 사용자 이름을 세션에 저장
+    session['username'] = username
+    return redirect(url_for('home'))
 
+@app.route('/logout')
+def logout():
+    # 사용자가 로그아웃하면 세션에서 사용자 정보를 지움
+    session.pop('username', None)
+    return redirect(url_for('home'))
+
+@app.route('/home')
+def home():
+    return render_template('home.html')
 
 @app.route("/signup")
 def signUp():
