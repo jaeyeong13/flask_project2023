@@ -69,7 +69,7 @@ def reg_item_submit_post():
 
 @application.route('/my-page')
 def myPage():
-    # 마이페이지에 대한 로직을 추가하세요.
+    # 여기에 마이페이지 로직 추가하기!
     return "This is myPage"
 
 if __name__ == "__main__":
