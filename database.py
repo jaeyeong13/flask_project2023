@@ -48,15 +48,14 @@ class DBhandler:
     def insert_item(self, name, data, img_path):
         item_info ={
             "transactions": data['transactions'],
-            "price_method": data['price_method'],
-            "product_description": data['product_description'],
-            "user_id": data['user_id'],
-            "post_date": data['post_date'],
-            "normal_price": data['normal_price'],
-            "auction_end_time": data['auction_end_time'],
-            "auction_min_bid": data['auction_min_bid'],
-            "auction_max_bid": data['auction_max_bid'],
-            "post_date": data['post_date'],
+            "price-method": data['price-method'],
+            "product-description": data['product-description'],
+            "user-id": data['user-id'],
+            "post-date": data['post-date'],
+            "normal-price": data['normal-price'],
+            "auction-end-time": data['auction-end-time'],
+            "auction-min-bid": data['auction-min-bid'],
+            "auction_max-bid": data['auction-max-bid'],
             "img_path": img_path
         }
         self.db.child("item").child(name).set(item_info)
