@@ -22,7 +22,7 @@ def login_user():
     pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
     if DB.find_user(id_,pw_hash):
         session['id']=id_
-        return redirect(url_for('view_list'))
+        return redirect(url_for('hello'))                #이부분 나중에 view_list로 수정필요
     else:
         flash("Wrong ID or PW!")
         return render_template("login.html")
@@ -39,7 +39,7 @@ def find_user(self, id_, pw_):
 @application.route("/logout")
 def logout_user():
     session.clear()
-    return redirect(url_for('view_list'))
+    return redirect(url_for('hello'))                    #이부분 나중에 view_list로 수정필요
 
 @application.route("/signup")
 def signUp():
