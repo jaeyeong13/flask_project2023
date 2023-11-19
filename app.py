@@ -15,6 +15,32 @@ def hello():
 def login():
     return render_template("login.html")
 
+@application.route("/login_confirm", methods=['POST'])
+def login_user():
+    id_=request.form['id']
+    pw=request.form['pw']
+    pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
+    if DB.find_user(id_,pw_hash):
+        session['id']=id_
+        return redirect(url_for('hello'))                #이부분 나중에 view_list로 수정필요
+    else:
+        flash("Wrong ID or PW!")
+        return render_template("login.html")
+def find_user(self, id_, pw_):
+    users = self.db.child("user").get()
+    target_value=[]
+    for res in users.each():
+        value = res.val()
+
+        if value['id'] == id_ and value['pw'] == pw_:
+            return True
+    return False
+
+@application.route("/logout")
+def logout_user():
+    session.clear()
+    return redirect(url_for('hello'))                    #이부분 나중에 view_list로 수정필요
+
 @application.route("/signup")
 def signUp():
     return render_template("signUp.html")
@@ -30,6 +56,11 @@ def register_user():
     else:
         flash("user id already exist!")
         return render_template("signUp.html")
+
+@application.route('/myPage')
+def myPage():
+    return render_template('myPage.html')
+
 
 
 @application.route("/productList")
