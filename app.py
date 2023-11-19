@@ -36,6 +36,10 @@ def find_user(self, id_, pw_):
             return True
     return False
 
+@application.route("/logout")
+def logout_user():
+    session.clear()
+    return redirect(url_for('view_list'))
 
 @application.route("/signup")
 def signUp():
@@ -52,6 +56,11 @@ def register_user():
     else:
         flash("user id already exist!")
         return render_template("signUp.html")
+
+@application.route('/myPage')
+def myPage():
+    return render_template('myPage.html')
+
 
 
 @application.route("/productList")
