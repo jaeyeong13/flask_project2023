@@ -67,5 +67,10 @@ def reg_item_submit_post():
     
     return render_template("productSubmitResult.html", data=data, img_path="static/img/{}".format(image_file.filename))
 
+@application.route('/my-page')
+def myPage():
+    # 마이페이지에 대한 로직을 추가하세요.
+    return "This is myPage"
+
 if __name__ == "__main__":
     application.run(host='0.0.0.0')
