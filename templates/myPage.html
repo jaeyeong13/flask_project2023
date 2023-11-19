@@ -217,8 +217,12 @@
             </div>
 
             <ul>
-                <li><a href="login.html">회원가입/로그인</a></li>
-                <li><a href="mypage.html">마이페이지</a></li>
+                {% if session ['id']%}
+                <li><a href="/logout"><b>{{session['id']}}님 반갑습니다!</b>logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}">회원가입/로그인</a></li>
+                {% endif %}                   
+                <li><a href="{{ url_for('myPage') }}">마이페이지</a></li>
             </ul>
         </nav>
     </header>
