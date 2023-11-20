@@ -114,7 +114,7 @@ def view_item_detail(name):
     print("###name:",name)
     data = DB.get_item_byname(str(name))
     print("####data:",data)
-    return render_template("detail.html", name=name, data=data)
+    return render_template("detail_general.html", name=name, data=data)
 
 
 if __name__ == "__main__":
