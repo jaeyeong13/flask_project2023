@@ -47,7 +47,7 @@ class DBhandler:
     
     def insert_item(self, name, data, img_path):
         item_info ={
-        "product-description": data['product-description'],
+        "product_description": data['product_description'],
         "img_path": img_path
         }
         self.db.child("item").child(name).set(item_info)

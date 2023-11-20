@@ -160,6 +160,11 @@
              text-decoration: none;
              font-weight:bold;
         }
+        
+        table{
+            margin: auto;
+            width: 700px;
+        }
 
     </style>
 </head>
@@ -197,6 +202,11 @@
             상품 리스트 -- 현재까지 {{total}}개 등록됨
         </p>
         <table>
+            <tr>
+        {% for key, value in row1 %}
+            <td>상품이름: {{key}}</td>
+        {% endfor %}
+        </tr>
         <tr>
             {% for key, value in row1 %}
         <td onclick="location.href='/view_detail/{{key}}/';" style="cursor:pointer;">
@@ -215,6 +225,17 @@
         {% endfor %}
         </tr>
         </table>
+        <!-- 페이지네이션을 위한 코드 시작 -->
+        <div class="page-wrap">
+            <div class="page-nation">
+                <ul>
+                <li>
+                {% for i in range(page_count)%}
+                    <a href="{{url_for('view_list', page=i)}}" color="black">{{i}}</a>
+                {% endfor %} </li>
+                </ul>
+            </div>
+        </div>
         {% else %}
         <p>
             등록된 상품이 없습니다.
