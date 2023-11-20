@@ -61,7 +61,9 @@ def register_user():
 def myPage():
     return render_template('myPage.html')
 
-
+@application.route('/reg_items')
+def reg_items():
+    return render_template('reg_items.html')
 
 @application.route("/productList")
 def productList():

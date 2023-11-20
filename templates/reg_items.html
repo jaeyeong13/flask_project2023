@@ -112,13 +112,17 @@
                 <li><a href="#">홈</a></li>
                 <input type="text" placeholder="찾으시는 상품명을 입력하세요">
                 <button class="search-button">검색</button>
-                <li><a href="login.html">회원가입/로그인</a></li>
-                <li><a href="mypage-profile.html">마이페이지</a></li>
+                {% if session ['id']%}
+                <li><a href="/logout"><b>{{session['id']}}님 반갑습니다!</b>logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}">회원가입/로그인</a></li>
+                {% endif %}                   
+                <li><a href="{{ url_for('myPage') }}">마이페이지</a></li>
             </ul>
         </nav>
     </header>
     <article>
-        <form method="post" enctype="multipart/form-data" action="/submit_item_post">
+        <form method="post" enctype="multipart/form-data" action="/submit">
             <br><br>
             <h3 style="font-family: Arial, sans-serif; font-size: 20px;">상품 이미지</h3>
             <div>
