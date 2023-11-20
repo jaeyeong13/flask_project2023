@@ -122,14 +122,14 @@
         </nav>
     </header>
     <article>
-        <form method="post" enctype="multipart/form-data" action="/submit">
+        <form method="post" enctype="multipart/form-data" action="/submit_item_post">
             <br><br>
             <h3 style="font-family: Arial, sans-serif; font-size: 20px;">상품 이미지</h3>
             <div>
-                <label for="img" style="font-family: Arial, sans-serif; font-size: 20px;"></label><br>
-                <input type="file" name="img" style="font-family: Arial, sans-serif; font-size: 20px;" onchange="readURL(this);" >
+                <label for="img_path" style="font-family: Arial, sans-serif; font-size: 20px;"></label><br>
+                <input type="file" name="img_path" style="font-family: Arial, sans-serif; font-size: 20px;" onchange="readURL(this);" >
                 <br><br>
-                <img id="preview" />
+                <img id="img_path" />
             </div>
             <br><br>
             <h3 style="font-family: Arial, sans-serif; font-size: 20px;">글 제목(상품명)</h3>

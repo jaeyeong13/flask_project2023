@@ -84,30 +84,26 @@
         <p style="font-size: 15px;">상품 이미지</p>
         <p>
             <img src="{{img_path}}"/>
-        </p>
-        
+        </p> 
     </div>
+
     <div class="contents-of-purchase">
         <p style="font-size: 15px;">상품명(글제목)</p>
         <p style="font-size: 30px;">
-             {{ data.name}}</p>
+            {{ data.product_title }}</p>
         </p>
     </div>
     
     <div class="contents-of-purchase" style="display: inline-flex;">
         <div class="transaction">
             <p style="font-size: 15px;">거래방식</p>
-            <p style="font-size: 30px;">      {{ data['transaction'] }}</p>
+            <p style="font-size: 30px;">      {{ data.price_method }}</p>
         </div>
         <div class="price-method">
             <p style="font-size: 15px;">가격방식<p>
-            <p style="font-size: 30px;">      {{ data['price_method'] }}</p>
+            <p style="font-size: 30px;">     {{ data['transaction'] }}</p>
         </div>
     </div>
-
-    <p>
-        <img src="{{img_path}}"/>
-    </p>
 
 
     <div class="contents-of-purchase">
