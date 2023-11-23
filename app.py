@@ -77,7 +77,7 @@ def productRegister():
 def reg_item_submit_post():
     image_file=request.files["file"]
     image_file.save("static/img/{}".format(image_file.filename))
-    data = request.form
+    data = request.form.to_dict()
 
     trade_type = data.get('trade_type')
     price = data.get('price')
