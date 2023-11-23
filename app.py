@@ -81,17 +81,17 @@ def reg_item_submit_post():
 
     trade_type = data.get('trade_type')
     price = data.get('price')
-    end_date = data.get('end_date')
-    min_price = data.get('min_price')
-    max_price = data.get('max_price')
-    
-    DB.insert_item(data['name'], data, image_file.filename, trade_type, price, end_date, min_price, max_price)
+
+    if trade_type == 'auction':
+        end_date = data.get('end_date')
+        min_price = data.get('min_price')
+        max_price = data.get('max_price')
+        DB.insert_item(data['name'], data, image_file.filename, trade_type, price, end_date, min_price, max_price)
+    else:
+        DB.insert_item(data['name'], data, image_file.filename, trade_type, price)
 
     data['trade_type'] = trade_type
     data['price'] = price
-    data['end_date'] = end_date
-    data['min_price'] = min_price
-    data['max_price'] = max_price
 
     return render_template("productSubmitResult.html", data = data, img_path="static/img/{}".format(image_file.filename))
 
