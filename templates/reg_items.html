@@ -143,10 +143,10 @@
                 <label for="regular">일반</label>
             </div>
 
-            <h3 style="font-family: Arial, sans-serif; font-size: 20px;">거래 가격</h3>
-            <div>
-                <label for="price" style="font-family: Arial, sans-serif; font-size: 20px;">가격</label><br>
-                <input type="text" name="price" id="price" required style="font-family: Arial, sans-serif; font-size: 20px; width: 650px; height: 30px;"><br><br>
+            <div id="regular_price_field">
+                <h3 style="font-family: Arial, sans-serif; font-size: 20px;">거래 가격</h3>
+                <label for="regular_price_field" style="font-family: Arial, sans-serif; font-size: 20px;">가격</label><br>
+                <input type="text" name="regular_price_field" id="regular_price_field" required style="font-family: Arial, sans-serif; font-size: 20px; width: 650px; height: 30px;"><br><br>
             </div>
 
             <div id="auction-fields" style="display:none;">
@@ -163,13 +163,34 @@
             <script>
                 function toggleTradeType() {
                     var auctionFields = document.getElementById('auction-fields');
+                    var regularPriceField = document.getElementById('regular_price_field');
                     var tradeType = document.querySelector('input[name="trade_type"]:checked').value;
             
                     if (tradeType === 'auction') {
                         auctionFields.style.display = 'block';
+                        regular_price_field.style.display = 'none';
+                        enableFields(auctionFields);
+                        disableFields(regular_price_field);
                     } else {
                         auctionFields.style.display = 'none';
+                        regular_price_field.style.display = 'block';
+                        enableFields(regular_price_field);
+                        disableFields(auctionFields);
                     }
+                }
+            
+                function enableFields(container) {
+                    var inputs = container.querySelectorAll('input, select, textarea');
+                    inputs.forEach(function (input) {
+                        input.removeAttribute('disabled');
+                    });
+                }
+            
+                function disableFields(container) {
+                    var inputs = container.querySelectorAll('input, select, textarea');
+                    inputs.forEach(function (input) {
+                        input.setAttribute('disabled', 'disabled');
+                    });
                 }
             
                 document.addEventListener('DOMContentLoaded', function () {

@@ -101,29 +101,26 @@
     </div>
 
     <div class="contents-of-purchase">
-        <p style="font-size: 15px;">거래 가격</p>
-        <p style="font-size: 30px;">
-            {{ data.price }}</p>
-    </div>
-
-    <div class="contents-of-purchase">
         <p style="font-size: 15px;">상품명(글제목)</p>
         <p style="font-size: 30px;">{{ data.name}}</p>
 
         <p style="font-size: 15px;">거래 방식</p>
         <p style="font-size: 30px;">{{ '경매' if data['trade_type'] == 'auction' else '일반' }}</p>
 
-        <p style="font-size: 15px;">가격</p>
-        <p style="font-size: 30px;">{{ data['price'] }}</p>
-
         {% if data['trade_type'] == 'auction' %}
-            <p>마감일: {{ data['end_date'] }}</p>
-            <p>최소 가격: {{ data['min_price'] }}</p>
-            <p>최대 가격: {{ data['max_price'] }}</p>
+            <p style="font-size: 15px;">마감일</p>
+            <p style="font-size: 30px;">{{ data['end_date'] }}</p>
+
+            <p style="font-size: 15px;">최소 가격</p>
+            <p style="font-size: 30px;">{{ data['min_price'] }}</p>
+
+            <p style="font-size: 15px;">최대 가격</p>
+            <p style="font-size: 30px;">{{ data['max_price'] }}</p>
+        {% else %}
+            <p style="font-size: 15px;">가격</p>
+            <p style="font-size: 30px;">{{ data['price'] }}</p>
         {% endif %}
     </div>
-
-
 
 
 
