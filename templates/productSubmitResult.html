@@ -106,14 +106,22 @@
             {{ data.price }}</p>
     </div>
 
-    <label for="end_date">Auction End Date:</label>
-    <input type="date" name="end_date" required>
+    <div class="contents-of-purchase">
+        <p style="font-size: 15px;">상품명(글제목)</p>
+        <p style="font-size: 30px;">{{ data.name}}</p>
 
-    <label for="min_price">Minimum Price:</label>
-    <input type="number" name="min_price" required>
+        <p style="font-size: 15px;">거래 방식</p>
+        <p style="font-size: 30px;">{{ '경매' if data['trade_type'] == 'auction' else '일반' }}</p>
 
-    <label for="max_price">Maximum Price:</label>
-    <input type="number" name="max_price" required>
+        <p style="font-size: 15px;">가격</p>
+        <p style="font-size: 30px;">{{ data['price'] }}</p>
+
+        {% if data['trade_type'] == 'auction' %}
+            <p>마감일: {{ data['end_date'] }}</p>
+            <p>최소 가격: {{ data['min_price'] }}</p>
+            <p>최대 가격: {{ data['max_price'] }}</p>
+        {% endif %}
+    </div>
 
 
 
