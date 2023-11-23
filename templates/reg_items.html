@@ -135,6 +135,20 @@
                 <input type="text" name="name" id="name" required style="font-family: Arial, sans-serif; font-size: 20px; width: 650px; height: 30px;"><br><br>
             </div>
             
+            <h3 style="font-family: Arial, sans-serif; font-size: 20px;">거래 방식</h3>
+            <div>
+                <input type="radio" name="trade_type" value="auction" checked>
+                <label for="auction">경매</label>
+                <input type="radio" name="trade_type" value="regular">
+                <label for="regular">일반</label>
+            </div>
+
+            <h3 style="font-family: Arial, sans-serif; font-size: 20px;">거래 가격</h3>
+            <div>
+                <label for="price" style="font-family: Arial, sans-serif; font-size: 20px;">가격</label><br>
+                <input type="text" name="price" id="price" required style="font-family: Arial, sans-serif; font-size: 20px; width: 650px; height: 30px;"><br><br>
+            </div>
+
             <h3 style="font-family: Arial, sans-serif; font-size: 20px;">상세 설명</h3>
             <label for="product_description" style="font-family: Arial, sans-serif; font-size: 20px;"></label>
             <textarea id="product_description" name="product_description" rows="15" cols="50" required style="font-family: Arial, sans-serif; font-size: 20px;" placeholder="(20-500자)"></textarea>

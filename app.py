@@ -9,8 +9,7 @@ DB = DBhandler()
 
 @application.route("/", methods=['GET', 'POST'])
 def hello():
-    #return render_template("home.html")
-    return redirect(url_for('view_list'))
+    return render_template("home.html")
 
 @application.route('/login')
 def login():
@@ -23,7 +22,7 @@ def login_user():
     pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
     if DB.find_user(id_,pw_hash):
         session['id']=id_
-        return redirect(url_for('hello'))                #이부분 나중에 view_list로 수정필요
+        return render_template('home.html')                #이부분 나중에 view_list로 수정필요
     else:
         flash("Wrong ID or PW!")
         return render_template("login.html")
@@ -40,7 +39,7 @@ def find_user(self, id_, pw_):
 @application.route("/logout")
 def logout_user():
     session.clear()
-    return redirect(url_for('hello'))                    #이부분 나중에 view_list로 수정필요
+    return render_template('home.html')                    #이부분 나중에 view_list로 수정필요
 
 @application.route("/signup")
 def signUp():
@@ -79,7 +78,15 @@ def reg_item_submit_post():
     image_file=request.files["file"]
     image_file.save("static/img/{}".format(image_file.filename))
     data = request.form
-    DB.insert_item(data['name'], data, image_file.filename)
+
+    trade_type = data.get('trade_type')
+    price = data.get('price')
+    
+    DB.insert_item(data['name'], data, image_file.filename, trade_type, price)
+
+    data['trade_type'] = trade_type
+    data['price'] = price
+
     return render_template("productSubmitResult.html", data = data, img_path="static/img/{}".format(image_file.filename))
 
 @application.route("/reviewRegister")
