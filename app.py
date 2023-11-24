@@ -9,7 +9,8 @@ DB = DBhandler()
 
 @application.route("/", methods=['GET', 'POST'])
 def hello():
-    return render_template("home.html")
+    #return render_template("home.html")
+    return redirect(url_for("view_list"))
 
 @application.route('/login')
 def login():
@@ -78,20 +79,21 @@ def reg_item_submit_post():
     image_file=request.files["file"]
     image_file.save("static/img/{}".format(image_file.filename))
     data = request.form.to_dict()
-
     trade_type = data.get('trade_type')
 
     if trade_type == 'auction':
         end_date = data.get('end_date')
         min_price = data.get('min_price')
         max_price = data.get('max_price')
-        DB.insert_item(data['name'], data, image_file.filename, trade_type, end_date, min_price, max_price)
+        data['regular_price'] = None
     else:
-        regular_price_field = data.get('regular_price_field')
-        DB.insert_item(data['name'], data, image_file.filename, trade_type, regular_price_field)
-
+        regular_price = data.get('regular_price')
+        data['end_date'] = None
+        data['min_price'] = None
+        data['max_price'] = None
+    
     data['trade_type'] = trade_type
-
+    DB.insert_item(data['name'], data, image_file.filename, data['trade_type'], data['end_date'], data['min_price'], data['max_price'], data['regular_price'])
     return render_template("productSubmitResult.html", data = data, img_path="static/img/{}".format(image_file.filename))
 
 @application.route("/reviewRegister")
@@ -126,7 +128,10 @@ def view_item_detail(name):
     print("###name:",name)
     data = DB.get_item_byname(str(name))
     print("####data:",data)
-    return render_template("detail_general.html", name=name, data=data)
+    if data['trade_type'] == 'auction':
+        return render_template("detail_general.html", name=name, data=data)
+    else:
+        return render_template("detail_auction.html", name=name, data=data)
 
 
 if __name__ == "__main__":

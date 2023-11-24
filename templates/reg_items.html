@@ -143,10 +143,9 @@
                 <label for="regular">일반</label>
             </div>
 
-            <div id="regular_price_field">
-                <h3 style="font-family: Arial, sans-serif; font-size: 20px;">거래 가격</h3>
-                <label for="regular_price_field" style="font-family: Arial, sans-serif; font-size: 20px;">가격</label><br>
-                <input type="text" name="regular_price_field" id="regular_price_field" required style="font-family: Arial, sans-serif; font-size: 20px; width: 650px; height: 30px;"><br><br>
+            <div id="regular_price_field" style="display:none;">
+                <label for="regular_price" style="font-family: Arial, sans-serif; font-size: 20px;">가격</label><br>
+                <input type="number" name="regular_price" id="regular_price" required style="font-family: Arial, sans-serif; font-size: 20px; width: 650px; height: 30px;"><br><br>
             </div>
 
             <div id="auction-fields" style="display:none;">
@@ -168,13 +167,13 @@
             
                     if (tradeType === 'auction') {
                         auctionFields.style.display = 'block';
-                        regular_price_field.style.display = 'none';
+                        regularPriceField.style.display = 'none';
                         enableFields(auctionFields);
-                        disableFields(regular_price_field);
+                        disableFields(regularPriceField);
                     } else {
                         auctionFields.style.display = 'none';
-                        regular_price_field.style.display = 'block';
-                        enableFields(regular_price_field);
+                        regularPriceField.style.display = 'block';
+                        enableFields(regularPriceField);
                         disableFields(auctionFields);
                     }
                 }
@@ -192,7 +191,22 @@
                         input.setAttribute('disabled', 'disabled');
                     });
                 }
-            
+                
+                function getCurrentTime() {
+                    return new Date().toISOString();
+                }
+
+                function addServerTimeToForm() {
+                    var currentTime = getCurrentTime();
+                    var timeInput = document.createElement("input");
+                    timeInput.setAttribute("type", "hidden");
+                    timeInput.setAttribute("name", "server_time");
+                    timeInput.setAttribute("value", currentTime);
+
+                    var form = document.querySelector("form");
+                    form.appendChild(timeInput);
+                }
+                
                 document.addEventListener('DOMContentLoaded', function () {
                     toggleTradeType();
                 });

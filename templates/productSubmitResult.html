@@ -63,7 +63,7 @@
 
     <nav class="navbar">
         <div class="navbar_logo">
-            <a href="">Ewha GamjaMarket</a>
+            <a href="{{ url_for('hello') }}">Ewha GamjaMarket </a>
         </div>
         <ul class="navbar__menu">
             <li><a href="/productList">product list</a></li>
@@ -90,14 +90,8 @@
     <div class="contents-of-purchase">
         <p style="font-size: 15px;">상품명(글제목)</p>
         <p style="font-size: 30px;">
-             {{ data.name}}</p>
+             {{ data.name}}
         </p>
-    </div>
-
-    <div class="contents-of-purchase">
-        <p style="font-size: 15px;">거래 방식</p>
-        <p style="font-size: 30px;">
-            {{ data.trade_type }}</p>
     </div>
 
     <div class="contents-of-purchase">
@@ -118,7 +112,7 @@
             <p style="font-size: 30px;">{{ data['max_price'] }}</p>
         {% else %}
             <p style="font-size: 15px;">가격</p>
-            <p style="font-size: 30px;">{{ data['price'] }}</p>
+            <p style="font-size: 30px;">{{ data['regular_price'] }}</p>
         {% endif %}
     </div>
 
