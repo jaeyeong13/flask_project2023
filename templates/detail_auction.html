@@ -301,12 +301,12 @@
     </div>
     <div class="text-section">
         <h4>상품명</h4>
-        <p style="font-size: 30px; font-weight: bold;">끝내주는 텀블러</p>
+        <p style="font-size: 30px; font-weight: bold;">{{name}}</p>
         <br>
         <div style="display: flex;">
             <div style="flex: 1;">
                 <h4>경매가</h4>
-                <p style="font-size: 30px; font-weight: bold;">1000원~5000원</p>
+                <p style="font-size: 30px; font-weight: bold;">{{data.min_price}}</p>
             </div>
             <div style="flex: 1;">
                 <h4>경매마감일</h4>
@@ -341,7 +341,7 @@
     <br><br>
     <div class="product-description" style="text-align: justify;">
         <h2>상세 설명</h2>
-        <p style="font-size: 14px; border-radius: 20px; max-width: 400px; margin: 0 auto; resize: vertical;">{{product-description}}</p>
+        <p style="font-size: 14px; border-radius: 20px; max-width: 400px; margin: 0 auto; resize: vertical;">{{product_description}}</p>
     </div>
     <br><br>
     <div class="comment-section">
