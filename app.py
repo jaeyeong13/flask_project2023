@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from database import DBhandler
 import hashlib
 import sys
+from datetime import datetime
 
 application = Flask(__name__)
 application.config["SECRET_KEY"] = "helloosp"
@@ -22,7 +23,7 @@ def login_user():
     pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
     if DB.find_user(id_,pw_hash):
         session['id']=id_
-        return redirect(url_for('hello'))                #이부분 나중에 view_list로 수정필요
+        return render_template('home.html')                #이부분 나중에 view_list로 수정필요
     else:
         flash("Wrong ID or PW!")
         return render_template("login.html")
@@ -39,7 +40,7 @@ def find_user(self, id_, pw_):
 @application.route("/logout")
 def logout_user():
     session.clear()
-    return redirect(url_for('hello'))                    #이부분 나중에 view_list로 수정필요
+    return render_template('home.html')                    #이부분 나중에 view_list로 수정필요
 
 @application.route("/signup")
 def signUp():
@@ -63,7 +64,9 @@ def myPage():
 
 @application.route('/reg_items')
 def reg_items():
-    return render_template('reg_items.html')
+    # current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    user_id = session.get('id') 
+    return render_template('reg_items.html', user_id=user_id)
 
 @application.route("/productList")
 def productList():
@@ -73,57 +76,37 @@ def productList():
 def productRegister():
     return render_template("productRegister.html")
 
-@application.route("/submit_item_post", methods=['GET', 'POST'])
-def submitProduct():
-    if request.method == "POST":
-        product_title = request.form.get("product-title")
-        price_method = request.form.get("price-method")
-        product_description = request.form.get("product-description")
-        user_id = request.form.get("user-id")
-        post_date = request.form.get("post-date")
-        transaction = request.form.get("transaction")
+@application.route("/submit_item_post", methods=['POST'])
+def reg_item_submit_post():
+    # current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    if 'id' in session:
+        user_id = session['id']
+    else:
+        flash("로그인 해야 이용 가능한 기능입니다!")
+        return redirect(url_for('login'))    
 
-        if price_method == "일반거래":
-            normal_price = request.form.get("normal-price")
-            auction_end_time = None
-            auction_min_bid = None
-            auction_max_bid = None
-        elif price_method == "경매":
-            normal_price = None
-            auction_end_time = request.form.get("auction-end-time")
-            auction_min_bid = request.form.get("auction-min-bid")
-            auction_max_bid = request.form.get("auction-max-bid")
-
-        # Pass the data to the template
-        return render_template('productSubmitResult.html', data={
-            'product_title': product_title,
-            'price_method': price_method,
-            'product_description': product_description,
-            'user_id': user_id,
-            'post_date': post_date,
-            'transaction': transaction,
-            'normal_price': normal_price,
-            'auction_end_time': auction_end_time,
-            'auction_min_bid': auction_min_bid,
-            'auction_max_bid': auction_max_bid
-        })
-
-    # Handle the case when the request method is not POST
-    return render_template('productSubmitResult.html')
-
-
-@application.route("/productSubmitResult", methods=['POST'])
-def productSubmitResult():
     image_file = request.files["file"]
-    image_path = "static/images/{}".format(image_file.filename)
-    image_file.save(image_path)
+    image_file.save("static/img/{}".format(image_file.filename))
+    data = request.form.to_dict()
+    trade_type = data.get('trade_type')
 
-    # Assuming DB is an instance of your DBhandler class
-    DB.insert_item(data=request.form, image_path=image_path)
+    if trade_type == 'auction':
+        end_date = data.get('end_date')
+        min_price = data.get('min_price')
+        max_price = data.get('max_price')
+        data['regular_price'] = None
+    else:
+        regular_price = data.get('regular_price')
+        data['end_date'] = None
+        data['min_price'] = None
+        data['max_price'] = None
 
-    return render_template("productSubmitResult.html", data=request.form, img_path=image_path)
-
-
+    data['trade_type'] = trade_type
+    # data['current_date'] = current_date
+    data['user_id'] = user_id
+    
+    DB.insert_item(data['name'], data, image_file.filename, data['trade_type'], data['end_date'], data['min_price'], data['max_price'], user_id)
+    return render_template("productSubmitResult.html", data=data, img_path="static/img/{}".format(image_file.filename))
 
 @application.route("/reviewRegister")
 def reviewRegister():
@@ -157,7 +140,11 @@ def view_item_detail(name):
     print("###name:",name)
     data = DB.get_item_byname(str(name))
     print("####data:",data)
-    return render_template("detail.html", name=name, data=data)
+    if data['trade_type'] == 'auction':
+        return render_template("detail_general.html", name=name, data=data)
+    else:
+        return render_template("detail_auction.html", name=name, data=data)
+
 
 if __name__ == "__main__":
     application.run(host='0.0.0.0')
