@@ -70,22 +70,33 @@
     <div class="contents-of-purchase">
         <p style="font-size: 15px;">상품 이미지</p>
         <p>
-            <img src="{{img_path}}"/>
+            <img src="{{img_path}}" height="300"/>
         </p>
         
-    </div>
-    <div class="contents-of-purchase">
-        <p style="font-size: 15px;">상품명(글제목)</p>
-        <p style="font-size: 30px;">
-             {{ data.name}}
-        </p>
     </div>
 
     <div class="contents-of-purchase">
         <p style="font-size: 15px;">상품명(글제목)</p>
         <p style="font-size: 30px;">{{ data.name}}</p>
-
         <p style="font-size: 15px;">거래 방식</p>
+        <p style="font-size:30px; font-weight: bold;">
+            {% for transaction_value in transaction_list %}
+                <p>
+                    {% if transaction_value == 'dir' %}
+                        직거래
+                    {% endif %}
+                    {% if transaction_value == 'pars' %}
+                        택배거래
+                    {% endif %}
+                    {% if transaction_value == 'box' %}
+                        비대면상자
+                    {% endif %}
+                </p>
+            {% endfor %}
+            
+        </p>
+
+        <p style="font-size: 15px;">가격 방식</p>
         <p style="font-size: 30px;">{{ '경매' if data['trade_type'] == 'auction' else '일반' }}</p>
 
         {% if data['trade_type'] == 'auction' %}
