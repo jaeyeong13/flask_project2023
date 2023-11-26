@@ -10,7 +10,8 @@ DB = DBhandler()
 
 @application.route("/", methods=['GET', 'POST'])
 def hello():
-    return render_template("home.html")
+    #return render_template("home.html")
+    return redirect(url_for("view_list"))
 
 @application.route('/login')
 def login():
@@ -64,9 +65,9 @@ def myPage():
 
 @application.route('/reg_items')
 def reg_items():
-    # current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    post_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     user_id = session.get('id') 
-    return render_template('reg_items.html', user_id=user_id)
+    return render_template('reg_items.html', user_id=user_id, post_date=post_date)
 
 @application.route("/productList")
 def productList():
@@ -78,7 +79,7 @@ def productRegister():
 
 @application.route("/submit_item_post", methods=['POST'])
 def reg_item_submit_post():
-    # current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    post_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     if 'id' in session:
         user_id = session['id']
     else:
@@ -102,10 +103,10 @@ def reg_item_submit_post():
         data['max_price'] = None
 
     data['trade_type'] = trade_type
-    # data['current_date'] = current_date
+    data['post_date'] = post_date
     data['user_id'] = user_id
     
-    DB.insert_item(data['name'], data, image_file.filename, data['trade_type'], data['end_date'], data['min_price'], data['max_price'], user_id)
+    DB.insert_item(data['name'], data, image_file.filename, data['trade_type'], data['end_date'], data['min_price'], data['max_price'], user_id, post_date)
     return render_template("productSubmitResult.html", data=data, img_path="static/img/{}".format(image_file.filename))
 
 @application.route("/reviewRegister")
@@ -140,7 +141,7 @@ def view_item_detail(name):
     print("###name:",name)
     data = DB.get_item_byname(str(name))
     print("####data:",data)
-    if data['trade_type'] == 'auction':
+    if data['trade_type'] == 'regular':
         return render_template("detail_general.html", name=name, data=data)
     else:
         return render_template("detail_auction.html", name=name, data=data)

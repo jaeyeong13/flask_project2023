@@ -259,7 +259,7 @@
         <div style="display: flex;">
             <div style="flex: 1;">
                 <h4>가격</h4>
-                <p style="font-size: 30px; font-weight: bold;">20000원</p>
+                <p style="font-size: 30px; font-weight: bold;">{{data.regular_price}}</p>
                 <!-- 가격 수정 필요합니당 -->
             </div>
             <div style="flex: 1;">
@@ -274,18 +274,18 @@
         <div style="display: flex;">
             <div style="flex: 1;">
                 <h4>판매자</h4>
-                <p style="font-size: 30px; font-weight: bold;">햇감자포카칩</p>
+                <p style="font-size: 30px; font-weight: bold;">{{data.user_id}}</p>
             </div>
             <div style="flex: 1;">
                 <h4>상품 등록일</h4>
-                <p style="font-size: 30px; font-weight: bold;">2023.10.09</p>
+                <p style="font-size: 30px; font-weight: bold;">{{data.post_date}}</p>
             </div>
         </div>
     </div>
     <br><br>
     <div class="product-description" style="text-align: justify;">
         <h2>상세 설명</h2>
-        <p style="font-size: 14px; border-radius: 20px; max-width: 400px; margin: 0 auto; resize: vertical;">{{product_description}}</p>
+        <p style="font-size: 14px; border-radius: 20px; max-width: 400px; margin: 0 auto; resize: vertical;">{{data.product_description}}</p>
     </div>
     <br><br>
     <div class="comment-section">

@@ -208,7 +208,7 @@
     </div>
 
     <div class="image-wrapper">
-        <img src="https://www.wellbow.co.kr/wp-content/uploads/2018/11/kinto_black_12oz_01.jpg" style="width:300px; height: 300px; border: 3px solid gray; border-radius: 15px;" alt="상품 이미지">
+        <img src="../../static/img/{{data.img_path}}" style="width:300px; height: 300px; border: 3px solid gray; border-radius: 15px;" alt="상품 이미지">
         <img src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/54147/sparkling-heart-emoji-clipart-md.png" class="custom-image" alt="맘찍">
     </div>
     <div class="text-section">
@@ -222,7 +222,7 @@
             </div>
             <div style="flex: 1;">
                 <h4>경매마감일</h4>
-                <p style="font-size: 30px; font-weight: bold;">2023.12.14</p>
+                <p style="font-size: 30px; font-weight: bold;">{{data.end_date}}</p>
             </div>
         </div>
         <br>
@@ -232,11 +232,11 @@
         <div style="display: flex;">
             <div style="flex: 1;">
                 <h4>판매자</h4>
-                <p style="font-size: 30px; font-weight: bold;">햇감자포카칩</p>
+                <p style="font-size: 30px; font-weight: bold;">{{data.user_id}}</p>
             </div>
             <div style="flex: 1;">
                 <h4>상품 등록일</h4>
-                <p style="font-size: 30px; font-weight: bold;">2023.10.09</p>
+                <p style="font-size: 30px; font-weight: bold;">{{data.post_date}}</p>
             </div>
         </div>
     </div>
@@ -253,7 +253,7 @@
     <br><br>
     <div class="product-description" style="text-align: justify;">
         <h2>상세 설명</h2>
-        <p style="font-size: 14px; border-radius: 20px; max-width: 400px; margin: 0 auto; resize: vertical;">{{product_description}}</p>
+        <p style="font-size: 14px; border-radius: 20px; max-width: 400px; margin: 0 auto; resize: vertical;">{{data.product_description}}</p>
     </div>
     <br><br>
     <div class="comment-section">

@@ -65,7 +65,7 @@
     
     <article>
         <form method="post" enctype="multipart/form-data" action="/submit_item_post">
-            <input type="hidden" name="current_date" value="{{ current_date }}">
+            <input type="hidden" name="post_date" value="{{ post_date }}">
             <input type="hidden" name="user_id" value="{{ user_id }}">
             <br><br>
             <h3 style="font-family: Arial, sans-serif; font-size: 20px;">상품 이미지</h3>
@@ -153,6 +153,16 @@
                     var form = document.querySelector("form");
                     form.appendChild(timeInput);
                 }
+                
+                const currentDateTime = new Date();
+                const year = currentDateTime.getFullYear();
+                const month = String(currentDateTime.getMonth() + 1).padStart(2, '0');
+                const date = String(currentDateTime.getDate()).padStart(2, '0');
+                const hour = String(currentDateTime.getHours()).padStart(2, '0');
+                const minutes = String(currentDateTime.getMinutes()).padStart(2, '0');
+
+                const formattedDateTime = `${year}-${month}-${date} ${hour}:${minutes}`;
+                document.getElementById("post_date").value = formattedDateTime;
                 
                 document.addEventListener('DOMContentLoaded', function () {
                     toggleTradeType();
