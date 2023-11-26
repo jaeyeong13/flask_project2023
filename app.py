@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, session
+from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
 from database import DBhandler
 import hashlib
 import sys
@@ -9,8 +9,7 @@ DB = DBhandler()
 
 @application.route("/", methods=['GET', 'POST'])
 def hello():
-    #return render_template("home.html")
-    return redirect(url_for("view_list"))
+    return render_template("home.html")
 
 @application.route('/login')
 def login():
@@ -23,7 +22,7 @@ def login_user():
     pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
     if DB.find_user(id_,pw_hash):
         session['id']=id_
-        return render_template('home.html')                #이부분 나중에 view_list로 수정필요
+        return redirect(url_for('hello'))                #이부분 나중에 view_list로 수정필요
     else:
         flash("Wrong ID or PW!")
         return render_template("login.html")
@@ -40,7 +39,7 @@ def find_user(self, id_, pw_):
 @application.route("/logout")
 def logout_user():
     session.clear()
-    return render_template('home.html')                    #이부분 나중에 view_list로 수정필요
+    return redirect(url_for('hello'))                    #이부분 나중에 view_list로 수정필요
 
 @application.route("/signup")
 def signUp():
@@ -70,31 +69,63 @@ def reg_items():
 def productList():
     return render_template("productList.html")
 
-@application.route("/productRegister")
-def productRegister():
-    return render_template("productRegister.html")
+# @application.route("/productRegister")
+# def productRegister():
+#     return render_template("productRegister.html")
 
-@application.route("/submit_item_post", methods=['POST'])
-def reg_item_submit_post():
-    image_file=request.files["file"]
-    image_file.save("static/img/{}".format(image_file.filename))
-    data = request.form.to_dict()
-    trade_type = data.get('trade_type')
+@application.route("/submit_item_post", methods=['GET', 'POST'])
+def submitProduct():
+    normal_price = None  # 기본값 설정
+    auction_end_time = None
+    auction_min_bid = None
+    auction_max_bid = None
 
-    if trade_type == 'auction':
-        end_date = data.get('end_date')
-        min_price = data.get('min_price')
-        max_price = data.get('max_price')
-        data['regular_price'] = None
-    else:
-        regular_price = data.get('regular_price')
-        data['end_date'] = None
-        data['min_price'] = None
-        data['max_price'] = None
-    
-    data['trade_type'] = trade_type
-    DB.insert_item(data['name'], data, image_file.filename, data['trade_type'], data['end_date'], data['min_price'], data['max_price'], data['regular_price'])
-    return render_template("productSubmitResult.html", data = data, img_path="static/img/{}".format(image_file.filename))
+    if request.method == "POST":
+        product_title = request.form.get("product-title")
+        price_method = request.form.get("price-method")
+        product_description = request.form.get("product-description")
+        user_id = request.form.get("user-id")
+        post_date = request.form.get("post-date")
+        transaction = request.form.get("transaction")
+
+        if price_method == "일반거래":
+            normal_price = request.form.get("normal-price")
+        elif price_method == "경매":
+            normal_price = None
+            auction_end_time = request.form.get("auction-end-time")
+            auction_min_bid = request.form.get("auction-min-bid")
+            auction_max_bid = request.form.get("auction-max-bid")
+
+        # Pass the data to the template
+        return render_template('productSubmitResult.html', data={
+            'product_title': product_title,
+            'price_method': price_method,
+            'product_description': product_description,
+            'user_id': user_id,
+            'post_date': post_date,
+            'transaction': transaction,
+            'normal_price': normal_price,
+            'auction_end_time': auction_end_time,
+            'auction_min_bid': auction_min_bid,
+            'auction_max_bid': auction_max_bid
+        })
+
+    # Handle the case when the request method is not POST
+    return render_template('productSubmitResult.html')
+
+
+@application.route("/productSubmitResult", methods=['POST'])
+def productSubmitResult():
+    image_file = request.files["file"]
+    image_path = "static/images/{}".format(image_file.filename)
+    image_file.save(image_path)
+
+    # Assuming DB is an instance of your DBhandler class
+    DB.insert_item(data=request.form, image_path=image_path)
+
+    return render_template("productSubmitResult.html", data=request.form, img_path=image_path)
+
+
 
 @application.route("/reviewRegister")
 def reviewRegister():
@@ -128,11 +159,63 @@ def view_item_detail(name):
     print("###name:",name)
     data = DB.get_item_byname(str(name))
     print("####data:",data)
-    if data['trade_type'] == 'auction':
-        return render_template("detail_general.html", name=name, data=data)
-    else:
-        return render_template("detail_auction.html", name=name, data=data)
+    return render_template("detail_general.html", name=name, data=data)
 
+@application.route("/review")
+def view_review():
+    page = request.args.get("page", 0, type=int)
+    per_page=6 # item count to display per page
+    per_row=3# item count to display per row
+    row_count=int(per_page/per_row)
+    start_idx=per_page*page
+    end_idx=per_page*(page+1)
+    data = DB.get_reviews() #read the table
+    item_counts = len(data)
+    data = dict(list(data.items())[start_idx:end_idx])
+    tot_count = len(data)
+    for i in range(row_count):#last row
+        if (i == row_count-1) and (tot_count%per_row != 0):
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
+        else: 
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
+    return render_template(
+        "review.html",
+        datas=data.items(),
+        row1=locals()['data_0'].items(),
+        row2=locals()['data_1'].items(),
+        limit=per_page,
+        page=page,
+        page_count=int((item_counts/per_page)+1),
+        total=item_counts
+    )
+
+
+# 리뷰 작성 화면
+@application.route("/reg_review_init/<name>/")
+def reg_review_init(name):
+    return render_template("reviewRegister.html", name=name)
+
+@application.route("/reg_review", methods=['POST'])
+def reg_review():
+    data=request.form
+    DB.reg_review(data)
+    return redirect(url_for('view_review'))
+
+# 좋아요 구현 로직
+@application.route("/show_heart/<name>/", methods=['GET'])
+def show_heart(name):
+    my_heart = DB.get_heart_byname(session['id'], name)
+    return jsonify({'my_heart': my_heart})
+
+@application.route("/like/<name>/", methods=['POST'])
+def like(name):
+    my_heart = DB.update_heart(session['id'], 'Y', name)
+    return jsonify({'msg': '좋아요 완료!'})
+
+@application.route("/unlike/<name>/", methods=['POST'])
+def unlike(name):
+    my_heart = DB.update_heart(session['id'], 'N', name)
+    return jsonify({'msg': '좋아요 취소 완료!'})
 
 if __name__ == "__main__":
-    application.run(host='0.0.0.0')
+    application.run(debug=True)
