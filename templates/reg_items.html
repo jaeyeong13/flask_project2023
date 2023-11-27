@@ -81,15 +81,24 @@
                 <label for="name" style="font-family: Arial, sans-serif; font-size: 20px;"></label><br>
                 <input type="text" name="name" id="name" required style="font-family: Arial, sans-serif; font-size: 20px; width: 650px; height: 30px;"><br><br>
             </div>
-            
+            <br><br><br>
             <h3 style="font-family: Arial, sans-serif; font-size: 20px;">거래 방식</h3>
+            <div>
+                    <input type="checkbox" id="cb1" name="transaction" value="dir">
+                    <label for="cb1">직거래</label>
+                    <input type="checkbox" id="cb2" name="transaction" value="pars">
+                    <label for="cb2">택배거래</label>
+                    <input type="checkbox" id="cb3" name="transaction" value="box">
+                    <label for="cb3">비대면상자</label>
+            </div>
+            <br><br><br>
+            <h3 style="font-family: Arial, sans-serif; font-size: 20px;">가격 방식</h3>
             <div>
                 <input type="radio" name="trade_type" value="auction" checked onchange="toggleTradeType()">
                 <label for="auction">경매</label>
                 <input type="radio" name="trade_type" value="regular" onchange="toggleTradeType()">
                 <label for="regular">일반</label>
             </div>
-
             <div id="regular_price_field" style="display:none;">
                 <label for="regular_price" style="font-family: Arial, sans-serif; font-size: 20px;">가격</label><br>
                 <input type="number" name="regular_price" id="regular_price" required style="font-family: Arial, sans-serif; font-size: 20px; width: 650px; height: 30px;"><br><br>
@@ -168,7 +177,7 @@
                     toggleTradeType();
                 });
             </script>
-
+            <br><br><br><br>
             <h3 style="font-family: Arial, sans-serif; font-size: 20px;">상세 설명</h3>
             <label for="product_description" style="font-family: Arial, sans-serif; font-size: 20px;"></label>
             <textarea id="product_description" name="product_description" rows="15" cols="50" required style="font-family: Arial, sans-serif; font-size: 20px;" placeholder="(20-500자)"></textarea>

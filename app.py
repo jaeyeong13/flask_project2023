@@ -85,7 +85,7 @@ def reg_item_submit_post():
     else:
         flash("로그인 해야 이용 가능한 기능입니다!")
         return redirect(url_for('login'))    
-
+    
     image_file = request.files["file"]
     image_file.save("static/img/{}".format(image_file.filename))
     data = request.form.to_dict()
@@ -102,12 +102,15 @@ def reg_item_submit_post():
         data['min_price'] = None
         data['max_price'] = None
 
+    # 'transaction' 필드를 항상 리스트로 처리
+    data['transaction'] = request.form.getlist('transaction')
+
     data['trade_type'] = trade_type
     data['post_date'] = post_date
     data['user_id'] = user_id
     
-    DB.insert_item(data['name'], data, image_file.filename, data['trade_type'], data['end_date'], data['min_price'], data['max_price'], user_id, post_date)
-    return render_template("productSubmitResult.html", data=data, img_path="static/img/{}".format(image_file.filename))
+    DB.insert_item(data['name'], data, image_file.filename, data['trade_type'], data['end_date'], data['min_price'], data['max_price'], user_id, post_date, data['transaction'])
+    return render_template("productSubmitResult.html", data=data, img_path="static/img/{}".format(image_file.filename), transaction_list=data['transaction'])
 
 @application.route("/reviewRegister")
 def reviewRegister():
@@ -142,9 +145,9 @@ def view_item_detail(name):
     data = DB.get_item_byname(str(name))
     print("####data:",data)
     if data['trade_type'] == 'regular':
-        return render_template("detail_general.html", name=name, data=data)
+        return render_template("detail_general.html", name=name, data=data, transaction_list=data['transaction'])
     else:
-        return render_template("detail_auction.html", name=name, data=data)
+        return render_template("detail_auction.html", name=name, data=data, transaction_list=data['transaction'])
 
 
 if __name__ == "__main__":
