@@ -56,7 +56,8 @@ class DBhandler:
             "max_price": data['max_price'],
             "seller_id": seller_id,
             "post_date": post_date,
-            "transaction": transaction
+            "transaction": transaction,
+            "item_status": "available"                      #setting the initial status into 'avilable'
         }
         self.db.child("item").child(name).set(item_info)
         return True
@@ -81,6 +82,10 @@ class DBhandler:
             "trans_mode" : trans_mode,  # 결제 정보 (직거래, 경매, 비대면 상자)
             "trans_media" : trans_media  # 결제 수단 (카카오페이, 직거래, 카드, etc)
         }
+        #Update item_status into "거래진행중"
+        self.db.child("item").child(item_name).update({"item_status": "거래진행중"})
+
+
         # 각 상품에 대한 거래 정보를 저장할 때, 상품명을 키로 사용
         self.db.child("trans_info").child(item_name).set(buy_info)
         return True
@@ -88,6 +93,12 @@ class DBhandler:
     def get_trans_info(self, name):
         trans_info = self.db.child("trans_info").child(name).get().val()
         return trans_info
+
+    def complete_transaction(self, item_name):
+        #Update item_status into "거래완료"
+        self.db.child("item").child(item_name).update({"item_status": "거래완료"})
+
+
 
     def get_heart_byname(self, uid, name):
         hearts = self.db.child("heart").child(uid).get()
