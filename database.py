@@ -94,12 +94,6 @@ class DBhandler:
         trans_info = self.db.child("trans_info").child(name).get().val()
         return trans_info
 
-    def complete_transaction(self, item_name):
-        #Update item_status into "거래완료"
-        self.db.child("item").child(item_name).update({"item_status": "거래완료"})
-
-
-
     def get_heart_byname(self, uid, name):
         hearts = self.db.child("heart").child(uid).get()
         target_value = ""
