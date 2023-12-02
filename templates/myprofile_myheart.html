@@ -8,31 +8,6 @@
     <title>나의 찜</title>
     <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
     <style>
-        .third-navbar {
-            background-color: #e1b99c;
-            height: 60px;
-            font-size: 20px;
-            display: flex;
-            align-items: center; /* 수직 가운데 정렬을 위해 추가 */
-        }
-
-        .third-navbar a {
-            font-weight: bold;
-            color:brown;
-            margin-left:5%;
-        }
-
-        .third-navbar a:not(:nth-child(6)):not(:nth-child(7)) {
-            color: white;
-        }
-
-        .third-navbar a:nth-child(even) {
-            margin-left: 0; /* 짝수 인덱스(0부터 시작)의 요소의 왼쪽 마진 초기화 */
-        }
-
-        .third-navbar a:nth-child(odd) {
-            margin-right: 10px; /* 홀수 인덱스(0부터 시작)의 요소의 우측 마진 설정 */
-        }
 
         .contents{
             margin-left:12%;
@@ -87,11 +62,7 @@
     <section>
         {% block section %}
 
-    <div class="third-navbar">
-        <a>나의 위치 | </a>
-        <a href="#">마이페이지 X</a>
-        <a href="#">나의 찜 X</a>
-    </div>
+
 
     <div class="contents">
         <h2>회원님이 찜한 상품</h2>

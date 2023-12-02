@@ -8,18 +8,20 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='menuBar.css') }}">
     <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
     <style>
-        .swipe-things{
+        .swipe-things {
             display: flex;
             height: 75%;
         }
-        .things{
-            display:flex;
+
+        .things {
+            display: flex;
             width: 55%;
             padding-top: 7%;
             padding-left: 8%;
 
         }
-        .things button{
+
+        .things button {
             color: rgb(42, 42, 42);
             border: none;
             border-radius: 5px;
@@ -30,22 +32,22 @@
         }
 
         .image-container {
-        width: 1000px; /* 이미지 컨테이너의 너비를 설정 */
-        height: 500px; /* 이미지 컨테이너의 높이를 설정 */
-        background-color: gray; /* 이미지 컨테이너의 배경색을 설정 */
-        display: flex;
-        justify-content: center; /* 내부 내용을 가로 중앙 정렬 */
-        align-items: center; /* 내부 내용을 세로 중앙 정렬 */
+            width: 1000px; /* 이미지 컨테이너의 너비를 설정 */
+            height: 500px; /* 이미지 컨테이너의 높이를 설정 */
+            background-color: gray; /* 이미지 컨테이너의 배경색을 설정 */
+            display: flex;
+            justify-content: center; /* 내부 내용을 가로 중앙 정렬 */
+            align-items: center; /* 내부 내용을 세로 중앙 정렬 */
         }
 
 
-        .explanation-thing{
+        .explanation-thing {
             padding-top: 10%;
             padding-left: 5%;
-            width:45%;
+            width: 45%;
         }
 
-        .explanation-thing button{
+        .explanation-thing button {
             background-color: #F8D57E;
             color: #000000;
             padding: 10px 20px;
@@ -68,27 +70,23 @@
     {% include 'menuBar.html' %}
     <section>
         {% block section %}
+            <div class="swipe-things">
+                <div class="things">
+                    <div class="image-container">
+                        <img src="..\static\img\example.png" alt="상품 이미지">
+                    </div>
 
-    <div class="swipe-things">
-        <div class="things">
-            <button class="prev-button">prev < </button>
-            <div class="image-container">
-                <img src="..\static\img\example.png" alt="상품 이미지">
+                    <div class="explanation-thing">
+                        <h2>끝내주는 텀블러</h2>
+                        <h3>20000원</h3>
+                        <br><br>
+                        <!-- 여기에 배송관련 정보 들어가야 함 -->
+                        <button>상품 상세보기</button>
+                        <br><br>
+                        *방향키를 활용해 플립뷰 기능을 이용할 수 있어요.
+                    </div>
+                </div>
             </div>
-            <button class="arrow-button"> > next</button>
-        </div>
-
-        <div class="explanation-thing">
-            <h2>끝내주는 텀블러</h2>
-            <h3>20000원</h3>
-            <br><br>
-            <!--여기에 배송관련 정보 들어가야함-->
-            <button>상품 상세보기</button><br><br>
-            *방향키를 활용해 플립뷰 기능을 이용할 수 있어요.
-        </div>
-    </div>
-    {% endblock section %}
-</section>
-
-{% include 'footer.html' %}
+        {% endblock section %}
+    </section>
 </body>
