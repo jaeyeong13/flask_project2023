@@ -167,7 +167,6 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-left: 10px;
         }
 
         .buy-reply {
@@ -274,15 +273,21 @@
         <p style="font-size: 14px; border-radius: 20px; max-width: 400px; margin: 0 auto; resize: vertical;">{{data.product_description}}</p>
     </div>
     <br><br>
-    <div class="comment-section">
+    <button class="comment-submit-button" onclick="location.href='/reg_comment_init/{{name}}/';" style="margin-left: 800px;">댓글 달러 가기</button>
+    <!-- <form action="/submit_comment" method="post" enctype="multipart/form-data">
+        <textarea name="content" id="content" name="comment" rows="5" cols="180"></textarea>
+        <input type="submit" value="게시">
+    </form> -->
+    <!-- <div class="comment-section">
         <h2 style="margin-left: 20px;">댓글</h2>
         <div class="comment-box">
             <textarea class="comment-textbox" placeholder="댓글을 입력하세요"></textarea>
-            <button class="comment-submit-button">게시</button>
+            <button class="comment-submit-button" onclick="submitComment()">게시</button>
         </div>
-    </div>
+    </div> -->
+    <br><br>
     <br>
-    <div class="buy-reply">
+    <!-- <div class="buy-reply">
         <div class="comment-description">
             <h3>구매하려고 하는 사람 1</h3>
             <p>감사합니다~</p>
@@ -301,9 +306,10 @@
             <h3>구매하려고 하는 사람 1</h3>
             <p>상품에 하자 있나요?</p>
         </div>
-    </div>
+    </div> -->
     
     <script>
+        
         function showHeart() {
             $.ajax({
                 type: 'GET',
