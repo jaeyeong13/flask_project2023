@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='header.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='footer.css')}}">
-<script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
-    <script src="{{url_for('static', filename='main.js')}}" defer></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='footer.css') }}">
+
+    <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
+
     <style>
         .swipe {
             background-color: #F7F5FD;
@@ -136,10 +139,10 @@
 </head>
 
 <body>
-    {% include 'header.html' %}
-    {% include 'menuBar.html' %}
-    <section>
-        {% block section %}
+{% include 'header.html' %}
+{% include 'menuBar.html' %}
+<section>
+    {% block section %}
         <script>
             // 메뉴 토글을 위한 JavaScript
             const menuToggleBtn = document.getElementById('menuToggleBtn');
@@ -183,86 +186,96 @@
             <br><br><br><br>
         </div>
 
-    <!-- 5초후에 자동으로 이미지 슬라이드 되게 js코드 추가-->
-    <script>
-        var slideIndex = 1;
-        showSlides(slideIndex);
+        <!-- 5초후에 자동으로 이미지 슬라이드 되게 js코드 추가-->
+        <script>
+            var slideIndex = 1;
+            showSlides(slideIndex);
 
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("slide");
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
             }
-            slides[slideIndex - 1].style.display = "block";
-        }
 
-        // 5초마다 자동으로 슬라이드를 넘깁니다.
-        var autoSlide = setInterval(function () { plusSlides(1); }, 5000);
-    </script>
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
 
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("slide");
+                if (n > slides.length) {
+                    slideIndex = 1
+                }
+                if (n < 1) {
+                    slideIndex = slides.length
+                }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slides[slideIndex - 1].style.display = "block";
+            }
 
-    <div class="items">
-        <h4>따근따근하게 올라온 상품 <button class="view-button" onclick="showAllItems()">전체보기 ></button></h4>
-
-        <ul class="newList">
-            <li>
-                <img src="../static/img/example.png" alt="Image 1">
-                <a href="#">보러가기</a>
-            </li>
-            <li>
-                <img src="../static/img/example.png" alt="Image 2">
-                <a href="#">보러가기</a>
-            </li>
-            <li>
-                <img src="../static/img/example.png" alt="Image 3">
-                <a href="#">보러가기</a>
-            </li>
-            <li>
-                <img src="../static/img/example.png" alt="Image 4">
-                <a href="#">보러가기</a>
-            </li>
-        </ul>
-    </div>
+            // 5초마다 자동으로 슬라이드를 넘깁니다.
+            var autoSlide = setInterval(function () {
+                plusSlides(1);
+            }, 5000);
+        </script>
 
 
-    <div class="heart">
-        <h4>내가 찜한 상품 <button class="view-button" onclick="showAllItems()">전체보기 ></button></h4>
+        <div class="items">
+            <h4>따근따근하게 올라온 상품
+                <button class="view-button" onclick="showAllItems()">전체보기 ></button>
+            </h4>
 
-        <ul class="heartList">
-            <li>
-                <img src="../static/img/example.png" alt="Image 1">
-                <a href="#">보러가기</a>
-            </li>
-            <li>
-                <img src="../static/img/example.png" alt="Image 2">
-                <a href="#">보러가기</a>
-            </li>
-            <li>
-                <img src="../static/img/example.png" alt="Image 3">
-                <a href="#">보러가기</a>
-            </li>
-            <li>
-                <img src="../static/img/example.png" alt="Image 4">
-                <a href="#">보러가기</a>
-            </li>
-        </ul>
+            <ul class="newList">
+                <li>
+                    <img src="../static/img/example.png" alt="Image 1">
+                    <a href="#">보러가기</a>
+                </li>
+                <li>
+                    <img src="../static/img/example.png" alt="Image 2">
+                    <a href="#">보러가기</a>
+                </li>
+                <li>
+                    <img src="../static/img/example.png" alt="Image 3">
+                    <a href="#">보러가기</a>
+                </li>
+                <li>
+                    <img src="../static/img/example.png" alt="Image 4">
+                    <a href="#">보러가기</a>
+                </li>
+            </ul>
+        </div>
 
-        <a href="productRegister.html">
-            <img src="../static/img/potatoRegister.png" alt="Product Register"
-                style="position: absolute; left: 600px; bottom: -580px; width: 7%; cursor: pointer;">
-        </a>
-    </div>
+
+        <div class="heart">
+            <h4>내가 찜한 상품
+                <button class="view-button" onclick="showAllItems()">전체보기 ></button>
+            </h4>
+
+            <ul class="heartList">
+                <li>
+                    <img src="../static/img/example.png" alt="Image 1">
+                    <a href="#">보러가기</a>
+                </li>
+                <li>
+                    <img src="../static/img/example.png" alt="Image 2">
+                    <a href="#">보러가기</a>
+                </li>
+                <li>
+                    <img src="../static/img/example.png" alt="Image 3">
+                    <a href="#">보러가기</a>
+                </li>
+                <li>
+                    <img src="../static/img/example.png" alt="Image 4">
+                    <a href="#">보러가기</a>
+                </li>
+            </ul>
+
+            <a href="productRegister.html">
+                <img src="../static/img/potatoRegister.png" alt="Product Register"
+                     style="position: absolute; left: 600px; bottom: -580px; width: 7%; cursor: pointer;">
+            </a>
+        </div>
     {% endblock section %}
 </section>
 

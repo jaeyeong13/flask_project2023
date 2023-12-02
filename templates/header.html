@@ -5,38 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/header.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
 </head>
 
 <body>
-    <header>
-        <h2>GamjaMarket</h2>
-        <nav>
-            <ul>
-                <button class="nav-button" onclick="changePage()">
-                    <img src="{{ url_for('static', filename='img/menu.png') }}" width="20" height="20">
-                </button>
-            </ul>
+<header>
+    <h2 id="gamjaMarketLink" onclick="goToHomePage()" onmouseover="changeCursor()">GamjaMarket</h2>
+    <nav>
+        <ul>
+            <button class="nav-button" onclick="changePage()">
+                <img src="{{ url_for('static', filename='img/menu.png') }}" width="20" height="20">
+            </button>
+        </ul>
 
-            <div class="searchbar">
-                <input class="search-input" type="text" placeholder="찾으시는 상품명을 입력하세요"
-                    onkeydown="if (event.keyCode == 13) searchFunction()">
-                <button class="nav-button" onclick="searchFunction()">
-                    <img src="{{ url_for('static', filename='img/search.png') }}" width="20" height="20">
-                </button>
-            </div>
+        <div class="searchbar">
+            <input class="search-input" type="text" placeholder="찾으시는 상품명을 입력하세요"
+                   onkeydown="if (event.keyCode == 13) searchFunction()">
+            <button class="nav-button" onclick="searchFunction()">
+                <img src="{{ url_for('static', filename='img/search.png') }}" width="20" height="20">
+            </button>
+        </div>
 
-            <ul>
-                {% if session['id'] %}
+        <ul>
+            {% if session['id'] %}
                 <li><a href="/logout"><b>{{ session['id'] }}님 반갑습니다!</b>logout</a></li>
-                {% else %}
+            {% else %}
                 <li><a href="{{ url_for('login') }}">회원가입/로그인</a></li>
-                {% endif %}
-                <li><a href="{{ url_for('myPage') }}">마이페이지</a></li>
-            </ul>
-        </nav>
-    </header>
+            {% endif %}
+            <li><a href="{{ url_for('myPage') }}">마이페이지</a></li>
+        </ul>
+    </nav>
+</header>
+<script>
+    function goToHomePage() {
+        window.location.href = "home.html";
+    }
 
+    function changeCursor() {
+            document.getElementById("gamjaMarketLink").style.cursor = "pointer";
+        }
+</script>
 </body>
 
 </html>
