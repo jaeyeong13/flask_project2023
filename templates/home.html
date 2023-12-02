@@ -7,7 +7,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="{{url_for('static', filename='header.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='footer.css')}}">
-
+<script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
     <script src="{{url_for('static', filename='main.js')}}" defer></script>
     <style>
         .swipe {
@@ -137,7 +137,7 @@
 
 <body>
     {% include 'header.html' %}
-
+    {% include 'menuBar.html' %}
     <section>
         {% block section %}
         <script>

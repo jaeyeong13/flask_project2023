@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>상품상세 - 경매하는 경우</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='menuBar.css') }}">
+    <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
     <style>
         .third-navbar {
             background-color: #e1b99c;
@@ -14,7 +16,7 @@
 
         .third-navbar a {
             font-weight: bold;
-            color:brown;
+            color: brown;
         }
 
         .third-navbar a:not(:nth-child(6)):not(:nth-child(7)) {
@@ -174,7 +176,7 @@
         }
 
         .buy-reply {
-            background-color:#d5c5f4;
+            background-color: #d5c5f4;
             border-radius: 15px; /* 둥근 테두리 반지름 설정 */
             margin-left: 30px; /* 왼쪽 여백 설정 */
             margin-right: 30px;
@@ -192,144 +194,152 @@
     </style>
 </head>
 <body>
-    {% include 'header.html' %}
+{% include 'header.html' %}
+{% include 'menuBar.html' %}
+<section>
+    {% block section %}
 
-    <section>
-        {% block section %}
 
-    
-    <div class="third-navbar">
-        <a style="margin-left: 20px;">나의 위치 |</a>
-        <a href="#">홈 화면</a>
-        <a href="#">x</a>
-        <a href="#">전체 상품 조회</a>
-        <a href="#">x</a>
-        <a href="#">상품 상세</a>
-        <a href="#">x</a>
-    </div>
+        <div class="third-navbar">
+            <a style="margin-left: 20px;">나의 위치 |</a>
+            <a href="#">홈 화면</a>
+            <a href="#">x</a>
+            <a href="#">전체 상품 조회</a>
+            <a href="#">x</a>
+            <a href="#">상품 상세</a>
+            <a href="#">x</a>
+        </div>
 
-    <div class="image-wrapper">
-        <img src="../../static/img/{{data.img_path}}" style="width:300px; height: 300px; border: 3px solid gray; border-radius: 15px;" alt="상품 이미지">
-        <img src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/54147/sparkling-heart-emoji-clipart-md.png" class="custom-image" alt="맘찍">
-    </div>
-    <div class="text-section">
-        <h4>상품명</h4>
-        <p style="font-size: 30px; font-weight: bold;">{{name}}</p>
-        <br>
-        <div style="display: flex;">
-            <div style="flex: 1;">
-                <h4>경매가</h4>
-                <p style="font-size: 30px; font-weight: bold;">{{data.min_price}}</p>
+        <div class="image-wrapper">
+            <img src="../../static/img/{{ data.img_path }}"
+                 style="width:300px; height: 300px; border: 3px solid gray; border-radius: 15px;" alt="상품 이미지">
+            <img src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/54147/sparkling-heart-emoji-clipart-md.png"
+                 class="custom-image" alt="맘찍">
+        </div>
+        <div class="text-section">
+            <h4>상품명</h4>
+            <p style="font-size: 30px; font-weight: bold;">{{ name }}</p>
+            <br>
+            <div style="display: flex;">
+                <div style="flex: 1;">
+                    <h4>경매가</h4>
+                    <p style="font-size: 30px; font-weight: bold;">{{ data.min_price }}</p>
+                </div>
+                <div style="flex: 1;">
+                    <h4>경매마감일</h4>
+                    <p style="font-size: 30px; font-weight: bold;">{{ data.end_date }}</p>
+                </div>
             </div>
-            <div style="flex: 1;">
-                <h4>경매마감일</h4>
-                <p style="font-size: 30px; font-weight: bold;">{{data.end_date}}</p>
+            <br>
+            <h4>가능한 거래 방식</h4>
+            <p style="font-size:30px; font-weight: bold;">
+                {% for transaction_value in transaction_list %}
+                    <p>
+                        {% if transaction_value == 'dir' %}
+                            직거래 <img src="../../static/img/dir.png" style="width:80px; height: 80px;">
+                        {% endif %}
+                        {% if transaction_value == 'pars' %}
+                            택배거래 <img src="../../static/img/pars.png" style="width:80px; height: 80px;">
+                        {% endif %}
+                        {% if transaction_value == 'box' %}
+                            비대면상자 <img src="../../static/img/box.png" style="width:80px; height: 80px;">
+                        {% endif %}
+                    </p>
+                {% endfor %}
+            </p>
+            <br>
+            <div style="display: flex;">
+                <div style="flex: 1;">
+                    <h4>판매자</h4>
+                    <p style="font-size: 30px; font-weight: bold;">{{ data.seller_id }}</p>
+                </div>
+                <div style="flex: 1;">
+                    <h4>상품 등록일</h4>
+                    <p style="font-size: 30px; font-weight: bold;">{{ data.post_date }}</p>
+                </div>
             </div>
         </div>
+        <br><br>
+        <h1 id="countdown-timer" style="font-weight: bold; font-size: 50px; text-align: center; color:darkorange">경매
+            종료까지 남은 시간: </h1>
         <br>
-        <h4>가능한 거래 방식</h4>
-        <p style="font-size:30px; font-weight: bold;">
-            {% for transaction_value in transaction_list %}
-                <p>
-                    {% if transaction_value == 'dir' %}
-                        직거래 <img src="../../static/img/dir.png" style="width:80px; height: 80px;">
-                    {% endif %}
-                    {% if transaction_value == 'pars' %}
-                        택배거래 <img src="../../static/img/pars.png" style="width:80px; height: 80px;">
-                    {% endif %}
-                    {% if transaction_value == 'box' %}
-                        비대면상자 <img src="../../static/img/box.png" style="width:80px; height: 80px;">
-                    {% endif %}
-                </p>
-            {% endfor %}
+        <div style="text-align: center;">
+            <label for="bid-amount" style="font-size: 24px;">나의 입찰가:</label>
+            <input type="number" id="bid-amount" placeholder="금액을 입력하세요" style="font-size: 24px; border-radius: 8px;">
+            <span style="font-size: 24px;">원</span>
+            <button class="bid-button"
+                    style="background-color: orange; color: white; font-size: 24px; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-left: 40px;">
+                경매 참가
+            </button>
+        </div>
+        <p style="color: red; font-size: 14px; text-align: left; margin-left: 550px;">*상품 구매 희망자들은 최저 낙찰가 이상의 가격부터 입찰가로
+            등록 가능합니다.<br> 경매 마감일까지 시간이 남았더라도 최고 낙찰가가 입찰가로 등록된 즉시, 경매는 종료됩니다.<br> 나의 입찰가가 낙찰되어 경매에 성공한 이후 거래를 취소할 수 없습니다.
         </p>
+        <br><br>
+        <div class="product-description" style="text-align: justify;">
+            <h2>상세 설명</h2>
+            <p style="font-size: 14px; border-radius: 20px; max-width: 400px; margin: 0 auto; resize: vertical;">{{ product_description }}</p>
+        </div>
+        <br><br>
+        <div class="comment-section">
+            <h2 style="margin-left: 20px;">댓글</h2>
+            <div class="comment-box">
+                <textarea class="comment-textbox" placeholder="댓글을 입력하세요"></textarea>
+                <button class="comment-submit-button">게시</button>
+            </div>
+        </div>
         <br>
-        <div style="display: flex;">
-            <div style="flex: 1;">
-                <h4>판매자</h4>
-                <p style="font-size: 30px; font-weight: bold;">{{data.seller_id}}</p>
-            </div>
-            <div style="flex: 1;">
-                <h4>상품 등록일</h4>
-                <p style="font-size: 30px; font-weight: bold;">{{data.post_date}}</p>
+        <div class="buy-reply">
+            <div class="comment-description">
+                <h3>구매하려고 하는 사람 1</h3>
+                <p>감사합니다~</p>
             </div>
         </div>
-    </div>
-    <br><br>
-    <h1 id="countdown-timer" style="font-weight: bold; font-size: 50px; text-align: center; color:darkorange">경매 종료까지 남은 시간: </h1>
-    <br>
-    <div style="text-align: center;">
-        <label for="bid-amount" style="font-size: 24px;">나의 입찰가:</label>
-        <input type="number" id="bid-amount" placeholder="금액을 입력하세요" style="font-size: 24px; border-radius: 8px;">
-        <span style="font-size: 24px;">원</span>
-        <button class="bid-button" style="background-color: orange; color: white; font-size: 24px; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-left: 40px;">경매 참가</button>
-    </div>
-    <p style="color: red; font-size: 14px; text-align: left; margin-left: 550px;">*상품 구매 희망자들은 최저 낙찰가 이상의 가격부터 입찰가로 등록 가능합니다.<br> 경매 마감일까지 시간이 남았더라도 최고 낙찰가가 입찰가로 등록된 즉시, 경매는 종료됩니다.<br> 나의 입찰가가 낙찰되어 경매에 성공한 이후 거래를 취소할 수 없습니다.</p>
-    <br><br>
-    <div class="product-description" style="text-align: justify;">
-        <h2>상세 설명</h2>
-        <p style="font-size: 14px; border-radius: 20px; max-width: 400px; margin: 0 auto; resize: vertical;">{{product_description}}</p>
-    </div>
-    <br><br>
-    <div class="comment-section">
-        <h2 style="margin-left: 20px;">댓글</h2>
-        <div class="comment-box">
-            <textarea class="comment-textbox" placeholder="댓글을 입력하세요"></textarea>
-            <button class="comment-submit-button">게시</button>
+        <br>
+        <div class="sel-reply">
+            <div class="comment-description">
+                <h3>판매자 (햇감자포카칩)</h3>
+                <p>완전 새제품이에용~</p>
+            </div>
         </div>
-    </div>
-    <br>
-    <div class="buy-reply">
-        <div class="comment-description">
-            <h3>구매하려고 하는 사람 1</h3>
-            <p>감사합니다~</p>
+        <br>
+        <div class="buy-reply">
+            <div class="comment-description">
+                <h3>구매하려고 하는 사람 1</h3>
+                <p>상품에 하자 있나요?</p>
+            </div>
         </div>
-    </div>
-    <br>
-    <div class="sel-reply">
-        <div class="comment-description">
-            <h3>판매자 (햇감자포카칩)</h3>
-            <p>완전 새제품이에용~</p>
-        </div>
-    </div>
-    <br>
-    <div class="buy-reply">
-        <div class="comment-description">
-            <h3>구매하려고 하는 사람 1</h3>
-            <p>상품에 하자 있나요?</p>
-        </div>
-    </div>
-    
+
     {% endblock section %}
 </section>
 
 {% include 'footer.html' %}
 
-    <script>
-        // Set the target date and time for the countdown
-        var targetDate = new Date("2023-12-14T00:00:00").getTime();
+<script>
+    // Set the target date and time for the countdown
+    var targetDate = new Date("2023-12-14T00:00:00").getTime();
 
-        // Update the countdown every 1 second
-        var countdownInterval = setInterval(function() {
-            var currentDate = new Date().getTime();
-            var timeRemaining = targetDate - currentDate;
+    // Update the countdown every 1 second
+    var countdownInterval = setInterval(function () {
+        var currentDate = new Date().getTime();
+        var timeRemaining = targetDate - currentDate;
 
-            if (timeRemaining <= 0) {
-                // Auction has ended
-                document.getElementById("countdown-timer").innerHTML = "경매 종료됨";
-                clearInterval(countdownInterval);
-            } else {
-                // Calculate days, hours, minutes, and seconds
-                var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+        if (timeRemaining <= 0) {
+            // Auction has ended
+            document.getElementById("countdown-timer").innerHTML = "경매 종료됨";
+            clearInterval(countdownInterval);
+        } else {
+            // Calculate days, hours, minutes, and seconds
+            var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-                // Update the countdown timer text
-                var countdownText = days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
-                document.getElementById("countdown-timer").innerHTML = "경매 종료까지 남은 시간: " + countdownText;
-            }
-        }, 1000); // Update every 1 second
-    </script>
+            // Update the countdown timer text
+            var countdownText = days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
+            document.getElementById("countdown-timer").innerHTML = "경매 종료까지 남은 시간: " + countdownText;
+        }
+    }, 1000); // Update every 1 second
+</script>
 </body>
 </html>

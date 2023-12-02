@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Page Ing</title>
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='menuBar.css') }}">
+    <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
     <script src="{{url_for('static', filename='main.js')}}" defer></script>
     <style>
         .text-section {
@@ -126,6 +127,7 @@
 
 <body>
     {% include 'header.html' %}
+    {% include 'menuBar.html' %}
 
     <section>
         {% block section %}

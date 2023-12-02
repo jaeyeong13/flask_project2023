@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <title>상품상세 - 일반거래하는 경우</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='menuBar.css') }}">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
     <style>
         .third-navbar {
             background-color: #e1b99c;
@@ -209,7 +211,7 @@
 </head>
 <body>
     {% include 'header.html' %}
-
+    {% include 'menuBar.html' %}
     <section>
         {% block section %}
  

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>비대면 상자 조회</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='menuBar.css') }}">
+    <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
     <style>
         .all-part{
             display: flex;
@@ -66,7 +68,7 @@
 
 <body>
     {% include 'header.html' %}
-
+    {% include 'menuBar.html' %}
     <section>
         {% block section %}
 

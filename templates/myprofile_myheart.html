@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='menuBar.css') }}">
     <title>나의 찜</title>
+    <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
     <style>
         .third-navbar {
             background-color: #e1b99c;
@@ -80,6 +82,7 @@
 </head>
 <body>
     {% include 'header.html' %}
+    {% include 'menuBar.html' %}
 
     <section>
         {% block section %}

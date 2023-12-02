@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>상품상세 - 거래완료된 상품</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='menuBar.css') }}">
+    <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
     <style>
         .third-navbar {
             background-color: #e1b99c;
@@ -225,7 +227,7 @@
 </head>
 <body>
     {% include 'header.html' %}
-
+    {% include 'menuBar.html' %}
     <section>
         {% block section %}
  
