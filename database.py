@@ -198,3 +198,9 @@ class DBhandler:
 
         return user_reviews
 
+    def reg_comment(self, data):
+        comment_info = {
+            "comment":data['content']
+        }
+        self.db.child("comments").child(data['name']).set(comment_info)
+        return True
