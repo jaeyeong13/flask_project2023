@@ -261,5 +261,16 @@ def my_review(user_id):
         user_id=user_id 
     )
 
+@application.route("/reg_comment_init/<name>/")
+def reg_comment_init(name):
+    return render_template("post_comment.html", name=name)
+
+@application.route("/reg_comment", methods=['POST'])
+def reg_comment():
+    data=request.form
+    DB.reg_comment(data)
+    item_name = data.get('name')
+    return redirect(url_for("view_item_detail", name=item_name))
+
 if __name__ == "__main__":
     application.run(debug=True)
