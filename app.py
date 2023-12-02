@@ -8,7 +8,7 @@ application = Flask(__name__)
 application.config["SECRET_KEY"] = "helloosp"
 DB = DBhandler()
 
-@application.route("/", methods=['GET', 'POST'])
+@application.route("/home", methods=['GET', 'POST'])
 def hello():
     return render_template("home.html")
 
@@ -262,4 +262,5 @@ def my_review(user_id):
     )
 
 if __name__ == "__main__":
+    application.run(host='0.0.0.0', port=5000)
     application.run(debug=True)
