@@ -138,7 +138,7 @@ def view_item_detail(name):
 @application.route("/purchase_item/<name>/")
 def purchase_item(name):
     data=DB.get_item_by_name(str(name))
-    return render_template("purchasePage.html", name=name, data=data)
+    return render_template("purchasePage.html", name=name, data=data, transaction_list=data['transaction'])
 
 
 # '결제하기' 버튼 누르면 결제 정보가 DB로 넘어가고 '거래진행중' 버튼 보이는 detail_purchased 페이지로 넘어감 -- 이게 안됨ㅠ
@@ -162,6 +162,16 @@ def detail_purchased(name):
     data=DB.get_item_by_name(str(name))
     return render_template("detail_purchased.html", name=name, data=data)
 
+
+
+@application.route("/complete_transaction/<name>/", methods=['POST'])
+def complete_transaction(name):
+    # 상품의 거래 상태를 '거래완료'로 변경
+    DB.update_item_status(name, '거래완료')
+    return redirect(url_for('review_detail', name=name))
+
+
+
 @application.route("/show_heart/<name>/", methods=['GET'])
 def show_heart(name):
     my_heart = DB.get_heart_byname(session['id'], name)
@@ -176,6 +186,20 @@ def like(name):
 def unlike(name):
     my_heart = DB.update_heart(session['id'], 'N', name)
     return jsonify({'msg': '좋아요 취소 완료!'})
+
+
+@application.route("/myLikes")
+def my_likes():
+    if 'id' not in session:
+        flash("로그인이 필요한 서비스입니다.")
+        return redirect(url_for('login'))
+
+    user_id = session['id']
+    liked_items = DB.get_liked_items(user_id)
+    
+    return render_template("myLikes.html", liked_items=liked_items)
+
+
 
 @application.route("/submit_review", methods=['POST'])
 def submit_review():
