@@ -10,83 +10,80 @@
     <style>
         .swipe-things {
             display: flex;
-            height: 75%;
+            height: 75vh; /* 화면 높이의 75% 사용 */
         }
 
         .things {
             display: flex;
             width: 55%;
-            padding-top: 7%;
-            padding-left: 8%;
-
+            padding-top: 3%; /* 필요에 따라 조절 */
+            padding-left: 4%; /* 필요에 따라 조절 */
         }
 
         .things button {
             color: rgb(42, 42, 42);
             border: none;
             border-radius: 5px;
-            font-size: 40px;
-            margin: 100px 50px 0 50px;
-            height: 70px;
-            width: 200px;
+            font-size: 2.5vw; /* 화면 너비에 따른 반응형 폰트 크기 */
+            margin: 5vw 2.5vw 0 2.5vw; /* 필요에 따라 조절 */
+            height: 8vh; /* 화면 높이의 8% 사용 */
+            width: 15vw; /* 화면 너비의 15% 사용 */
         }
 
         .image-container {
-            width: 1000px; /* 이미지 컨테이너의 너비를 설정 */
-            height: 500px; /* 이미지 컨테이너의 높이를 설정 */
-            background-color: gray; /* 이미지 컨테이너의 배경색을 설정 */
+            width: 80vw; /* 화면 너비의 80% 사용 */
+            height: 40vh; /* 화면 높이의 40% 사용 */
+            background-color: gray;
             display: flex;
-            justify-content: center; /* 내부 내용을 가로 중앙 정렬 */
-            align-items: center; /* 내부 내용을 세로 중앙 정렬 */
+            justify-content: center;
+            align-items: center;
         }
 
-
         .explanation-thing {
-            padding-top: 10%;
-            padding-left: 5%;
+            padding-top: 3%; /* 필요에 따라 조절 */
+            padding-left: 3%; /* 필요에 따라 조절 */
             width: 45%;
         }
 
         .explanation-thing button {
             background-color: #F8D57E;
             color: #000000;
-            padding: 10px 20px;
+            padding: 1.5vh 3vw; /* 화면 높이와 너비에 따른 반응형 패딩 */
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            width: 300px;
-            height: 70px;
-            font-size: 20px;
+            width: 20vw; /* 화면 너비의 20% 사용 */
+            height: 8vh; /* 화면 높이의 8% 사용 */
+            font-size: 1.5vw; /* 화면 너비에 따른 반응형 폰트 크기 */
         }
 
         button:hover {
             background-color: #0056b3;
         }
-
     </style>
 </head>
 <body>
-    {% include 'header.html' %}
-    {% include 'menuBar.html' %}
-    <section>
-        {% block section %}
-            <div class="swipe-things">
-                <div class="things">
-                    <div class="image-container">
-                        <img src="..\static\img\example.png" alt="상품 이미지">
-                    </div>
+{% include 'header.html' %}
+{% include 'menuBar.html' %}
+<section>
+    {% block section %}
+        <div class="swipe-things">
+            <div class="things">
+                <div class="image-container">
+                    <img src="..\static\img\example.png" alt="상품 이미지">
+                </div>
 
-                    <div class="explanation-thing">
-                        <h2>끝내주는 텀블러</h2>
-                        <h3>20000원</h3>
-                        <br><br>
-                        <!-- 여기에 배송관련 정보 들어가야 함 -->
-                        <button>상품 상세보기</button>
-                        <br><br>
-                        *방향키를 활용해 플립뷰 기능을 이용할 수 있어요.
-                    </div>
+                <div class="explanation-thing">
+                    <h2>끝내주는 텀블러</h2>
+                    <h3>20000원</h3>
+                    <br><br>
+                    <!-- 여기에 배송관련 정보 들어가야 함 -->
+                    <button>상품 상세보기</button>
+                    <br><br>
+                    *방향키를 활용해 플립뷰 기능을 이용할 수 있어요.
                 </div>
             </div>
-        {% endblock section %}
-    </section>
+        </div>
+    {% endblock section %}
+</section>
 </body>

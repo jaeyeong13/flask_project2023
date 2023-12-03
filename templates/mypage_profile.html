@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,143 +9,231 @@
     <title>마이페이지-마이프로필</title>
     <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
     <style>
-        .my-info{
+        /* 겹치는 내용은 1번 코드로 덮어쓰기 */
+        .text-section {
+            flex: 1;
+            margin: 20px;
+        }
+
+        #menuToggleBtn {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .navbar__menu.active {
+            display: block;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: white;
+            z-index: 1;
+        }
+
+        .nav_bar_present {
+            background-color: #E5C3A6;
+            padding: 10px 30px;
+            text-align: left;
+            font-size: medium;
+        }
+
+        .nav_links {
+            color: #943F2F;
+            font-weight: bold;
+        }
+
+        .nav_link {
+            text-decoration: none;
+            color: #943F2F;
+            transition: color 0.3s;
+        }
+
+        .nav_link:hover {
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        /* 끝 */
+
+        .my-info {
             display: flex;
-            margin-top: 100px;
+            margin-top: 50px;
             font-size: 20px;
         }
 
-        .my-info img{
-            margin-left: 12%;
+        .my-info img {
+            margin-left: 6%;
             margin-right: 60px;
         }
 
-        .my-id{
-            margin-right:90px;
+        .my-id {
+            margin-right: 90px;
             margin-top: 70px;
+            font-size: large;
+            font-weight: bold;
+            white-space: nowrap;
+            /* 글자 줄바꿈 방지 */
         }
 
-        .info-box{
-            border: 3px solid #F8D57E;
-            border-radius:10px;
-            margin-right:100px;
-            padding: 20px;
-            width: 250px;
-            height: 100px;
-        }
-
-        .on-purchase{
-            margin-left: 12%;
-            margin-top: 6%;
-        }
-
-        .on-purchase-list{
-            display: flex;
-        }
-
-        .on-purchase-item{
-            margin-right: 100px;
-            border: 1px solid black;
+        .info-box {
+            border: 3px solid #FFA800;
             border-radius: 10px;
-            width: 320px;
-            height: 450px;
+            margin-right: 50px;
+            margin-top: 40px;
+            width: 150px;
+            height: 60px;
+            padding: 10px;
+            font-size: medium;
         }
 
-        .on-purchase-item-text{
-            padding: 20px;
+        .on-purchase {
+            margin-left: 2%;
+            margin-top: 2%;
         }
 
-        .review{
-            margin-top: 5%;
-            margin-left: 12%;
+  .on-purchase-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* 줄바꿈을 허용 */
+    justify-content: space-around; /* 가로 여백 조절 */
+    align-items: stretch; /* 세로 크기를 동일하게 유지 */
+    background-color: white;
+}
+
+.on-purchase-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 2px solid grey;
+    margin: 1%; /* 상하좌우 여백을 %로 조절 */
+    padding: 1%; /* 내부 패딩을 %로 조절 */
+    border-radius: 3px;
+    width: 23%; /* 아이템의 너비를 조절 */
+}
+
+.on-purchase-item-text {
+    padding: 1%; /* 내부 패딩을 %로 조절 */
+    width: 100%; /* 폭을 100%로 설정하여 내용이 밖으로 튀지 않게 함 */
+    height: 100%; /* 높이를 100%로 설정하여 내용이 밖으로 튀지 않게 함 */
+    box-sizing: border-box; /* 내부 여백을 요소의 크기에 포함시킴 */
+}
+
+
+        .review {
+            margin-top: 2%;
+            margin-left: 2%;
         }
 
-        .reviews{
-            margin-bottom: 2%;
+        .reviews {
+            margin-bottom: 1%;
             background-color: #ece9f8;
-            font-size: 20px;
+            font-size: 1vw; /* 글자 크기를 화면 너비에 따라 조절 */
             text-align: left;
-            padding: 20px;
-            width: 1600px;
+            padding: 2%; /* 내부 패딩을 %로 조절 */
+            width: 100%; /* 가로 너비를 %로 조절 */
         }
+        img[src="../static/img/dir.png"] {
+    width: 10%; /* 이미지 너비를 현재 크기의 10%로 설정 */
+    height: auto; /* 높이를 자동으로 조절하여 가로세로 비율 유지 */
+}
+
 
     </style>
 </head>
+
 <body>
-    {% include 'header.html' %}
-    {% include 'menuBar.html' %}
+{% include 'header.html' %}
+{% include 'menuBar.html' %}
 
-    <section>
-        {% block section %}
+<section>
+    {% block section %}
 
 
-    <div class="my-info">
-        <img src="../static/img/profileImg.png" alt="프로필이미지" width="180px" height="180px">
-        <div class="my-id">
-            감자를봐감자야<br>@potatopopo
-        </div>
-        <div class="info-box">별점        </div>
-        <div class="info-box">판매횟수    </div>
-        <div class="info-box">구매횟수    </div>
-    </div>
+        <div class="my-info">
+            <img src="../static/img/profileImg.png" alt="프로필이미지" width="180px" height="180px">
 
-    <div class="on-purchase">
-        <h2>현재 판매중인 상품 <button>전체보기></button></h2>
-        <div class="on-purchase-list">
-            <div class="on-purchase-item">
-                <img src="찜상품.png" alt="판매중한 상품">
-                <div class="on-purchase-item-text">
-                    3시간전
-                    <h1>끝내주는 텀블러</h1>
-                    <h3>20000원</h3>
-                    <img src="배송정보이미지.png" alt="배송정보">
-                </div>
+            <div class="my-id">
+                감자를봐감자야<br>@potatopopo
             </div>
-            <div class="on-purchase-item">
-                <img src="찜상품.png" alt="판매중 상품">
-                <div class="on-purchase-item-text">
-                    3시간전
-                    <h1>끝내주는 텀블러</h1>
-                    <h3>20000원</h3>
-                    <img src="배송정보이미지.png" alt="배송정보">
-                </div>
+            <div class="info-box">
+                <span style="float: left;">별점</span><br>
+                <span style="float: right; color: #FFA800; font-size: 30px; font-weight: bold;">4.6점</span>
             </div>
-            <div class="on-purchase-item">
-                <img src="찜상품.png" alt="판매중 상품">
-                <div class="on-purchase-item-text">
-                    3시간전
-                    <h1>끝내주는 텀블러</h1>
-                    <h3>20000원</h3>
-                    <img src="배송정보이미지.png" alt="배송정보">
-                </div>
+
+            <div class="info-box"><span style="float: left;">판매횟수</span><br>
+                <span style="float: right; color: #FFA800; font-size: 30px; font-weight: bold;">24회</span>
             </div>
-            <div class="on-purchase-item">
-                <img src="찜상품.png" alt="판매중 상품">
-                <div class="on-purchase-item-text">
-                    3시간전
-                    <h1>끝내주는 텀블러</h1>
-                    <h3>20000원</h3>
-                    <img src="배송정보이미지.png" alt="배송정보">
-                </div>
+            <div class="info-box"><span style="float: left;">구매횟수</span><br>
+                <span style="float: right; color: #FFA800; font-size: 30px; font-weight: bold;">17회</span>
             </div>
         </div>
-    </div>
-    <div class="review">
-        <h2>감자를봐감자야 님과의 거래후기<button>전체보기></button></h2>
-        <div class="reviews">
-            별별별별별
-            거래자 닉네임<br>
-            최고의 거래였어요<br>
-            완전 친절하고 약속 잘지킴
+
+        <div class="on-purchase">
+            <h3>현재 판매중인 상품 <a href="all_items.html"
+                              style="display: inline-block; background-color: #E2C6B4; padding: 5px 10px; border-radius: 5px; color: #943F2F; text-decoration: none;">전체보기></a>
+            </h3>
+            <div class="on-purchase-list">
+                <div class="on-purchase-item">
+                    <img src="../static/img/example.png" alt="판매중 상품">
+                    <div class="on-purchase-item-text">
+                        3시간전
+                        <h1>끝내주는 텀블러</h1>
+                        <h3>20000원</h3>
+                        <img src="../static/img/dir.png" alt="배송정보">
+                    </div>
+                </div>
+                <div class="on-purchase-item">
+                    <img src="../static/img/example.png" alt="판매중 상품">
+                    <div class="on-purchase-item-text">
+                        3시간전
+                        <h1>끝내주는 텀블러</h1>
+                        <h3>20000원</h3>
+                        <img src="../static/img/dir.png" alt="배송정보">
+                    </div>
+                </div>
+                <div class="on-purchase-item">
+                    <img src="../static/img/example.png" alt="판매중 상품">
+                    <div class="on-purchase-item-text">
+                        3시간전
+                        <h1>끝내주는 텀블러</h1>
+                        <h3>20000원</h3>
+                        <img src="../static/img/dir.png" alt="배송정보">
+                    </div>
+                </div>
+                <div class="on-purchase-item">
+                    <img src="../static/img/example.png" alt="판매중 상품">
+                    <div class="on-purchase-item-text">
+                        3시간전
+                        <h1>끝내주는 텀블러</h1>
+                        <h3>20000원</h3>
+                        <img src="../static/img/dir.png" alt="배송정보">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="reviews">
-            최고의 거래였어요<br>
-            완전 친절하고 약속 잘지킴
+        <div class="review">
+            <h3>감자를봐감자야 님과의 거래후기 <a href="all_items.html"
+                                    style="display: inline-block; background-color: #E2C6B4; padding: 5px 10px; border-radius: 5px; color: #943F2F; text-decoration: none;">전체보기></a>
+            </h3>
+            <div class="reviews">
+                별별별별별
+                거래자 닉네임<br>
+                최고의 거래였어요<br>
+                완전 친절하고 약속 잘지킴
+            </div>
+            <div class="reviews">
+                최고의 거래였어요<br>
+                완전 친절하고 약속 잘지킴
+            </div>
         </div>
-    </div>
 
     {% endblock section %}
 </section>
 
 {% include 'footer.html' %}
 </body>
+
+</html>
