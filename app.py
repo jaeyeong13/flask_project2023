@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from database import DBhandler
 import hashlib
 import sys
+import math
 from datetime import datetime
 
 application = Flask(__name__)
@@ -110,21 +111,29 @@ def reg_item_submit_post():
 @application.route("/list")
 def view_list():
     page = request.args.get("page", 0, type=int)
+    trade_type = request.args.get("trade_type", "all")
     per_page=6
     per_row=3
     row_count=int(per_page/per_row)
     start_idx=per_page*page
     end_idx=per_page*(page+1)
-    data = DB.get_items()
+    if trade_type=="all":
+        data = DB.get_items() #read the table
+    else:
+        data = DB.get_items_bycategory(trade_type)
+    data = dict(sorted(data.items(), key=lambda x: x[0], reverse=False))
     item_counts = len(data)
-    data = dict(list(data.items())[start_idx:end_idx])
+    if item_counts<=per_page:
+        data = dict(list(data.items())[:item_counts])
+    else:
+        data = dict(list(data.items())[start_idx:end_idx])
     tot_count = len(data)
     for i in range(row_count):
         if (i == row_count-1) and (tot_count%per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else: 
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
-    return render_template("all_items.html", datas=data.items(), row1=locals()['data_0'].items(), row2=locals()['data_1'].items(), limit=per_page, page=page, page_count=int((item_counts/per_page)+1), total=item_counts)
+    return render_template("all_items.html", datas=data.items(), row1=locals()['data_0'].items(), row2=locals()['data_1'].items(), limit=per_page, page=page, page_count=int(math.ceil(item_counts/per_page)), total=item_counts, trade_type=trade_type)
 
 @application.route("/view_detail/<name>/")
 def view_item_detail(name):
@@ -138,7 +147,7 @@ def view_item_detail(name):
 @application.route("/purchase_item/<name>/")
 def purchase_item(name):
     data=DB.get_item_by_name(str(name))
-    return render_template("purchasePage.html", name=name, data=data)
+    return render_template("purchasePage.html", name=name, data=data, transaction_list=data['transaction'])
 
 
 # '결제하기' 버튼 누르면 결제 정보가 DB로 넘어가고 '거래진행중' 버튼 보이는 detail_purchased 페이지로 넘어감 -- 이게 안됨ㅠ
@@ -162,6 +171,16 @@ def detail_purchased(name):
     data=DB.get_item_by_name(str(name))
     return render_template("detail_purchased.html", name=name, data=data)
 
+
+
+@application.route("/complete_transaction/<name>/", methods=['POST'])
+def complete_transaction(name):
+    # 상품의 거래 상태를 '거래완료'로 변경
+    DB.update_item_status(name, '거래완료')
+    return redirect(url_for('review_detail', name=name))
+
+
+
 @application.route("/show_heart/<name>/", methods=['GET'])
 def show_heart(name):
     my_heart = DB.get_heart_byname(session['id'], name)
@@ -176,6 +195,20 @@ def like(name):
 def unlike(name):
     my_heart = DB.update_heart(session['id'], 'N', name)
     return jsonify({'msg': '좋아요 취소 완료!'})
+
+
+@application.route("/myLikes")
+def my_likes():
+    if 'id' not in session:
+        flash("로그인이 필요한 서비스입니다.")
+        return redirect(url_for('login'))
+
+    user_id = session['id']
+    liked_items = DB.get_liked_items(user_id)
+    
+    return render_template("myLikes.html", liked_items=liked_items)
+
+
 
 @application.route("/submit_review", methods=['POST'])
 def submit_review():
@@ -262,4 +295,4 @@ def my_review(user_id):
     )
 
 if __name__ == "__main__":
-    application.run(debug=True)
+    application.run(host='0.0.0.0')
