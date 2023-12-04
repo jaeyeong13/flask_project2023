@@ -116,6 +116,26 @@ class DBhandler:
         trans_info = self.db.child("trans_info").child(name).get().val()
         return trans_info
     
+    def get_trans_info_by_transmode(self, item_name, cate):
+        trans_info = self.db.child("trans_info").child(item_name).get().val()
+        if trans_info is not None:
+            target_value = []
+            target_key = []
+
+            for key, value in trans_info.items():
+                if value['trans_mode'] == cate:
+                    target_value.append(value)
+                    target_key.append(key)
+
+            new_dict = {}
+            for k, v in zip(target_key, target_value):
+                new_dict[k] = v
+
+            return new_dict
+        else:
+            return {}
+    
+    
     def update_item_status(self, name, status):
         # Update item_status into the specified status ('거래완료', '판매중', 등)
         self.db.child("item").child(name).update({"item_status": status})
@@ -155,9 +175,6 @@ class DBhandler:
                     liked_items.append(liked_item)
 
         return liked_items
-
-
-
 
     def insert_seller_review(self, user_id, item_name, rating, review_content):
         review_info = {
