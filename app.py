@@ -177,6 +177,8 @@ def detail_purchased(name):
 def complete_transaction(name):
     # 상품의 거래 상태를 '거래완료'로 변경
     DB.update_item_status(name, '거래완료')
+    # trans_ing에서 해당 상품 빼기.
+    DB.child("trans_ing").child(name).remove()
     return redirect(url_for('review_detail', name=name))
 
 
@@ -294,5 +296,48 @@ def my_review(user_id):
         user_id=user_id 
     )
 
+@application.route("/view_trans_mode/<name>")
+def view_trans_mode(name):
+    if 'id' not in session:
+        flash("로그인이 필요한 서비스입니다.")
+        return redirect(url_for('login'))
+    
+    page = request.args.get("page", 0, type=int)
+    trans_mode = request.args.get("trans_mode", "all")
+    per_page = 6
+    per_row = 3
+    row_count = int(per_page / per_row)
+    start_idx = per_page * page
+    end_idx = per_page * (page + 1)
+    
+    if trans_mode == "all":
+        data = DB.get_trans_info(name)
+    else:
+        data = DB.get_trans_info_by_transmode(name, trans_mode)
+
+    if not data:  # Check if data is an empty dictionary
+        data = {}
+    else:
+        data = dict(sorted(data.items(), key=lambda x: x[0], reverse=False))
+
+    item_counts = len(data)
+    
+    if item_counts <= per_page:
+        data = dict(list(data.items())[:item_counts])
+    else:
+        data = dict(list(data.items())[start_idx:end_idx])
+
+    tot_count = len(data)
+
+    for i in range(row_count):
+        if (i == row_count - 1) and (tot_count % per_row != 0):
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i * per_row:])
+        else:
+            locals()['data_{}'.format(i)] = dict(list(data.items())[i * per_row:(i + 1) * per_row])
+
+    return render_template("my_ing_items.html", datas=data.items(), row1=locals()['data_0'].items(),
+                           row2=locals()['data_1'].items(), limit=per_page, page=page,
+                           page_count=int(math.ceil(item_counts / per_page)), total=item_counts,
+                           trans_mode=trans_mode, name=name)
 if __name__ == "__main__":
     application.run(host='0.0.0.0')
