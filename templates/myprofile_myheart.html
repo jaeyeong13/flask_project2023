@@ -9,78 +9,139 @@
     <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
     <style>
 
-        .contents{
-            margin-left: 12%;
-            margin-top: 5%; /* 수정: px에서 %로 변경 */
-        }
-
-        .num-heart{
-            text-align: right;
-            margin-right: 5%; /* 수정: px에서 %로 변경 */
-        }
-
-        .heart-list{
+        .contents {
             display: flex;
-            margin-left: 12%;
-            flex-wrap: wrap; /* 추가: 작은 화면에서 넘치면 줄 바꿈 */
+            flex-direction: column;
+            align-items: baseline;
+            margin-left: 30px;
+            margin-top: 10px;
         }
 
-        .heart-item{
-            margin-right: 5%; /* 수정: px에서 %로 변경 */
-            margin-bottom: 5%; /* 추가: 작은 화면에서 넘치면 아래로 내려감 */
-            border: 1px solid black;
-
-            width: 30%; /* 수정: px에서 %로 변경 */
-            max-width: 450px; /* 추가: 최대 너비 설정 */
+        .centered-text {
+            text-align: center;
+            color: #943F2F;
         }
 
-        .heart-item.image {
-            width: 100%; /* 수정: px에서 %로 변경 */
-            height: 70%; /* 수정: px에서 %로 변경 */
-            overflow: hidden; /* 이미지를 부모 요소의 크기로 잘라서 보여줌 */
+        .num-Ing {
+            text-align: right;
+            margin-right: 10px;
         }
 
-        .heart-item.image img {
-            width: 100%; /* 이미지가 부모 요소에 맞게 조절되도록 설정 */
-            height: auto; /* 가로 너비에 따라 세로 비율을 유지 */
+        .on-purchase {
+            margin-left: 2%;
+            margin-top: 2%;
         }
 
-        .heart-item-text{
-            padding: 5%; /* 수정: px에서 %로 변경 */
+        .on-purchase-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: nowrap; /* 줄바꿈을 불허용 */
+            justify-content: space-around; /* 가로 여백 조절 */
+            align-items: stretch; /* 세로 크기를 동일하게 유지 */
+            background-color: white;
         }
 
-        .heart-item-text img{
-            width: 30%; /* 수정: px에서 %로 변경 */
-            height: auto; /* 가로 너비에 따라 세로 비율을 유지 */
+        .on-purchase-item {
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            text-align: center;
+            border: 2px solid grey;
+            margin: 1%; /* 상하좌우 여백을 %로 조절 */
+            padding: 1%; /* 내부 패딩을 %로 조절 */
+            border-radius: 3px;
+            width: 25%; /* 아이템의 너비를 조절 */
+        }
+
+        .on-purchase-item-text {
+            padding: 1%; /* 내부 패딩을 %로 조절 */
+            width: 100%; /* 폭을 100%로 설정하여 내용이 밖으로 튀지 않게 함 */
+            height: 100%; /* 높이를 100%로 설정하여 내용이 밖으로 튀지 않게 함 */
+            box-sizing: border-box; /* 내부 여백을 요소의 크기에 포함시킴 */
+        }
+
+        img[src="../static/img/three.png"] {
+            width: 50%; /* 이미지 너비를 현재 크기의 10%로 설정 */
+            height: auto; /* 높이를 자동으로 조절하여 가로세로 비율 유지 */
+        }
+
+        .heart-image {
+            margin-left:65%;
+
         }
 
     </style>
 </head>
 <body>
-    {% include 'header.html' %}
-    {% include 'menuBar.html' %}
+{% include 'header.html' %}
+{% include 'menuBar.html' %}
 
-    <section>
-        {% block section %}
+<section>
+    {% block section %}
 
-    <div class="contents">
-        <h2>회원님이 찜한 상품</h2>
-        <br>
-        <h4 class="num-heart">상품 10개</h4>
-    </div>
-
-    <div class="heart-list">
-        <div class="heart-item">
-            <img src="../static/img/example.png" alt="찜한 상품" class="image">
-            <div class="heart-item-text">
-                3시간전
-                <h1>끝내주는 텀블러</h1>
-                <h3>20000원</h3>
-                <img src="../static/img/택배.png" alt="배송정보">
+        <div class="contents">
+            <h2>회원님이 찜한 상품</h2>
+            <div class="centered-text">
+                <h4 class="num-Ing">상품 10개</h4>
             </div>
         </div>
-        <!-- 나머지 아이템들도 동일한 방식으로 수정 -->
-    </div>
+
+        <div class="on-purchase">
+        <div class="on-purchase-list">
+            <div class="on-purchase-item">
+                <img src="../static/img/example.png" alt="판매중 상품"
+                     style="width: 100%; max-width: 200px; height: auto;">
+                <img src="../static/img/heart.png" alt="Heart Image" class="heart-image" width="25" height="30">
+
+                <div class="on-purchase-item-text">
+                    3시간전
+                    <h1>끝내주는 텀블러</h1>
+                    <h3>20000원</h3>
+                    <img src="../static/img/three.png" alt="배송정보">
+
+                </div>
+            </div>
+            <div class="on-purchase-item">
+                <img src="../static/img/example.png" alt="판매중 상품"
+                     style="width: 100%; max-width: 200px; height: auto;">
+                <img src="../static/img/heart.png" alt="Heart Image" class="heart-image" width="25" height="30">
+                <div class="on-purchase-item-text">
+                    3시간전
+                    <h1>끝내주는 텀블러</h1>
+                    <h3>20000원</h3>
+                    <img src="../static/img/three.png" alt="배송정보">
+
+                </div>
+            </div>
+            <div class="on-purchase-item">
+                <img src="../static/img/example.png" alt="판매중 상품"
+                     style="width: 100%; max-width: 200px; height: auto;">
+                <img src="../static/img/heart.png" alt="Heart Image" class="heart-image" width="25" height="30">
+                <div class="on-purchase-item-text">
+                    3시간전
+                    <h1>끝내주는 텀블러</h1>
+                    <h3>20000원</h3>
+                    <img src="../static/img/three.png" alt="배송정보">
+
+                </div>
+            </div>
+            <div class="on-purchase-item">
+                <img src="../static/img/example.png" alt="판매중 상품"
+                     style="width: 100%; max-width: 200px; height: auto;">
+                <img src="../static/img/heart.png" alt="Heart Image" class="heart-image" width="25" height="30">
+                <div class="on-purchase-item-text">
+                    3시간전
+                    <h1>끝내주는 텀블러</h1>
+                    <h3>20000원</h3>
+                    <img src="../static/img/three.png" alt="배송정보">
+
+                </div>
+            </div>
+        </div>
+
     {% endblock section %}
 </section>
 
