@@ -75,7 +75,7 @@
 
         .text-section {
             max-width: 100%;
-            margin: 0 auto;
+            margin-left: 200px;
             padding: 0 5%;
         }
 
@@ -120,7 +120,7 @@
             right: 85%;
         }
 
-       .comment-box {
+        .comment-box {
             display: flex;
             margin: 20px;
             width: 82%; /* 너비를 화면의 70%로 설정 */
@@ -167,10 +167,10 @@
             color: #2D2D2D;
             padding: 1.5% 8%;
             border: none;
-            border-radius: 0.5%;
+            border-radius: 5%;
             cursor: pointer;
-            font-size: 2vw;
-            font-weight: bold;
+            font-size: 1.7vw;
+            font-weight: normal;
             margin-top: 2%;
             margin-left: 0;
         }
@@ -203,9 +203,11 @@
                 </div>
                 <div style="flex: 1;">
                     <button id="purchaseButton" class="purchase-button"
-                            onclick="location.href='/purchase_item/{{ name }}/';">구매하기
+                            onclick="location.href='/purchase_item/{{ name }}/';" style="color: brown;">
+                        구매하기
                     </button>
                 </div>
+
             </div>
             <br>
             <h4 class="title">가능한 거래 방식</h4>
@@ -239,7 +241,7 @@
         <br><br>
         <div class="product-description" style="text-align: justify;">
             <h2 class="title">상세 설명</h2>
-            <p style="font-size: 1vw; border-radius: 1%; max-width: 20vw; margin: 0 auto; resize: vertical;">{{ data.product_description }}</p>
+            <p style="font-size: 1vw; border-radius: 0%; max-width: 20vw; margin: 0 auto; resize: vertical;">{{ data.product_description }}</p>
         </div>
         <br><br>
         <div class="comment-section">
