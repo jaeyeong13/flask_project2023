@@ -91,35 +91,36 @@
             margin-top: 2%;
         }
 
-  .on-purchase-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap; /* 줄바꿈을 허용 */
-    justify-content: space-around; /* 가로 여백 조절 */
-    align-items: stretch; /* 세로 크기를 동일하게 유지 */
-    background-color: white;
-}
+        .on-purchase-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: nowrap; /* 줄바꿈을 불허용 */
+            justify-content: space-around; /* 가로 여백 조절 */
+            align-items: stretch; /* 세로 크기를 동일하게 유지 */
+            background-color: white;
+        }
 
-.on-purchase-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border: 2px solid grey;
-    margin: 1%; /* 상하좌우 여백을 %로 조절 */
-    padding: 1%; /* 내부 패딩을 %로 조절 */
-    border-radius: 3px;
-    width: 23%; /* 아이템의 너비를 조절 */
-}
+        .on-purchase-item {
+            display: flex;
+            flex-direction: column;
 
-.on-purchase-item-text {
-    padding: 1%; /* 내부 패딩을 %로 조절 */
-    width: 100%; /* 폭을 100%로 설정하여 내용이 밖으로 튀지 않게 함 */
-    height: 100%; /* 높이를 100%로 설정하여 내용이 밖으로 튀지 않게 함 */
-    box-sizing: border-box; /* 내부 여백을 요소의 크기에 포함시킴 */
-}
+            align-items: center;
+            text-align: center;
+            border: 2px solid grey;
+            margin: 1%; /* 상하좌우 여백을 %로 조절 */
+            padding: 1%; /* 내부 패딩을 %로 조절 */
+            border-radius: 3px;
+            width: 25%; /* 아이템의 너비를 조절 */
+        }
+
+        .on-purchase-item-text {
+            padding: 1%; /* 내부 패딩을 %로 조절 */
+            width: 100%; /* 폭을 100%로 설정하여 내용이 밖으로 튀지 않게 함 */
+            height: 100%; /* 높이를 100%로 설정하여 내용이 밖으로 튀지 않게 함 */
+            box-sizing: border-box; /* 내부 여백을 요소의 크기에 포함시킴 */
+        }
 
 
         .review {
@@ -133,12 +134,13 @@
             font-size: 1vw; /* 글자 크기를 화면 너비에 따라 조절 */
             text-align: left;
             padding: 2%; /* 내부 패딩을 %로 조절 */
-            width: 100%; /* 가로 너비를 %로 조절 */
+            width: 95%; /* 가로 너비를 %로 조절 */
         }
+
         img[src="../static/img/dir.png"] {
-    width: 10%; /* 이미지 너비를 현재 크기의 10%로 설정 */
-    height: auto; /* 높이를 자동으로 조절하여 가로세로 비율 유지 */
-}
+            width: 10%; /* 이미지 너비를 현재 크기의 10%로 설정 */
+            height: auto; /* 높이를 자동으로 조절하여 가로세로 비율 유지 */
+        }
 
 
     </style>
@@ -177,7 +179,8 @@
             </h3>
             <div class="on-purchase-list">
                 <div class="on-purchase-item">
-                    <img src="../static/img/example.png" alt="판매중 상품">
+                  <img src="../static/img/example.png" alt="판매중 상품" style="width: 100%; max-width: 200px; height: auto;">
+
                     <div class="on-purchase-item-text">
                         3시간전
                         <h1>끝내주는 텀블러</h1>
@@ -186,7 +189,7 @@
                     </div>
                 </div>
                 <div class="on-purchase-item">
-                    <img src="../static/img/example.png" alt="판매중 상품">
+                     <img src="../static/img/example.png" alt="판매중 상품" style="width: 100%; max-width: 200px; height: auto;">
                     <div class="on-purchase-item-text">
                         3시간전
                         <h1>끝내주는 텀블러</h1>
@@ -195,7 +198,7 @@
                     </div>
                 </div>
                 <div class="on-purchase-item">
-                    <img src="../static/img/example.png" alt="판매중 상품">
+                     <img src="../static/img/example.png" alt="판매중 상품" style="width: 100%; max-width: 200px; height: auto;">
                     <div class="on-purchase-item-text">
                         3시간전
                         <h1>끝내주는 텀블러</h1>
@@ -204,7 +207,7 @@
                     </div>
                 </div>
                 <div class="on-purchase-item">
-                    <img src="../static/img/example.png" alt="판매중 상품">
+                     <img src="../static/img/example.png" alt="판매중 상품" style="width: 100%; max-width: 200px; height: auto;">
                     <div class="on-purchase-item-text">
                         3시간전
                         <h1>끝내주는 텀블러</h1>

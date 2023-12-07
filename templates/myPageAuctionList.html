@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Auction List</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='menuBar.css') }}">
     <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
-    <script src="{{url_for('static', filename='main.js')}}" defer></script>
+    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
     <style>
         .text-section {
             flex: 1;
             /* 공간을 남은 공간에 맞게 분배 */
-            margin: 20px;
+            margin: 2%;
             /* 여백 추가 */
         }
 
         /* 메뉴 토글 버튼을 위한 CSS */
         #menuToggleBtn {
-            font-size: 24px;
+            font-size: 2vw;
             /* 필요에 따라 크기를 조정합니다 */
             cursor: pointer;
         }
@@ -28,7 +28,7 @@
         .navbar__menu.active {
             display: block;
             position: absolute;
-            top: 50px;
+            top: 5vh;
             /* 필요에 따라 상단 위치를 조정합니다 */
             right: 0;
             background-color: white;
@@ -56,8 +56,8 @@
             display: flex;
             flex-direction: column;
             align-items: baseline;
-            margin-left: 30px;
-            margin-top: 10px;
+            margin-left: 3vw;
+            margin-top: 2vh;
         }
 
         .centered-text {
@@ -67,44 +67,69 @@
 
         .num-Ing {
             text-align: right;
-            margin-right: 10px;
+            margin-right: 1vw;
         }
 
         .Ing-list {
             display: flex;
-            margin-left: 10px;
-            margin-top: 20px;
+            margin-left: 5vw;
+            margin-top: 2vh;
+            flex-wrap: wrap;
         }
 
-        .Ing-item {
-            border: 1px solid black;
-            border-radius: 10px;
-            width: 180px;
-            height: 400px;
-            margin-right: 20px;
+        .on-purchase {
+            margin-left: 2%;
+            margin-top: 2%;
+        }
+
+        .on-purchase-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: nowrap; /* 줄바꿈을 불허용 */
+            justify-content: space-around; /* 가로 여백 조절 */
+            align-items: stretch; /* 세로 크기를 동일하게 유지 */
+            background-color: white;
+        }
+
+        .on-purchase-item {
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
             text-align: center;
+            border: 2px solid grey;
+            margin: 1%; /* 상하좌우 여백을 %로 조절 */
+            padding: 1%; /* 내부 패딩을 %로 조절 */
+            border-radius: 3px;
+            width: 25%; /* 아이템의 너비를 조절 */
         }
 
-        .Ing-item-container {
-            position: relative;
-            /* 이미지 컨테이너에 상대적인 위치 지정 */
+        .on-purchase-item-text {
+            padding: 1%; /* 내부 패딩을 %로 조절 */
+            width: 100%; /* 폭을 100%로 설정하여 내용이 밖으로 튀지 않게 함 */
+            height: 100%; /* 높이를 100%로 설정하여 내용이 밖으로 튀지 않게 함 */
+            box-sizing: border-box; /* 내부 여백을 요소의 크기에 포함시킴 */
         }
 
-        .Ing-item-text {
-            padding: 10px;
+        img[src="../static/img/dir.png"] {
+            width: 10%; /* 이미지 너비를 현재 크기의 10%로 설정 */
+            height: auto; /* 높이를 자동으로 조절하여 가로세로 비율 유지 */
         }
 
         .nav {
             display: flex;
             align-items: center;
-            font-size: x-large;
+            font-size: 2vw;
             text-align: center;
-            margin-left: 180px;
+            margin-left: 15vw;
         }
 
         .nav-item {
+            margin-left: 7vw;
             cursor: pointer;
-            padding: 10px 20px;
+            padding: 1vh 2vw;
             position: relative;
         }
 
@@ -113,170 +138,157 @@
         }
 
         .nav-divider {
-            width: 0.1px;
-            height: 30px;
+            margin-left: 8vw;
+            width: 0.1vw;
+            height: 3vh;
             background-color: rgb(48, 47, 47);
         }
 
 
         .Ing-item-clock {
             position: absolute;
-            top: 10px;
-            /* 네모박스의 상단 간격 조절 */
-            left: 10px;
-            /* 네모박스의 왼쪽 간격 조절 */
+            top: 0; /* 부모 컨테이너의 상단에 위치 */
+            left: 0; /* 부모 컨테이너의 좌측에 위치 */
             background-color: rgba(0, 0, 0, 0.5);
-            /* 검정색 (0, 0, 0) 네모박스의 투명도 조절 (40% ~ 60%) */
             color: #FFA800;
-            border-radius: 5px;
-            padding: 5px 10px;
+            border-radius: 1vw;
+            padding: 1vh 2vw;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 1.5vw;
+            z-index: 1; /* 다른 콘텐츠 위에 나타나도록 보장 */
         }
+
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-    {% include 'header.html' %}
-    {% include 'menuBar.html' %}
+{% include 'header.html' %}
+{% include 'menuBar.html' %}
 
-    <section>
-        {% block section %}
+<section>
+    {% block section %}
 
-    <script>
-        // 메뉴 토글을 위한 JavaScript
-        const menuToggleBtn = document.getElementById('menuToggleBtn');
-        const navbarMenu = document.querySelector('.navbar__menu');
+        <script>
+            // 메뉴 토글을 위한 JavaScript
+            const menuToggleBtn = document.getElementById('menuToggleBtn');
+            const navbarMenu = document.querySelector('.navbar__menu');
 
-        menuToggleBtn.addEventListener('click', () => {
-            navbarMenu.classList.toggle('active');
+            menuToggleBtn.addEventListener('click', () => {
+                navbarMenu.classList.toggle('active');
 
-            // 클릭 시 menuBar.html로 이동
-            if (navbarMenu.classList.contains('active')) {
-                window.location.href = 'menuBar.html'; // 원하는 페이지로 이동
-            }
-        });
-    </script>
+                // 클릭 시 menuBar.html로 이동
+                if (navbarMenu.classList.contains('active')) {
+                    window.location.href = 'menuBar.html'; // 원하는 페이지로 이동
+                }
+            });
+        </script>
 
 
-    <div class="contents">
-        <h2>진행중인 경매</h2>
-        <div class="centered-text">
-            <h4 class="num-Ing">상품 10개</h4>
+        <div class="contents">
+            <h2>진행중인 경매</h2>
+            <div class="centered-text">
+                <h4 class="num-Ing">상품 10개</h4>
+            </div>
         </div>
-    </div>
 
 
-    <!-- 거래 종류 선택바 -->
-    <nav class="nav">
-        <div class="nav-item" id="directTrade">대기</div>
-        <div class="nav-divider"></div>
-        <div class="nav-item" id="deliveryTrade">성공</div>
-        <div class="nav-divider"></div>
-        <div class="nav-item" id="boxTrade">실패</div><br>
-    </nav>
+        <!-- 거래 종류 선택바 -->
+        <nav class="nav">
+            <div class="nav-item" id="directTrade">대기</div>
+            <div class="nav-divider"></div>
+            <div class="nav-item" id="deliveryTrade">성공</div>
+            <div class="nav-divider"></div>
+            <div class="nav-item" id="boxTrade">실패</div>
+            <br>
+        </nav>
 
-    <script>
-        // 이벤트 핸들러 함수
-        function applyBorderStyle(element) {
-            // 모든 아이템의 스타일 초기화
-            const items = document.querySelectorAll('.nav-item');
-            items.forEach(item => {
-                item.style.border = 'none';
-                item.style.borderRadius = '0';
+        <script>
+            // 이벤트 핸들러 함수
+            function applyBorderStyle(element) {
+                // 모든 아이템의 스타일 초기화
+                const items = document.querySelectorAll('.nav-item');
+                items.forEach(item => {
+                    item.style.border = 'none';
+                    item.style.borderRadius = '0';
+                });
+
+                // 클릭한 아이템에 스타일 적용
+                element.style.border = '2px solid #FFA800';
+                element.style.borderRadius = '8px';
+            }
+
+            // '직거래'를 클릭했을 때 이벤트 핸들러
+            const directTradeItem = document.getElementById('directTrade');
+            directTradeItem.addEventListener('click', () => {
+                applyBorderStyle(directTradeItem);
             });
 
-            // 클릭한 아이템에 스타일 적용
-            element.style.border = '2px solid #FFA800';
-            element.style.borderRadius = '8px';
-        }
+            // '택배거래'를 클릭했을 때 이벤트 핸들러
+            const deliveryTradeItem = document.getElementById('deliveryTrade');
+            deliveryTradeItem.addEventListener('click', () => {
+                applyBorderStyle(deliveryTradeItem);
+            });
 
-        // '직거래'를 클릭했을 때 이벤트 핸들러
-        const directTradeItem = document.getElementById('directTrade');
-        directTradeItem.addEventListener('click', () => {
-            applyBorderStyle(directTradeItem);
-        });
-
-        // '택배거래'를 클릭했을 때 이벤트 핸들러
-        const deliveryTradeItem = document.getElementById('deliveryTrade');
-        deliveryTradeItem.addEventListener('click', () => {
-            applyBorderStyle(deliveryTradeItem);
-        });
-
-        // '비대면상자'를 클릭했을 때 이벤트 핸들러
-        const boxTradeItem = document.getElementById('boxTrade');
-        boxTradeItem.addEventListener('click', () => {
-            applyBorderStyle(boxTradeItem);
-        });
-    </script>
+            // '비대면상자'를 클릭했을 때 이벤트 핸들러
+            const boxTradeItem = document.getElementById('boxTrade');
+            boxTradeItem.addEventListener('click', () => {
+                applyBorderStyle(boxTradeItem);
+            });
+        </script>
 
 
-    <div class="Ing-list">
+        <div class="Ing-list">
+            <div class="on-purchase-list">
+                <div class="on-purchase-item">
+                    <img src="../static/img/example.png" alt="판매중 상품"
+                         style="width: 100%; max-width: 200px; height: auto;">
 
-        <div class="Ing-item">
-            <div class="Ing-item-container">
-                <img src="tumbler.png" alt="거래 진행중 상품" width="150" height="200">
-                <!-- 경매 남은 시간 -->
-                <div class="Ing-item-clock">
-                    00:35:22
+                    <div class="on-purchase-item-text">
+                        3시간전
+                        <h1>끝내주는 텀블러</h1>
+                        <h3>20000원</h3>
+                        <img src="../static/img/dir.png" alt="배송정보">
+                    </div>
+                </div>
+                <div class="on-purchase-item">
+                    <img src="../static/img/example.png" alt="판매중 상품"
+                         style="width: 100%; max-width: 200px; height: auto;">
+                    <div class="on-purchase-item-text">
+                        3시간전
+                        <h1>끝내주는 텀블러</h1>
+                        <h3>20000원</h3>
+                        <img src="../static/img/dir.png" alt="배송정보">
+                    </div>
+                </div>
+                <div class="on-purchase-item">
+                    <img src="../static/img/example.png" alt="판매중 상품"
+                         style="width: 100%; max-width: 200px; height: auto;">
+                    <div class="on-purchase-item-text">
+                        3시간전
+                        <h1>끝내주는 텀블러</h1>
+                        <h3>20000원</h3>
+                        <img src="../static/img/dir.png" alt="배송정보">
+                    </div>
+                </div>
+                <div class="on-purchase-item">
+                    <img src="../static/img/example.png" alt="판매중 상품"
+                         style="width: 100%; max-width: 200px; height: auto;">
+                    <!-- 경매 남은 시간 -->
+                    <div class="Ing-item-clock">
+                        00:35:22
+                    </div>
+                    <div class="on-purchase-item-text">
+                        3시간전
+                        <h1>끝내주는 텀블러</h1>
+                        <h3>20000원</h3>
+                        <img src="../static/img/dir.png" alt="배송정보">
+                    </div>
                 </div>
             </div>
-            <div class="Ing-item-text">
-                3시간전
-                <h3>끝내주는 텀블러</h3>
-                <h4>20000원</h4>
-                <img src="deliveryThree.png" alt="배송정보" width="150" height="50">
-            </div>
-        </div>
-        <div class="Ing-item">
-            <div class="Ing-item-container">
-                <img src="tumbler.png" alt="거래 진행중 상품" width="150" height="200">
-                <!-- 경매 남은 시간 -->
-                <div class="Ing-item-clock">
-                    00:35:22
-                </div>
-            </div>
-            <div class="Ing-item-text">
-                3시간전
-                <h3>끝내주는 텀블러</h3>
-                <h4>20000원</h4>
-                <img src="deliveryThree.png" alt="배송정보" width="150" height="50">
-            </div>
-        </div>
-        <div class="Ing-item">
-            <div class="Ing-item-container">
-                <img src="tumbler.png" alt="거래 진행중 상품" width="150" height="200">
-                <!-- 경매 남은 시간 -->
-                <div class="Ing-item-clock">
-                    00:35:22
-                </div>
-            </div>
-            <div class="Ing-item-text">
-                3시간전
-                <h3>끝내주는 텀블러</h3>
-                <h4>20000원</h4>
-                <img src="deliveryThree.png" alt="배송정보" width="150" height="50">
-            </div>
-        </div>
-        <div class="Ing-item">
-            <div class="Ing-item-container">
-                <img src="tumbler.png" alt="거래 진행중 상품" width="150" height="200">
-                <!-- 경매 남은 시간 -->
-                <div class="Ing-item-clock">
-                    00:35:22
-                </div>
-            </div>
-            <div class="Ing-item-text">
-                3시간전
-                <h3>끝내주는 텀블러</h3>
-                <h4>20000원</h4>
-                <img src="deliveryThree.png" alt="배송정보" width="150" height="50">
-            </div>
-        </div>
 
 
-    </div>
+        </div>
 
     {% endblock section %}
 </section>

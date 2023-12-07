@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Page Done</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='menuBar.css') }}">
     <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
-    <script src="{{url_for('static', filename='main.js')}}" defer></script>
+    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
     <style>
         .text-section {
             flex: 1;
@@ -100,9 +100,10 @@
             margin-left: 180px;
         }
 
-        .nav-item {
+       .nav-item {
+            margin-left: 7vw;
             cursor: pointer;
-            padding: 10px 20px;
+            padding: 1vh 2vw;
             position: relative;
         }
 
@@ -111,8 +112,9 @@
         }
 
         .nav-divider {
-            width: 0.1px;
-            height: 30px;
+            margin-left: 8vw;
+            width: 0.1vw;
+            height: 3vh;
             background-color: rgb(48, 47, 47);
         }
 
@@ -138,146 +140,181 @@
             text-decoration: none;
 
         }
+
+        footer {
+            position: fixed;
+            display: flex;
+            justify-content: space-between;
+            /* 왼쪽과 오른쪽을 공간을 균등하게 배치 */
+            align-items: center;
+            /* 아이템을 수직 가운데 정렬 */
+            padding: 10px;
+            /* 내용 주위에 간격 추가 */
+            background-color: white;
+        }
+
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-    {% include 'header.html' %}
-    {% include 'menuBar.html' %}
+{% include 'header.html' %}
+{% include 'menuBar.html' %}
 
-    <section>
-        {% block section %}
-
-
-    <script>
-        // 메뉴 토글을 위한 JavaScript
-        const menuToggleBtn = document.getElementById('menuToggleBtn');
-        const navbarMenu = document.querySelector('.navbar__menu');
-
-        menuToggleBtn.addEventListener('click', () => {
-            navbarMenu.classList.toggle('active');
-
-            // 클릭 시 menuBar.html로 이동
-            if (navbarMenu.classList.contains('active')) {
-                window.location.href = 'menuBar.html'; // 원하는 페이지로 이동
-            }
-        });
-    </script>
+<section>
 
 
-    <div class="contents">
-        <h2>완료된 거래</h2>
-        <div class="centered-text">
-            <h4 class="num-Ing">상품 10개</h4>
+
+        <script>
+            // 메뉴 토글을 위한 JavaScript
+            const menuToggleBtn = document.getElementById('menuToggleBtn');
+            const navbarMenu = document.querySelector('.navbar__menu');
+
+            menuToggleBtn.addEventListener('click', () => {
+                navbarMenu.classList.toggle('active');
+
+                // 클릭 시 menuBar.html로 이동
+                if (navbarMenu.classList.contains('active')) {
+                    window.location.href = 'menuBar.html'; // 원하는 페이지로 이동
+                }
+            });
+        </script>
+
+
+        <div class="contents">
+            <h2>완료된 거래</h2>
+            <div class="centered-text">
+                <h4 class="num-Ing">상품 10개</h4>
+            </div>
         </div>
-    </div>
 
 
-    <!-- 거래 종류 선택바 -->
-    <nav class="nav">
-        <div class="nav-item" id="directTrade">직거래</div>
-        <div class="nav-divider"></div>
-        <div class="nav-item" id="deliveryTrade">택배거래</div>
-        <div class="nav-divider"></div>
-        <div class="nav-item" id="boxTrade">비대면상자</div><br>
-    </nav>
+        <!-- 거래 종류 선택바 -->
+        <nav class="nav">
+            <div class="nav-item" id="directTrade">직거래</div>
+            <div class="nav-divider"></div>
+            <div class="nav-item" id="deliveryTrade">택배거래</div>
+            <div class="nav-divider"></div>
+            <div class="nav-item" id="boxTrade">비대면상자</div>
+            <br>
+        </nav>
 
-    <script>
-        // 이벤트 핸들러 함수
-        function applyBorderStyle(element) {
-            // 모든 아이템의 스타일 초기화
-            const items = document.querySelectorAll('.nav-item');
-            items.forEach(item => {
-                item.style.border = 'none';
-                item.style.borderRadius = '0';
+
+
+        <script>
+            // 이벤트 핸들러 함수
+            function applyBorderStyle(element) {
+                // 모든 아이템의 스타일 초기화
+                const items = document.querySelectorAll('.nav-item');
+                items.forEach(item => {
+                    item.style.border = 'none';
+                    item.style.borderRadius = '0';
+                });
+
+                // 클릭한 아이템에 스타일 적용
+                element.style.border = '2px solid #FFA800';
+                element.style.borderRadius = '8px';
+            }
+
+            // '직거래'를 클릭했을 때 이벤트 핸들러
+            const directTradeItem = document.getElementById('directTrade');
+            directTradeItem.addEventListener('click', () => {
+                applyBorderStyle(directTradeItem);
             });
 
-            // 클릭한 아이템에 스타일 적용
-            element.style.border = '2px solid #FFA800';
-            element.style.borderRadius = '8px';
-        }
+            // '택배거래'를 클릭했을 때 이벤트 핸들러
+            const deliveryTradeItem = document.getElementById('deliveryTrade');
+            deliveryTradeItem.addEventListener('click', () => {
+                applyBorderStyle(deliveryTradeItem);
+            });
 
-        // '직거래'를 클릭했을 때 이벤트 핸들러
-        const directTradeItem = document.getElementById('directTrade');
-        directTradeItem.addEventListener('click', () => {
-            applyBorderStyle(directTradeItem);
-        });
-
-        // '택배거래'를 클릭했을 때 이벤트 핸들러
-        const deliveryTradeItem = document.getElementById('deliveryTrade');
-        deliveryTradeItem.addEventListener('click', () => {
-            applyBorderStyle(deliveryTradeItem);
-        });
-
-        // '비대면상자'를 클릭했을 때 이벤트 핸들러
-        const boxTradeItem = document.getElementById('boxTrade');
-        boxTradeItem.addEventListener('click', () => {
-            applyBorderStyle(boxTradeItem);
-        });
-    </script>
+            // '비대면상자'를 클릭했을 때 이벤트 핸들러
+            const boxTradeItem = document.getElementById('boxTrade');
+            boxTradeItem.addEventListener('click', () => {
+                applyBorderStyle(boxTradeItem);
+            });
+        </script>
 
 
-    <div class="Ing-list">
+        <div class="Ing-list">
 
-        <div class="Ing-item">
-            <img src="tumbler.png" alt="거래 진행중 상품" width="150" height="200">
-            <div class="Ing-item-text">
-                3시간전
-                <h3>끝내주는 텀블러</h3>
-                <h4>20000원</h4>
-                <img src="deliveryThree.png" alt="배송정보" width="150" height="50">
-                <!-- 리뷰 작성 네모박스 -->
-                <div class="review-box">
-                    <a href="review.html">리뷰 작성</a>
+            <div class="Ing-item">
+                <img src="../static/img/example.png" alt="거래 진행중 상품" width="100%" height="70%">
+                <div class="Ing-item-text">
+                    3시간전
+                    <h3>끝내주는 텀블러</h3>
+                    <h4>20000원</h4>
+                    <img src="../static/img/dir.png" alt="배송정보" width="20%" height="10%">
+                    <!-- 리뷰 작성 네모박스 -->
+                    <div class="review-box">
+                        <a href="review.html">리뷰 작성</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="Ing-item">
-            <img src="tumbler.png" alt="거래 진행중 상품" width="150" height="200">
-            <div class="Ing-item-text">
-                3시간전
-                <h3>끝내주는 텀블러</h3>
-                <h4>20000원</h4>
-                <img src="deliveryThree.png" alt="배송정보" width="150" height="50">
-                <!-- 리뷰 작성 네모박스 -->
-                <div class="review-box">
-                    <a href="review.html">리뷰 작성</a>
+            <div class="Ing-item">
+                <img src="tumbler.png" alt="거래 진행중 상품" width="150" height="200">
+                <div class="Ing-item-text">
+                    3시간전
+                    <h3>끝내주는 텀블러</h3>
+                    <h4>20000원</h4>
+                    <img src="deliveryThree.png" alt="배송정보" width="150" height="50">
+                    <!-- 리뷰 작성 네모박스 -->
+                    <div class="review-box">
+                        <a href="review.html">리뷰 작성</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="Ing-item">
-            <img src="tumbler.png" alt="거래 진행중 상품" width="150" height="200">
-            <div class="Ing-item-text">
-                3시간전
-                <h3>끝내주는 텀블러</h3>
-                <h4>20000원</h4>
-                <img src="deliveryThree.png" alt="배송정보" width="150" height="50">
-                <!-- 리뷰 작성 네모박스 -->
-                <div class="review-box">
-                    <a href="review.html">리뷰 작성</a>
+            <div class="Ing-item">
+                <img src="tumbler.png" alt="거래 진행중 상품" width="150" height="200">
+                <div class="Ing-item-text">
+                    3시간전
+                    <h3>끝내주는 텀블러</h3>
+                    <h4>20000원</h4>
+                    <img src="deliveryThree.png" alt="배송정보" width="150" height="50">
+                    <!-- 리뷰 작성 네모박스 -->
+                    <div class="review-box">
+                        <a href="review.html">리뷰 작성</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="Ing-item">
-            <img src="tumbler.png" alt="거래 진행중 상품" width="150" height="200">
-            <div class="Ing-item-text">
-                3시간전
-                <h3>끝내주는 텀블러</h3>
-                <h4>20000원</h4>
-                <img src="deliveryThree.png" alt="배송정보" width="150" height="50">
-                <!-- 리뷰 작성 네모박스 -->
-                <div class="review-box">
-                    <a href="review.html">리뷰 작성</a>
+            <div class="Ing-item">
+                <img src="tumbler.png" alt="거래 진행중 상품" width="150" height="200">
+                <div class="Ing-item-text">
+                    3시간전
+                    <h3>끝내주는 텀블러</h3>
+                    <h4>20000원</h4>
+                    <img src="deliveryThree.png" alt="배송정보" width="150" height="50">
+                    <!-- 리뷰 작성 네모박스 -->
+                    <div class="review-box">
+                        <a href="review.html">리뷰 작성</a>
+                    </div>
                 </div>
             </div>
+
         </div>
 
-    </div>
-    {% endblock section %}
 </section>
 
-{% include 'footer.html' %}
+<footer>
+    <div class="text-section">
+        <p>
+        <hr style="border: 0; border-top: 1px solid gray; width: 200%;">
+        <h3>감자마켓</h3>
+        </p>
+        <p>여기에는 감자마켓의 설립 모토와 제공 서비스에 대한 설명이 들어갑니다. 이화여대 컴퓨터공학과 재학생 5명이 모여 만든 감자마켓에는 다양한 기능을 할 수 있는 페이지들이
+            있습니다.
+            와서
+            구경하세요!
+        </p>
+
+        <p>2023PotatoMarket. All rights reserved</p>
+    </div>
+    <div class="text-section">
+        <p> 주소) 이화여자대학교 아산공학관 703호 감자마켓</p>
+        <p> 우편번호) 011022</p>
+        <p> 연락처) 010-9876-5432</p>
+    </div>
+</footer>
 </body>
 
 </html>

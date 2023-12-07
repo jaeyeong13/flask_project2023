@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>상품 등록 결과</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='menuBar.css') }}">
     <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
@@ -22,7 +22,7 @@
             display: block;
             color: black;
             text-align: center;
-            padding: 14px 16px;
+            padding: 1.4% 1.6%;
             text-decoration: None;
         }
 
@@ -36,31 +36,29 @@
 
         .navbar {
             background-color: #F6E7E6;
-            margin: 0; /* 이 부분을 추가하여 margin을 0으로 설정합니다 */
+            margin: 0;
             padding: 0;
-
         }
 
         footer {
             display: flex;
-            justify-content: space-between; /* 왼쪽과 오른쪽을 공간을 균등하게 배치 */
-            align-items: center; /* 아이템을 수직 가운데 정렬 */
-            padding: 10px; /* 내용 주위에 간격 추가 */
+            justify-content: space-between;
+            align-items: center;
+            padding: 1%;
             background-color: white;
         }
 
         .text-section {
-            flex: 1; /* 공간을 남은 공간에 맞게 분배 */
-            margin: 20px; /* 여백 추가 */
+            flex: 1;
+            margin: 2%;
         }
 
         .contents-of-purchase {
-            padding: 30px;
-
+            padding: 3%;
         }
 
         .transaction, .price-method {
-            margin-right: 20px; /* 간격을 조절할 수 있는 값으로 설정 */
+            margin-right: 2%;
         }
 
     </style>
@@ -72,41 +70,36 @@
 <section>
     {% block section %}
 
-        <h2>상품 등록 결과</h2>
+        <h2 style="font-size: 2%;">상품 등록 결과</h2>
 
         <div class="contents-of-purchase">
-            <p style="font-size: 15px;">상품 이미지</p>
+            <p style="font-size: 1.5%;">상품 이미지</p>
             <p>
-                <img src="{{ img_path }}"/>
-            </p>
-
-        </div>
-        <div class="contents-of-purchase">
-            <p style="font-size: 15px;">상품명(글제목)</p>
-            <p style="font-size: 30px;">
-                {{ data.name }}
+                <img src="{{ img_path }}" style="max-width: 100%; height: auto;">
             </p>
         </div>
 
         <div class="contents-of-purchase">
-            <p style="font-size: 15px;">상품명(글제목)</p>
-            <p style="font-size: 30px;">{{ data.name }}</p>
+            <p style="font-size: 1.5%;">상품명(글제목)</p>
+            <p style="font-size: 3%;">{{ data.name }}</p>
+        </div>
 
-            <p style="font-size: 15px;">거래 방식</p>
-            <p style="font-size: 30px;">{{ '경매' if data['trade_type'] == 'auction' else '일반' }}</p>
+        <div class="contents-of-purchase">
+            <p style="font-size: 1.5%;">거래 방식</p>
+            <p style="font-size: 3%;">{{ '경매' if data['trade_type'] == 'auction' else '일반' }}</p>
 
             {% if data['trade_type'] == 'auction' %}
-                <p style="font-size: 15px;">마감일</p>
-                <p style="font-size: 30px;">{{ data['end_date'] }}</p>
+                <p style="font-size: 1.5%;">마감일</p>
+                <p style="font-size: 3%;">{{ data['end_date'] }}</p>
 
-                <p style="font-size: 15px;">최소 가격</p>
-                <p style="font-size: 30px;">{{ data['min_price'] }}</p>
+                <p style="font-size: 1.5%;">최소 가격</p>
+                <p style="font-size: 3%;">{{ data['min_price'] }}</p>
 
-                <p style="font-size: 15px;">최대 가격</p>
-                <p style="font-size: 30px;">{{ data['max_price'] }}</p>
+                <p style="font-size: 1.5%;">최대 가격</p>
+                <p style="font-size: 3%;">{{ data['max_price'] }}</p>
             {% else %}
-                <p style="font-size: 15px;">가격</p>
-                <p style="font-size: 30px;">{{ data['regular_price'] }}</p>
+                <p style="font-size: 1.5%;">가격</p>
+                <p style="font-size: 3%;">{{ data['regular_price'] }}</p>
             {% endif %}
         </div>
 

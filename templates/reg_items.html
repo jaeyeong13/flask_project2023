@@ -24,28 +24,28 @@
             height: 100%;
             width: 70%;
             margin: 0 auto;
-            padding-bottom: 12px;
+            padding-bottom: 1%;
             text-align: left;
         }
 
         label {
-            font-size: 20px;
-            margin-right: 100px;
+            font-size: 2%;
+            margin-right: 2%;
         }
 
         .submit-button {
             display: block;
-            margin: 20px auto;
+            margin: 2% auto;
             background-color: #F8D57E;
             color: #2D2D2D;
-            padding: 10px 20px;
+            padding: 1% 2%;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
 
         .product-description {
-            height: 300px;
+            height: 15%;
             width: 100%;
             resize: vertical;
             border: 1px solid #ccc;
@@ -65,27 +65,27 @@
     <section>
         {% block section %}
 
-    
+
     <article>
         <form method="post" enctype="multipart/form-data" action="/submit_item_post">
             <input type="hidden" name="post_date" value="{{ post_date }}">
             <input type="hidden" name="seller_id" value="{{ seller_id }}">
             <br><br>
-            <h3 style="font-family: Arial, sans-serif; font-size: 20px;">상품 이미지</h3>
+            <h3 style="font-family: Arial, sans-serif; font-size: 2%;">상품 이미지</h3>
             <div>
-                <label for="img" style="font-family: Arial, sans-serif; font-size: 20px;"></label><br>
-                <input type="file" name="file" style="font-family: Arial, sans-serif; font-size: 20px;" onchange="readURL(this);" >
+                <label for="img" style="font-family: Arial, sans-serif; font-size: 2%;"></label><br>
+                <input type="file" name="file" style="font-family: Arial, sans-serif; font-size: 2%;" onchange="readURL(this);" >
                 <br><br>
                 <img id="preview" />
             </div>
             <br><br>
-            <h3 style="font-family: Arial, sans-serif; font-size: 20px;">글 제목(상품명)</h3>
+            <h3 style="font-family: Arial, sans-serif; font-size: 2%;">글 제목(상품명)</h3>
             <div>
-                <label for="name" style="font-family: Arial, sans-serif; font-size: 20px;"></label><br>
-                <input type="text" name="name" id="name" required style="font-family: Arial, sans-serif; font-size: 20px; width: 650px; height: 30px;"><br><br>
+                <label for="name" style="font-family: Arial, sans-serif; font-size: 2%;"></label><br>
+                <input type="text" name="name" id="name" required style="font-family: Arial, sans-serif; font-size: 2%; width: 65%; height: 2.5%;"><br><br>
             </div>
             <br><br><br>
-            <h3 style="font-family: Arial, sans-serif; font-size: 20px;">거래 방식</h3>
+            <h3 style="font-family: Arial, sans-serif; font-size: 2%;">거래 방식</h3>
             <div>
                     <input type="checkbox" id="cb1" name="transaction" value="dir">
                     <label for="cb1">직거래</label>
@@ -95,7 +95,7 @@
                     <label for="cb3">비대면상자</label>
             </div>
             <br><br><br>
-            <h3 style="font-family: Arial, sans-serif; font-size: 20px;">가격 방식</h3>
+            <h3 style="font-family: Arial, sans-serif; font-size: 2%;">가격 방식</h3>
             <div>
                 <input type="radio" name="trade_type" value="auction" checked onchange="toggleTradeType()">
                 <label for="auction">경매</label>
@@ -103,17 +103,17 @@
                 <label for="regular">일반</label>
             </div>
             <div id="regular_price_field" style="display:none;">
-                <label for="regular_price" style="font-family: Arial, sans-serif; font-size: 20px;">가격</label><br>
-                <input type="number" name="regular_price" id="regular_price" required style="font-family: Arial, sans-serif; font-size: 20px; width: 650px; height: 30px;"><br><br>
+                <label for="regular_price" style="font-family: Arial, sans-serif; font-size: 2%;">가격</label><br>
+                <input type="number" name="regular_price" id="regular_price" required style="font-family: Arial, sans-serif; font-size: 2%; width: 65%; height: 2.5%;"><br><br>
             </div>
 
             <div id="auction-fields" style="display:none;">
                 <label for="end_date">경매 종료일</label><br>
                 <input type="date" name="end_date" required><br><br>
-            
+
                 <label for="min_price">최소 가격</label><br>
                 <input type="number" name="min_price" required><br><br>
-            
+
                 <label for="max_price">최대 가격</label><br>
                 <input type="number" name="max_price" required><br><br>
             </div>
@@ -123,7 +123,7 @@
                     var auctionFields = document.getElementById('auction-fields');
                     var regularPriceField = document.getElementById('regular_price_field');
                     var tradeType = document.querySelector('input[name="trade_type"]:checked').value;
-            
+
                     if (tradeType === 'auction') {
                         auctionFields.style.display = 'block';
                         regularPriceField.style.display = 'none';
@@ -136,21 +136,21 @@
                         disableFields(auctionFields);
                     }
                 }
-            
+
                 function enableFields(container) {
                     var inputs = container.querySelectorAll('input, select, textarea');
                     inputs.forEach(function (input) {
                         input.removeAttribute('disabled');
                     });
                 }
-            
+
                 function disableFields(container) {
                     var inputs = container.querySelectorAll('input, select, textarea');
                     inputs.forEach(function (input) {
                         input.setAttribute('disabled', 'disabled');
                     });
                 }
-                
+
                 function getCurrentTime() {
                     return new Date().toISOString();
                 }
@@ -165,7 +165,7 @@
                     var form = document.querySelector("form");
                     form.appendChild(timeInput);
                 }
-                
+
                 const currentDateTime = new Date();
                 const year = currentDateTime.getFullYear();
                 const month = String(currentDateTime.getMonth() + 1).padStart(2, '0');
@@ -175,18 +175,18 @@
 
                 const formattedDateTime = `${year}-${month}-${date} ${hour}:${minutes}`;
                 document.getElementById("post_date").value = formattedDateTime;
-                
+
                 document.addEventListener('DOMContentLoaded', function () {
                     toggleTradeType();
                 });
             </script>
             <br><br><br><br>
-            <h3 style="font-family: Arial, sans-serif; font-size: 20px;">상세 설명</h3>
-            <label for="product_description" style="font-family: Arial, sans-serif; font-size: 20px;"></label>
-            <textarea id="product_description" name="product_description" rows="15" cols="50" required style="font-family: Arial, sans-serif; font-size: 20px;" placeholder="(20-500자)"></textarea>
+            <h3 style="font-family: Arial, sans-serif; font-size: 2%;">상세 설명</h3>
+            <label for="product_description" style="font-family: Arial, sans-serif; font-size: 2%;"></label>
+            <textarea id="product_description" name="product_description" rows="15" cols="50" required style="font-family: Arial, sans-serif; font-size: 2%;" placeholder="(20-500자)"></textarea>
             <br>
-            
-            <button class="submit-button" type="submit" style="font-family: Arial, sans-serif; font-size: 20px;">상품 등록</button>
+
+            <button class="submit-button" type="submit" style="font-family: Arial, sans-serif; font-size: 2%;">상품 등록</button>
         </form>
     </article>
     {% endblock section %}

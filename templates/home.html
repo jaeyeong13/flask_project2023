@@ -75,8 +75,8 @@
             align-items: center;
             text-align: center;
             border: 2px solid grey;
-            margin: 2%; /* 상하좌우 여백을 %로 조절 */
-            padding: 2%; /* 내부 패딩을 %로 조절 */
+            margin: 0.7%; /* 상하좌우 여백을 %로 조절 */
+            padding: 0.7%; /* 내부 패딩을 %로 조절 */
             border-radius: 3px;
         }
 
@@ -123,16 +123,23 @@
             height: 10vh; /* 슬라이드 이미지의 높이를 vh로 조절 */
         }
 
-       .floating-image-link {
-    position: fixed;
-    top: 10px; /* 이미지의 위쪽 위치를 조절 */
-    right: 20px; /* 이미지의 오른쪽 위치를 더 조절 */
-}
+        .floating-image-link {
+            position: fixed;
+            top: 10px; /* 이미지의 위쪽 위치를 조절 */
+            right: 20px; /* 이미지의 오른쪽 위치를 더 조절 */
+            width:70%;
+            height:50%;
 
-.floating-image {
-    width: 33%;
-    cursor: pointer;
-}
+
+        }
+
+        .floating-image {
+            width: 20%;
+            margin-top: 28vw;
+            margin-left: 50vw;
+            cursor: pointer;
+        }
+
 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -249,7 +256,9 @@
 
 
         <div class="heart">
-           <h4>내가 찜한 상품 <a href="myprofile_myheart.html" style="display: inline-block; background-color: #E2C6B4; padding: 5px 10px; border-radius: 5px; color: #943F2F; text-decoration: none;">전체보기></a></h4>
+            <h4>내가 찜한 상품 <a href="myprofile_myheart.html"
+                            style="display: inline-block; background-color: #E2C6B4; padding: 5px 10px; border-radius: 5px; color: #943F2F; text-decoration: none;">전체보기></a>
+            </h4>
 
 
             <ul class="heartList">
@@ -271,10 +280,11 @@
                 </li>
             </ul>
 
-            <a href="reg_items.html" class="floating-image-link">
-                <img src="../static/img/potatoRegister.png" alt="Product Register" class="floating-image" cursor:
-                     pointer;">
-            </a>
+    <a href="reg_items.html" class="floating-image-link">
+    <img src="../static/img/potatoRegister.png" alt="Product Register" class="floating-image" style="width: 20%; cursor: pointer;">
+</a>
+
+
         </div>
     {% endblock section %}
 </section>

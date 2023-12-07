@@ -9,9 +9,9 @@
     <style>
 
         body {
-        margin: 0;
-        padding: 0;
-    }
+            margin: 0;
+            padding: 0;
+        }
 
         .div-container {
             display: flex;
@@ -23,27 +23,48 @@
             text-align: center;
         }
 
-        .login-container {
-            width: 50%;
-            float: left;
-        }
-
+        .login-container,
         .link-login {
             width: 50%;
-            float: right;
-            padding-top: 10%;
+            padding: 0 2%; /* 조절 가능한 여백 */
+
         }
 
         .link-login button {
-            font-size: 2vw; /* 폰트 크기를 vw로 조절 */
-            width: 80%; /* 버튼 너비를 %로 조절 */
+            font-size: 1.5vw;
+            width: 100%; /* 버튼을 가득 채우도록 조절 */
             background-color: white;
             color: #000000;
             border: 1px solid #000;
+            margin-bottom: 2%; /* 조절 가능한 여백 */
         }
 
         .link-login a {
-            color: hotpink;
+            color: lightslategrey;
+            text-decoration: none;
+        }
+
+        .link-login ul {
+            list-style: none; /* 리스트 스타일 제거 */
+            padding: 0;
+            margin: 0;
+        }
+
+        .link-login button {
+            width: 70%;
+            font-size: 1.0vw;
+            background-color: #E2C6B4; /* 배경색 변경 */
+            color: brown;
+            border: none;
+            border-radius: 5px; /* border-radius 추가 */
+            padding: 0.8vw; /* 여백 조절 */
+            margin-bottom: 1vw; /* 여백 조절 */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .link-login button:hover {
+            background-color: #E5C3A6; /* hover 시 배경색 변경 */
         }
 
         h2 {
@@ -51,7 +72,7 @@
         }
 
         .form-group {
-            margin: 2% 0;
+            margin-bottom: 2%; /* 조절 가능한 여백 */
         }
 
         label {
@@ -60,20 +81,21 @@
             margin-bottom: 2%;
         }
 
-        input {
-            width: 70%;
+        input,
+        .login-button {
+            width: 90%;
             padding: 2%;
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin-bottom: 2%; /* 조절 가능한 여백 */
         }
 
         .login-button {
             background-color: #F8D57E;
             color: #fff;
-            padding: 2% 4%;
-            border: none;
-            border-radius: 5px;
             cursor: pointer;
+            width : 30%;
+            transition: background-color 0.3s;
         }
 
         .login-button:hover {
@@ -82,7 +104,14 @@
 
         .forgot-links {
             text-align: end;
-            padding-right: 4%;
+            padding-right: 2%; /* 조절 가능한 여백 */
+            text-decoration: none;
+            color: lightslategrey;
+        }
+
+        .forgot-links a {
+            text-decoration: none; /* 밑줄 제거 */
+            color: lightslategrey; /* 링크 텍스트 색상 지정 */
         }
 
     </style>
@@ -90,12 +119,13 @@
 <body>
 {% include 'header.html' %}
 {% include 'menuBar.html' %}
+
 <section>
     {% block section %}
 
         <div class="div-container">
             <div class="login-container">
-                <h2>GamjaMarket</h2>
+
 
                 <br>
                 {% with mesg = get_flashed_messages() %}
@@ -119,11 +149,12 @@
                         <a href="forgot_password.html">비밀번호 찾기</a>
                     </div>
                     <br>
-                    <button type="submit">로그인</button>
+                    <button type="submit" class="login-button">로그인</button>
                 </form>
             </div>
 
             <div class="link-login">
+
                 <ul>
                     <button>페이스북 계정으로 가입하기</button>
                     <br><br>

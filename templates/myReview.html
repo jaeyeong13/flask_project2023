@@ -7,206 +7,209 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='menuBar.css') }}">
     <script src="{{ url_for('static', filename='menuBar.js') }}" defer></script>
     <style>
-    body {
-        margin: 0;
-        font-family: 'Arial', sans-serif;
-    }
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
 
-    .container {
-        width: 100%;
-    }
+        .container {
+            width: 100%;
+        }
 
-    .title {
-        margin-left: 130px;
-        margin-top: 100px;
-        font-size: 18px;
-        font-weight: bold;
-        text-align: left;
-    }
+        .title {
+            margin-left: 130px;
+            margin-top: 100px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: left;
+        }
 
-    .div-container {
-        margin-top: 0px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 50%;
-        flex-wrap: wrap; 
-    }
+        .div-container {
+            margin-top: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50%;
+            flex-wrap: wrap;
+        }
 
-    .review-info {
-        background-color: #F7F5FD;
-        border-radius: 8px;
-        padding: 20px;
-        width: 80%;
-        margin: 20px auto;
-        box-sizing: border-box;
-        overflow: hidden;
-        display: flex;  /* Flexbox 추가 */
-    }
+        .review-info {
+            background-color: #F7F5FD;
+            border-radius: 8px;
+            padding: 20px;
+            width: 80%;
+            margin: 20px auto;
+            box-sizing: border-box;
+            overflow: hidden;
+            display: flex; /* Flexbox 추가 */
+        }
 
-    .leftside,
-    .rightside {
-        box-sizing: border-box;
-        width: 50%;
-    }
+        .leftside,
+        .rightside {
+            box-sizing: border-box;
+            width: 50%;
+        }
 
-    .rightside {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
+        .rightside {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
 
-    .product-info {
-        display: flex;
-        align-items: flex-start;
-    }
+        .product-info {
+            display: flex;
+            align-items: flex-start;
+        }
 
-    .info-imglink {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-right: 20px;
-    }
+        .info-imglink {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px;
+        }
 
-    .info-imglink img {
-        width: 180px;
-        border-radius: 8px;
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
+        .info-imglink img {
+            width: 180px;
+            border-radius: 8px;
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
 
-    .info-details {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
+        .info-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .info-q {
+        .info-q {
             font-size: 12px;
             color: #6D6A6A;
         }
-        
-    .info-a {
-        font-size: 16px;
-    }
 
-    .info-line {
-        margin: 10px;
-        display: flex;
-        flex-direction: column;
-    }
+        .info-a {
+            font-size: 16px;
+        }
 
-    .view-button {
-        width: 180px;
-        background: none;
-        border: 1px solid #000000;
-        border-radius: 8px;
-        padding: 10px 20px;
-        font-size: 16px;
-        color: #000000;
-        cursor: pointer;
-    }
+        .info-line {
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .form-group {
-        margin: 60px 0;
-    }
+        .view-button {
+            width: 180px;
+            background: none;
+            border: 1px solid #000000;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #000000;
+            cursor: pointer;
+        }
 
-    label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
+        .form-group {
+            margin: 60px 0;
+        }
 
-    input {
-        width: 70%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-    .stars {
-        font-size: 24px;
-        display: flex;
-        justify-content: flex-end;
-    }
+        input {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-    .stars input {
-        display: none;
-    }
+        .stars {
+            font-size: 24px;
+            display: flex;
+            justify-content: flex-end;
+        }
 
-    .stars label {
-        cursor: pointer;
-        color: #ccc;
-    }
+        .stars input {
+            display: none;
+        }
 
-    .stars label::before {
-        content: "\2605";
-    }
+        .stars label {
+            cursor: pointer;
+            color: #ccc;
+        }
 
-    .stars label.filled::before {
-        color: #F8D57E;
-    }
+        .stars label::before {
+            content: "\2605";
+        }
 
-    button {
-        background-color: #F8D57E;
-        border: none;
-        border-radius: 8px;
-        padding: 10px 20px;
-        cursor: pointer;
-        margin: 10px auto;
-        display: block;
-        width: 200px;
-        font-size: 20px;
-    }
+        .stars label.filled::before {
+            color: #F8D57E;
+        }
 
-    .page-wrap {
-        text-align: center;
-        font-size: 0;
-    }
+        button {
+            background-color: #F8D57E;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 10px auto;
+            display: block;
+            width: 200px;
+            font-size: 20px;
+        }
 
-    .page-nation {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-    }
+        .page-wrap {
+            text-align: center;
+            font-size: 0;
+        }
 
-    .page-nation a {
-        display: block;
-        margin: 0 3px;
-        float: left;
-        border: 1px solid #e6e6e6;
-        width: 28px;
-        height: 28px;
-        line-height: 28px;
-        text-align: center;
-        background-color: #fff;
-        font-size: 13px;
-        color: black;
-        text-decoration: none;
-        font-weight: bold;
-    }
+        .page-nation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .page-nation a {
+            display: block;
+            margin: 0 3px;
+            float: left;
+            border: 1px solid #e6e6e6;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            background-color: #fff;
+            font-size: 13px;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
     </style>
 </head>
 <body>
-    {% include 'header.html' %}
+{% include 'header.html' %}
 {% include 'menuBar.html' %}
 
-    <section>
-        {% block section %}
-            <div class="whole-container">
-                <div class="title">나의리뷰</div>
-                {% for review in datas %}
+<section>
+    {% block section %}
+        <div class="whole-container">
+            <div class="title">나의리뷰</div>
+            {% for review in datas %}
                 <div class="review-info">
                     <div class="leftside">
                         <div class="product-info">
                             <div class="info-imglink">
                                 <a href="{{ url_for('view_item_detail', name=review.name) }}">
-                                    <img src="../../static/img/{{review.img_path}}" alt="Product Image">
+                                    <img src="../../static/img/{{ review.img_path }}" alt="Product Image">
                                 </a>
-                                <button class="view-button" onclick="location.href='{{ url_for('view_item_detail', name=review.name) }}'">상품 상세보기</button>
+                                <button class="view-button"
+                                        onclick="location.href='{{ url_for('view_item_detail', name=review.name) }}'">상품
+                                    상세보기
+                                </button>
                             </div>
                             <div class="info-details">
                                 <div class="info-line">
@@ -238,7 +241,7 @@
                                         {% endif %}
                                     {% endfor %}
                                 {% else %}
-                                    
+
                                 {% endif %}
                             </div>
                             <br>
@@ -248,24 +251,25 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %}
-            </div>
+            {% endfor %}
+        </div>
 
-            <!-- 페이지네이션 부분 -->
-            <div class="page-wrap">
-                <div class="page-nation">
-                    <ul>
-                        {% for i in range(page_count) %}
-                            <li>
-                                <a href="{{ url_for('my_review', user_id=user_id, page=i) }}" {% if i == page %}class="active"{% endif %}>{{ i }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+        <!-- 페이지네이션 부분 -->
+        <div class="page-wrap">
+            <div class="page-nation">
+                <ul>
+                    {% for i in range(page_count) %}
+                        <li>
+                            <a href="{{ url_for('my_review', user_id=user_id, page=i) }}"
+                               {% if i == page %}class="active"{% endif %}>{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
-        {% endblock section %}
-    </section>
+        </div>
+    {% endblock section %}
+</section>
 
-    {% include 'footer.html' %}
+{% include 'footer.html' %}
 </body>
 </html>

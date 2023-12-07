@@ -1,4 +1,5 @@
 footer {
+    position:fixed;
     display: flex;
     justify-content: space-between;
     /* 왼쪽과 오른쪽을 공간을 균등하게 배치 */

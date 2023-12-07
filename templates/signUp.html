@@ -12,47 +12,48 @@
     .signup-page{
         font-size: large;
         height: 60%;
-        padding-top: 5%;
-        padding-left: 25%;
-        padding-right: 20%;
-        padding-bottom: 4.5%;
+         padding: 5% 10%;
         background-color: #fff;
         border-radius: 5px;
     }
 
     .signup-page .pw{
         display: flex;
+        flex-wrap: wrap;
     }
 
-    .type-pw{
-        margin-right: 70px;
-    }
+    .type-pw, .check-pw, .ID, .Email {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
 
-    .ID input[type="text"], .Email input[type="text"], .pw input[type="password"] {
-        border-radius: 5px;
-        width: 1200px; 
-        height: 50px; 
-    }
+        .ID input[type="text"], .Email input[type="text"], .pw input[type="password"], .check-pw input[type="password"] {
+            border-radius: 5px;
+            width: 80%;
+            height: 50px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
 
-    .pw input[type="password"] {
-        border-radius: 5px;
-        width: 560px; 
-        height: 50px; 
-    }
+        .pw input[type="password"] {
+            width: calc(50% - 5px);
+            margin-right: 10px;
+        }
 
-
-    .signup-page button {
-        background-color: #F8D57E;
-        color: black;
-        font-size: large;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        display: block;
-        margin: 0 450px; /* 가로 중앙 정렬 설정 */
-        width: 280px;
-    }
+        .signup-page button {
+            background-color: #F8D57E;
+            color: black;
+            font-size: large;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 15%;
+            box-sizing: border-box;
+            margin: 0;
+        }
 
 </style>
 <body>
@@ -87,7 +88,7 @@
                     <input type="password" placeholder="동일한 비밀번호를 입력하세요"  name="check-pw">
                 </div>
             </div><br><br>
-            
+
             <div class="Email">
                 <h3>Email</h3>
                 <input type="text" placeholder="이메일을 입력하세요" name="email">
