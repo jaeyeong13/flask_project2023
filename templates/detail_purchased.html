@@ -8,19 +8,19 @@
     <style>
 
         .container {
-        max-width: 80%; /* 디자인에 맞게 최대 너비 조절 */
-        margin: 0 auto;
-        padding: 2%;
-    }
+            max-width: 80%; /* 디자인에 맞게 최대 너비 조절 */
+            margin: 0 auto;
+            padding: 2%;
+        }
 
-       .image-container {
-        display: flex;
-        justify-content: center;
-        margin: 1%; /* 필요에 따라 여백 조절 */
-        border: 1px solid magenta;
-        border-radius: 1%; /* 필요에 따라 둥글게 만들기 */
-        padding: 1%; /* 필요에 따라 내부 여백 조절 */
-    }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin: 1%; /* 필요에 따라 여백 조절 */
+            border: 1px solid magenta;
+            border-radius: 1%; /* 필요에 따라 둥글게 만들기 */
+            padding: 1%; /* 필요에 따라 내부 여백 조절 */
+        }
 
         .image-upload img {
             max-width: 100%; /* 이미지가 부모 요소에 맞게 크기 조절 */
@@ -28,13 +28,13 @@
         }
 
         .product-description {
-        height: 20%; /* 필요에 따라 높이 조절 */
-        width: 80%; /* 필요에 따라 너비 조절 */
-        resize: vertical;
-        border: 1px solid #ccc;
-        border-radius: 2%; /* 필요에 따라 둥글게 만들기 */
-        margin: 0 auto;
-    }
+            height: 20%; /* 필요에 따라 높이 조절 */
+            width: 80%; /* 필요에 따라 너비 조절 */
+            resize: vertical;
+            border: 1px solid #ccc;
+            border-radius: 2%; /* 필요에 따라 둥글게 만들기 */
+            margin: 0 auto;
+        }
 
 
         .product-description h2 {
@@ -80,11 +80,11 @@
             font-size: 14px;
         }
 
-       .text-section {
-        max-width: 80%;
-        margin: 0 auto;
-        padding: 0 2%;
-    }
+        .text-section {
+            max-width: 80%;
+            margin: 0 auto;
+            padding: 0 2%;
+        }
 
         /* Add these styles to move user links to the right */
         /* Add these styles to move user links to the right with 25px spacing */
@@ -113,18 +113,18 @@
         }
 
         .image-wrapper {
-        display: flex;
-        justify-content: center;
-        margin: 5%; /* 필요에 따라 여백 조절 */
-        padding: 5%; /* 필요에 따라 내부 여백 조절 */
-    }
+            display: flex;
+            justify-content: center;
+            margin: 5%; /* 필요에 따라 여백 조절 */
+            padding: 5%; /* 필요에 따라 내부 여백 조절 */
+        }
 
-         .image-wrapper img {
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 1%; /* 필요에 따라 둥글게 만들기 */
-        padding: 2%; /* 필요에 따라 여백 추가 */
-    }
+        .image-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 1%; /* 필요에 따라 둥글게 만들기 */
+            padding: 2%; /* 필요에 따라 여백 추가 */
+        }
 
         .custom-image {
             width: 20px;
@@ -137,7 +137,12 @@
         .comment-box {
             display: flex;
             margin: 20px;
+            width: 82%; /* 너비를 화면의 70%로 설정 */
+            height: 5em;
+            margin-left: auto; /* 좌측 여백을 자동으로 설정하여 가운데 정렬 */
+            margin-right: auto; /* 우측 여백을 자동으로 설정하여 가운데 정렬 */
         }
+
 
         .comment-textbox {
             flex: 1;
@@ -156,20 +161,20 @@
             margin-left: 10px;
         }
 
-        .buy-reply {
-            background-color:#d5c5f4;
-            border-radius: 15px; /* 둥근 테두리 반지름 설정 */
-            margin-left: 30px; /* 왼쪽 여백 설정 */
-            margin-right: 30px;
-            padding: 10px; /* 내부 여백 설정 (텍스트와 테두리 사이의 공간) */
+       .buy-reply {
+            background-color: #F7F5FD;
+            border-radius: 8px;
+            padding: 15px;
+            width: 80%;
+            margin: 20px auto;
         }
 
         .sel-reply {
-            border: 3px solid #d5c5f4;
-            border-radius: 15px;
-            margin-left: 30px;
-            margin-right: 30px;
-            padding: 10px;
+            border: 1px solid #A47BDA;
+            border-radius: 8px;
+            padding: 15px;
+            width: 80%;
+            margin: 20px auto;
         }
 
         .purchase-button {
@@ -207,129 +212,130 @@
     </style>
 </head>
 <body>
-    {% include 'header.html' %}
-    {% include 'menuBar.html' %}
-    <section>
-        {% block section %}
- 
+{% include 'header.html' %}
+{% include 'menuBar.html' %}
+<section>
+    {% block section %}
 
 
-    <div class="image-wrapper">
-        <img src="../../static/img/{{data.img_path}}", width=140, height=200>
-    </div>
-    <div class="text-section">
-        <h4>상품명</h4>
-        <p style="font-size: 30px; font-weight: bold;">{{name}}</p>
-        <br>
-        <div style="display: flex;">
-            <div style="flex: 1;">
-                <h4>가격</h4>
-                <p style="font-size: 30px; font-weight: bold;">{{data.regular_price}}</p>
-                <!-- {{data.normal_price}}로 나중에 가격 바꾸기-->
-            </div>
-            <div style="flex: 1; display: flex;">
-                <div class="dropdown-wrapper">
-                    <button id="purchase-btn" class="purchase-button" style="width:200px; height: 80px;">거래 진행중</button>
-                    <div class="dropdown" style="margin-right: 10px;">
-                        <button id="dropdown-btn" class="purchase-button dropdown-btn">⋮</button>
-                        <div id="dropdown-content" class="dropdown-content" style="width: 100px;">
-                            <a id="complete-btn">거래 완료</a>
+
+        <div class="image-wrapper">
+            <img src="../../static/img/{{ data.img_path }}" , width=140, height=200>
+        </div>
+        <div class="text-section">
+            <h4>상품명</h4>
+            <p style="font-size: 30px; font-weight: bold;">{{ name }}</p>
+            <br>
+            <div style="display: flex;">
+                <div style="flex: 1;">
+                    <h4>가격</h4>
+                    <p style="font-size: 30px; font-weight: bold;">{{ data.regular_price }}</p>
+                    <!-- {{data.normal_price}}로 나중에 가격 바꾸기-->
+                </div>
+                <div style="flex: 1; display: flex;">
+                    <div class="dropdown-wrapper">
+                        <button id="purchase-btn" class="purchase-button" style="width:200px; height: 80px;">거래 진행중
+                        </button>
+                        <div class="dropdown" style="margin-right: 10px;">
+                            <button id="dropdown-btn" class="purchase-button dropdown-btn">⋮</button>
+                            <div id="dropdown-content" class="dropdown-content" style="width: 100px;">
+                                <a id="complete-btn">거래 완료</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <br>
+            <h4>가능한 거래 방식</h4>
+            <!-- <p style="font-size:30px; font-weight: bold;"><img src="https://ifh.cc/g/oQv5Na.png" style="width:150px; height: 60px;"></a> <a style="margin-left: 20px;"><img src="https://ifh.cc/g/SPZYrT.png" style="width: 240px; height: 60px;"></a></p> -->
+            <p style="font-size: 50px; font-weight: bold;">....</p>
+            <br>
+            <div style="display: flex;">
+                <div style="flex: 1;">
+                    <h4>판매자</h4>
+                    <p style="font-size: 30px; font-weight: bold;">{{ data.seller_id }}</p>
+                </div>
+                <div style="flex: 1;">
+                    <h4>상품 등록일</h4>
+                    <p style="font-size: 30px; font-weight: bold;">{{ data.post_date }}</p>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="product-description" style="text-align: justify;">
+            <h2>상세 설명</h2>
+            <p style="font-size: 14px; border-radius: 20px; max-width: 400px; margin: 0 auto; resize: vertical;">{{ data.product_description }}</p>
+        </div>
+        <br><br>
+        <div class="comment-section">
+            <h2 style="margin-left: 130px;">댓글</h2>
+            <div class="comment-box">
+                <textarea class="comment-textbox" placeholder="댓글을 입력하세요"></textarea>
+                <button class="comment-submit-button">게시</button>
+            </div>
         </div>
         <br>
-        <h4>가능한 거래 방식</h4>
-        <!-- <p style="font-size:30px; font-weight: bold;"><img src="https://ifh.cc/g/oQv5Na.png" style="width:150px; height: 60px;"></a> <a style="margin-left: 20px;"><img src="https://ifh.cc/g/SPZYrT.png" style="width: 240px; height: 60px;"></a></p> -->
-        <p style="font-size: 50px; font-weight: bold;">....</p>
+        <div class="buy-reply">
+            <div class="comment-description">
+                <h3>구매하려고 하는 사람 1</h3>
+                <p>감사합니다~</p>
+            </div>
+        </div>
         <br>
-        <div style="display: flex;">
-            <div style="flex: 1;">
-                <h4>판매자</h4>
-                <p style="font-size: 30px; font-weight: bold;">{{data.seller_id}}</p>
-            </div>
-            <div style="flex: 1;">
-                <h4>상품 등록일</h4>
-                <p style="font-size: 30px; font-weight: bold;">{{data.post_date}}</p>
+        <div class="sel-reply">
+            <div class="comment-description">
+                <h3>판매자 ({{ data.seller_id }})</h3>
+                <p>완전 새제품이에용~</p>
             </div>
         </div>
-    </div>
-    <br><br>
-    <div class="product-description" style="text-align: justify;">
-        <h2>상세 설명</h2>
-        <p style="font-size: 14px; border-radius: 20px; max-width: 400px; margin: 0 auto; resize: vertical;">{{data.product_description}}</p>
-    </div>
-    <br><br>
-    <div class="comment-section">
-        <h2 style="margin-left: 20px;">댓글</h2>
-        <div class="comment-box">
-            <textarea class="comment-textbox" placeholder="댓글을 입력하세요"></textarea>
-            <button class="comment-submit-button">게시</button>
+        <br>
+        <div class="buy-reply">
+            <div class="comment-description">
+                <h3>구매하려고 하는 사람 1</h3>
+                <p>상품에 하자 있나요?</p>
+            </div>
         </div>
-    </div>
-    <br>
-    <div class="buy-reply">
-        <div class="comment-description">
-            <h3>구매하려고 하는 사람 1</h3>
-            <p>감사합니다~</p>
-        </div>
-    </div>
-    <br>
-    <div class="sel-reply">
-        <div class="comment-description">
-            <h3>판매자 ({{data.seller_id}})</h3>
-            <p>완전 새제품이에용~</p>
-        </div>
-    </div>
-    <br>
-    <div class="buy-reply">
-        <div class="comment-description">
-            <h3>구매하려고 하는 사람 1</h3>
-            <p>상품에 하자 있나요?</p>
-        </div>
-    </div>
-    <script>
-        // JavaScript 코드 시작
-        document.addEventListener('DOMContentLoaded', function () {
-            // 드롭다운 항목 숨김
-            document.getElementById('dropdown-content').style.display = 'none';
-    
-            // '▼' 버튼 클릭 시 드롭다운 토글
-            document.getElementById('dropdown-btn').addEventListener('click', function () {
-                var dropdownContent = document.getElementById('dropdown-content');
-                if (dropdownContent.style.display === 'block') {
-                    dropdownContent.style.display = 'none';
-                } else {
-                    dropdownContent.style.display = 'block';
-                }
-            });
-    
-            // 드롭다운 항목 클릭 시 처리
-            document.getElementById('complete-btn').addEventListener('click', function () {
-                // '거래 완료' 클릭 시 처리
-                document.getElementById('purchase-btn').innerText = '거래 리뷰 확인 / 작성';
-                document.getElementById('purchase-btn').style.backgroundColor = '#d5c5f4'; 
+        <script>
+            // JavaScript 코드 시작
+            document.addEventListener('DOMContentLoaded', function () {
+                // 드롭다운 항목 숨김
+                document.getElementById('dropdown-content').style.display = 'none';
 
-                var itemName = "{{ name }}";
-                window.location.href = "/reviewDetail/" + itemName + "/";
+                // '▼' 버튼 클릭 시 드롭다운 토글
+                document.getElementById('dropdown-btn').addEventListener('click', function () {
+                    var dropdownContent = document.getElementById('dropdown-content');
+                    if (dropdownContent.style.display === 'block') {
+                        dropdownContent.style.display = 'none';
+                    } else {
+                        dropdownContent.style.display = 'block';
+                    }
+                });
+
+                // 드롭다운 항목 클릭 시 처리
+                document.getElementById('complete-btn').addEventListener('click', function () {
+                    // '거래 완료' 클릭 시 처리
+                    document.getElementById('purchase-btn').innerText = '거래 리뷰 확인 / 작성';
+                    document.getElementById('purchase-btn').style.backgroundColor = '#d5c5f4';
+
+                    var itemName = "{{ name }}";
+                    window.location.href = "/reviewDetail/" + itemName + "/";
+                });
             });
-        });
-    
-        // 사용자가 다른 부분을 클릭하면 드롭다운이 닫히도록 설정
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropdown-btn')) {
-                var dropdowns = document.getElementsByClassName('dropdown-content');
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.style.display === 'block') {
-                        openDropdown.style.display = 'none';
+
+            // 사용자가 다른 부분을 클릭하면 드롭다운이 닫히도록 설정
+            window.onclick = function (event) {
+                if (!event.target.matches('.dropdown-btn')) {
+                    var dropdowns = document.getElementsByClassName('dropdown-content');
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.style.display === 'block') {
+                            openDropdown.style.display = 'none';
+                        }
                     }
                 }
             }
-        }
-    </script>
+        </script>
     {% endblock section %}
 </section>
 

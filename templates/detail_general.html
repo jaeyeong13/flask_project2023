@@ -120,42 +120,46 @@
             right: 85%;
         }
 
-        .comment-box {
+       .comment-box {
             display: flex;
-            margin: 2%;
+            margin: 20px;
+            width: 82%; /* 너비를 화면의 70%로 설정 */
+            height: 5em;
+            margin-left: auto; /* 좌측 여백을 자동으로 설정하여 가운데 정렬 */
+            margin-right: auto; /* 우측 여백을 자동으로 설정하여 가운데 정렬 */
         }
 
         .comment-textbox {
             flex: 1;
-            padding: 1%;
+            padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 0.5%;
+            border-radius: 5px;
         }
 
         .comment-submit-button {
             background-color: #F8D57E;
             color: #2D2D2D;
-            padding: 1% 2%;
+            padding: 10px 20px;
             border: none;
-            border-radius: 0.5%;
+            border-radius: 5px;
             cursor: pointer;
-            margin-left: 1%;
+            margin-left: 10px;
         }
 
         .buy-reply {
-            background-color: #d5c5f4;
-            border-radius: 1%;
-            margin-left: 2%;
-            margin-right: 2%;
-            padding: 1%;
+            background-color: #F7F5FD;
+            border-radius: 8px;
+            padding: 15px;
+            width: 80%;
+            margin: 20px auto;
         }
 
         .sel-reply {
-            border: 0.15vw solid #d5c5f4;
-            border-radius: 1%;
-            margin-left: 2%;
-            margin-right: 2%;
-            padding: 1%;
+            border: 1px solid #A47BDA;
+            border-radius: 8px;
+            padding: 15px;
+            width: 80%;
+            margin: 20px auto;
         }
 
         .purchase-button {
@@ -174,28 +178,33 @@
         #heart {
             font-size: 2vw;
         }
+
+
     </style>
 </head>
 <body>
-    {% include 'header.html' %}
-    {% include 'menuBar.html' %}
-    <section>
-        {% block section %}
+{% include 'header.html' %}
+{% include 'menuBar.html' %}
+<section>
+    {% block section %}
         <div class="image-wrapper">
-            <img src="../../static/img/{{data.img_path}}" style="width: 20vw; height: 20vw; border: 0.15vw solid gray; border-radius: 1%;" alt="상품 이미지">
+            <img src="../../static/img/{{ data.img_path }}"
+                 style="width: 20vw; height: 20vw; border: 0.15vw solid gray; border-radius: 1%;" alt="상품 이미지">
             <i class="fa fa-heart" id="heart" style="margin-top: 2.5vw; margin-left: 1%;"></i>
         </div>
         <div class="text-section">
             <h4 class="title">상품명</h4>
-            <p style="font-size: 2vw; font-weight: bold;">{{name}}</p>
+            <p style="font-size: 2vw; font-weight: bold;">{{ name }}</p>
             <br>
             <div style="display: flex;">
                 <div style="flex: 1;">
                     <h4 class="title">가격</h4>
-                    <p style="font-size: 2vw; font-weight: bold;">{{data.regular_price}}</p>
+                    <p style="font-size: 2vw; font-weight: bold;">{{ data.regular_price }}</p>
                 </div>
                 <div style="flex: 1;">
-                    <button id="purchaseButton" class="purchase-button" onclick="location.href='/purchase_item/{{name}}/';">구매하기</button>
+                    <button id="purchaseButton" class="purchase-button"
+                            onclick="location.href='/purchase_item/{{ name }}/';">구매하기
+                    </button>
                 </div>
             </div>
             <br>
@@ -219,22 +228,22 @@
             <div style="display: flex;">
                 <div style="flex: 1;">
                     <h4 class="title">판매자</h4>
-                    <p style="font-size: 2vw; font-weight: bold;">{{data.seller_id}}</p>
+                    <p style="font-size: 2vw; font-weight: bold;">{{ data.seller_id }}</p>
                 </div>
                 <div style="flex: 1;">
                     <h4 class="title">상품 등록일</h4>
-                    <p style="font-size: 2vw; font-weight: bold;">{{data.post_date}}</p>
+                    <p style="font-size: 2vw; font-weight: bold;">{{ data.post_date }}</p>
                 </div>
             </div>
         </div>
         <br><br>
         <div class="product-description" style="text-align: justify;">
             <h2 class="title">상세 설명</h2>
-            <p style="font-size: 1vw; border-radius: 1%; max-width: 20vw; margin: 0 auto; resize: vertical;">{{data.product_description}}</p>
+            <p style="font-size: 1vw; border-radius: 1%; max-width: 20vw; margin: 0 auto; resize: vertical;">{{ data.product_description }}</p>
         </div>
         <br><br>
         <div class="comment-section">
-            <h2 class="title" style="margin-left: 1%;">댓글</h2>
+            <h2 style="margin-left: 130px;">댓글</h2>
             <div class="comment-box">
                 <textarea class="comment-textbox" placeholder="댓글을 입력하세요"></textarea>
                 <button class="comment-submit-button">게시</button>
@@ -243,76 +252,75 @@
         <br>
         <div class="buy-reply">
             <div class="comment-description">
-                <h3 class="title">구매하려고 하는 사람 1</h3>
+                <h3>구매하려고 하는 사람 1</h3>
                 <p>감사합니다~</p>
             </div>
         </div>
         <br>
         <div class="sel-reply">
             <div class="comment-description">
-                <h3 class="title">판매자 ({{data.seller_id}})</h3>
+                <h3>판매자 ({{ data.seller_id }})</h3>
                 <p>완전 새제품이에용~</p>
             </div>
         </div>
         <br>
         <div class="buy-reply">
             <div class="comment-description">
-                <h3 class="title">구매하려고 하는 사람 1</h3>
+                <h3>구매하려고 하는 사람 1</h3>
                 <p>상품에 하자 있나요?</p>
             </div>
         </div>
-    </div>
-    <script>
-        function showHeart() {
-            $.ajax({
-                type: 'GET',
-                url: '/show_heart/{{name}}/',
-                data: {},
-                success: function (response) {
-                    let my_heart = response['my_heart'];
-                    if (my_heart['interested'] == 'Y') {
-                        $("#heart").css("color", "red");
-                        $("#heart").attr("onclick", "unlike()");
-                    } else {
-                        $("#heart").css("color", "grey");
-                        $("#heart").attr("onclick", "like()");
+        <script>
+            function showHeart() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/show_heart/{{name}}/',
+                    data: {},
+                    success: function (response) {
+                        let my_heart = response['my_heart'];
+                        if (my_heart['interested'] == 'Y') {
+                            $("#heart").css("color", "red");
+                            $("#heart").attr("onclick", "unlike()");
+                        } else {
+                            $("#heart").css("color", "grey");
+                            $("#heart").attr("onclick", "like()");
+                        }
                     }
-                }
-            });
-        }
+                });
+            }
 
-        function like() {
-            $.ajax({
-                type: 'POST',
-                url: '/like/{{name}}/',
-                data: {
-                    interested: "Y"
-                },
-                success: function (response) {
-                    alert(response['msg']);
-                    window.location.reload();
-                }
-            });
-        }
+            function like() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/like/{{name}}/',
+                    data: {
+                        interested: "Y"
+                    },
+                    success: function (response) {
+                        alert(response['msg']);
+                        window.location.reload();
+                    }
+                });
+            }
 
-        function unlike() {
-            $.ajax({
-                type: 'POST',
-                url: '/unlike/{{name}}/',
-                data: {
-                    interested: "N"
-                },
-                success: function (response) {
-                    alert(response['msg']);
-                    window.location.reload();
-                }
-            });
-        }
+            function unlike() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/unlike/{{name}}/',
+                    data: {
+                        interested: "N"
+                    },
+                    success: function (response) {
+                        alert(response['msg']);
+                        window.location.reload();
+                    }
+                });
+            }
 
-        $(document).ready(function () {
-            showHeart();
-        });
-    </script>
+            $(document).ready(function () {
+                showHeart();
+            });
+        </script>
     {% endblock section %}
 </section>
 {% include 'footer.html' %}
