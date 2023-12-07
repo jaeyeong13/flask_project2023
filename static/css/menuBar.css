@@ -1,40 +1,45 @@
-/* menuBar.css */
-
-.sidebar {
+/* 초기에는 바가 숨겨져 있도록 설정 */
+.floating-bar {
+    width: 0;
     height: 100%;
-    width: 250px;
+    background-color: #333;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #F6E7E6;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
 }
 
-.sidebar a {
+/* 플로팅 바 내의 링크 스타일 */
+.floating-bar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 12px;
-    color: black;
+    font-size: 25px;
+    color: #818181;
     display: block;
     transition: 0.3s;
 }
 
-.sidebar a:hover {
-    color: #F8D57E;
+/* 플로팅 바 내의 링크에 호버 효과 */
+.floating-bar a:hover {
+    color: #f1f1f1;
 }
 
-.content {
-    margin-left: 250px;
-    transition: margin-left .5s;
-    padding: 16px;
-}
-
-.closebtn {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+/* 헤더 내의 토글 버튼 스타일 */
+.header-toggle-btn {
     font-size: 30px;
     cursor: pointer;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+}
+
+/* 헤더 내의 토글 버튼 위치 및 정렬 */
+.header-toggle-btn-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
 }

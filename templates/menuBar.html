@@ -7,41 +7,55 @@
     <title>Menu Bar</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- menuBar.css 파일 참조 -->
-    <link rel="stylesheet" href="menuBar.css">
+    
 </head>
 
+
 <body>
-<!-- 좌측 메뉴 슬라이딩 창 -->
-<div id="mySidebar" class="sidebar">
-    <!-- 닫기 버튼 -->
-    <span class="closebtn" onclick="closeNav()">&#10006;</span>
-    <a href="home.html">홈화면</a><br>
-    <a href="#">상품거래</a><br>
-    <a href="/productRegister.html">--상품 등록</a>
-    <a href="/productList.html">--전체 상품 조회</a>
-    <a href="#">--플립뷰</a><br>
-    <a href="#">마이페이지</a><br>
-    <a href="#">--전체 거래내역</a>
-    <a href="#">-----진행중인 거래</a>
-    <a href="#">-----완료된 거래</a>
-    <a href="#">--경매 내역</a>
-    <a href="#">--나의 리뷰</a>
-    <a href="#">--나의 찜</a>
-    <a href="#">--판매중인 상품</a>
-    <a href="#">--마이프로필</a>
-</div>
 
-<!-- 페이지 내용 -->
-<div id="main" class="content">
-    <!-- 여기에 home.html 넣기-->
+    
 
-    <!-- home.html 끝-->
 
-</div>
-<!-- menuBar.js 파일 참조 -->
-<script src="menuBar.js" defer></script>
+    <div id="mySidebar" class="sidebar">
+        <span class="closebtn" onclick="closeNav()">&#10006;</span>
+        <a href="home.html">홈화면</a><br>
+        <a href="#">상품거래</a><br>
+        <a href="/productRegister.html">--상품 등록</a>
+        <a href="/productList.html">--전체 상품 조회</a>
+        <a href="#">--플립뷰</a><br>
+        <a href="#">마이페이지</a><br>
+        <a href="#">--전체 거래내역</a>
+        <a href="#">-----진행중인 거래</a>
+        <a href="#">-----완료된 거래</a>
+        <a href="#">--경매 내역</a>
+        <a href="#">--나의 리뷰</a>
+        <a href="#">--나의 찜</a>
+        <a href="#">--판매중인 상품</a>
+        <a href="#">--마이프로필</a>
+    </div>
 
+    
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            moveImage(250);
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            moveImage(0);
+        }
+
+        function moveImage(position) {
+            var imgElement = document.querySelector("img[src='potatoRegister.png']");
+            if (imgElement) {
+                imgElement.style.right = position + "px";
+            }
+        }
+    </script>
 </body>
 
 </html>
