@@ -250,6 +250,18 @@
                 }
             });
         }
+        
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('preview').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                document.getElementById('preview').src = "";
+            }
+        }
     </script>
 </head>
 
@@ -268,8 +280,8 @@
                 <div class="div-container">
                     <div class="review-container">
                         <div class="info-group">
-                            <label for="product" class="product">상품 등록</label>
-                            <br><br><br>
+                            <!--<label for="product" class="product">상품 등록</label><br><br><br>-->
+                            
                             <div class="img_reg">
                                 <label for="review" class="review" style="font-weight: bold">상품 이미지</label>
 
@@ -279,7 +291,7 @@
                                         style="font-family: Arial, sans-serif; font-size: 2%;"
                                         onchange="readURL(this);">
                                     <br><br>
-                                    <img id="preview" />
+                                    <img id="preview" width="300px"/>
                                 </div>
                             </div>
 
