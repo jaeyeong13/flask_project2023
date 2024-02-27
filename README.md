@@ -4,6 +4,9 @@
 기술블로그 링크:
 https://sleepy-potential-2eb.notion.site/d2d8fb9d87794b2eb99f600230bd16ff
 
+시연 영상 링크:
+https://drive.google.com/file/d/1TXL6SkTnxZzk5gRn0qnsEUZwdIRbYNiw/view?usp=sharing
+
 ## 🔥팀원 및 담당페이지
 ### 김경희
 - 프론트, 백엔드
